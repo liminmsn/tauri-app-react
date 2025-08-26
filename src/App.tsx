@@ -1,7 +1,5 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/core";
-import "./App.css";
 import { Button, Input } from "antd";
 
 function App() {
@@ -9,14 +7,16 @@ function App() {
   const [name, setName] = useState("");
 
   async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
     setGreetMsg(await invoke("greet", { name }));
   }
 
   return (
-    <main className="container">
-      <Input onInput={(e) => setName((e.target as HTMLInputElement)['value'])} />
-      <Button type={"primary"} onClick={greet}>{greetMsg}</Button>
+    <main className="w-full h-full p-1">
+      <div className="w-40 mb-1">
+        <Input onInput={(e) => setName((e.target as HTMLInputElement)['value'])} />
+      </div>
+      <Button type={"primary"} onClick={greet}>Send</Button>
+      {greetMsg}
     </main>
   );
 }

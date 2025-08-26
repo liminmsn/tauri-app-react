@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { ConfigProvider, App, theme, ThemeConfig } from "antd";
 import Context from "./App";
+import './design/main.css';
+import 'virtual:uno.css';
 
 
 const defaultData: ThemeConfig = {
@@ -19,7 +21,7 @@ const defaultData: ThemeConfig = {
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ConfigProvider theme={defaultData}>
-      <App>
+      <App className="h-full">
         <Context />
       </App>
     </ConfigProvider>
