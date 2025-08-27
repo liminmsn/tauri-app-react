@@ -1,0 +1,5 @@
+.ant-btn-sm {
+    &:hover {
+        cursor: pointer !important;
+    }
+}
