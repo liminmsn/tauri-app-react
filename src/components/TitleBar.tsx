@@ -20,7 +20,7 @@ export function TitleBar() {
             <span style={{ color: 'var(--THEME_COLOR)' }}>{import.meta.env['VITE_NAME']}</span>
         </Card>
         <Popover content={<SettingView />} trigger={"click"} placement={"bottom"}>
-            <Button className="mr-1" >
+            <Button className="mr-1" type={"primary"}>
                 <Bolt size={14} />
             </Button>
         </Popover>
