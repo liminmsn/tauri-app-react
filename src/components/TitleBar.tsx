@@ -16,7 +16,7 @@ export function TitleBar() {
 
     return <div className="flex">
         <Card className="w-full mr-1 app-region">
-            <span><Flower2 size={14} color="var(--THEME_COLOR)" style={{ transform: 'translateY(2px)' }} /></span>
+            <span className="ml-1"><Flower2 size={14} color="var(--THEME_COLOR)" style={{ transform: 'translateY(2px)' }} /></span>
             <span style={{ color: 'var(--THEME_COLOR)' }}>{import.meta.env['VITE_NAME']}</span>
         </Card>
         <Popover content={<SettingView />} trigger={"click"} placement={"bottom"}>
@@ -39,7 +39,7 @@ function SettingView() {
         boxShadow: '0 1px 10px var(--THEME_COLOR)'
     }
 
-    return <div className="min-w-30">
+    return <div className="">
         {/* <label className="text-sm">夜间：</label> */}
         <Switch value={localStorage.getItem('theme_dart') === 'true'} onChange={(bol: boolean) => toggleThemeDark(config, bol)} />
         <div className="flex mt-1 gap-1">
