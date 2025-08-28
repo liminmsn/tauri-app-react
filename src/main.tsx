@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import './design/main.css';
 import 'virtual:uno.css';
+import '@xyflow/react/dist/style.css';
 import { ThemeProvider } from "./theme";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
