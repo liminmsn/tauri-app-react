@@ -3,8 +3,26 @@
 }
 
 .effect-text-mask {
+    background: linear-gradient(90deg, transparent, white);
     font-weight: bold;
-    background: linear-gradient(90deg, var(--THEME_COLOR), white);
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    /* animation: effect-text-mask-anim infinite alternate 360ms; */
+}
+
+.effect-border {
+    box-sizing: border-box;
+    /* box-shadow: 0 0 6px 1px var(--THEME_COLOR) inset; */
+    border: 2px dashed var(--THEME_COLOR);
+}
+
+.effect-border-top-none {
+    border-top-left-radius: var(--THEME_BORDER_RADIUS) !important;
+    border-top-right-radius: var(--THEME_BORDER_RADIUS) !important;
+}
+
+@keyframes effect-text-mask-anim {
+    from {}
+
+    to {}
 }

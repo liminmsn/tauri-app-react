@@ -4,20 +4,18 @@ import { useCallback } from "react";
 import { useThemeData } from "../theme";
 import { TextUpdaterNode } from "./node/TextUpdateNode";
 
-
 const initialNodes = [
     // { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
     // { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
     { id: '3', position: { x: 0, y: 120 }, type: 'textUpdater', data: { label: '1' } },
 ];
 const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
+const nodeTypes = {
+    textUpdater: TextUpdaterNode,
+};
 
 function Flow() {
     const theme_ = useThemeData();
-
-    const nodeTypes = {
-        textUpdater: TextUpdaterNode,
-    };
     const [nodes, _setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const onConnect = useCallback(
@@ -25,10 +23,9 @@ function Flow() {
         [setEdges],
     );
 
-    return <div className="flow w-full pt-0 box-border" style={{ height: 'calc(100% - 24.1px)', paddingTop: '2px' }}>
-        <Card className="h-full border-none">
-            { }
-            <div style={{ height: 'calc(100vh - 26.1px)' }}>
+    return <div className="flow" style={{ paddingTop: '2px' }}>
+        <Card className="h-full overflow-hidden rounded-2xl effect-border effect-border-top-none">
+            <div className="" style={{ height: 'calc(100vh - 31px)' }}>
                 <ReactFlow
                     colorMode={theme_.themeData.algorithm == theme.darkAlgorithm ? 'dark' : 'light'}
                     nodes={nodes}

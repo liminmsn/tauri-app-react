@@ -53,6 +53,7 @@ const toggleThemeDark = ({ themeData, setThemeData }: ThemeContextType, bool: bo
 function setCssPropColor(color: string) {
     document.documentElement.style.setProperty('--THEME_COLOR', color);
     document.documentElement.style.setProperty('--THEME_COLOR_BG', hexToRgba(color, 0.2));
+    document.documentElement.style.setProperty('--THEME_BORDER_RADIUS', String(themeData_.token?.borderRadius + 'px') || '0px')
 }
 
 
