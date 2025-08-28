@@ -1,5 +1,7 @@
 @import url('./ant/card.css');
 @import url('./ant/btn.css');
+@import url('./effect.css');
+@import url('./flow.css');
 
 :root {
   font-synthesis: none;
@@ -12,13 +14,9 @@
 html,
 body,
 #root {
+  margin: 0;
   height: 100%;
   box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  background-color: var(--THEME_COLOR_BG);
 }
 
 .app-region {

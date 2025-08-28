@@ -6,25 +6,28 @@ import { useThemeData, theme_color_arr, setThemeColor, toggleThemeDark } from ".
 import { isEqual } from "../util/util";
 const win = new Window('main');
 
+const sysBG: CSSProperties = { background: 'var(--THEME_COLOR)', border: 'none', color: 'white' };
+
 export function TitleBar() {
     const [maximizee, setMaximizee] = useState(false);
     function toggleMaximize() {
         win.toggleMaximize().then(() => {
-            win.isMaximized().then(val => setMaximizee(val))
+            win.isMaximized().then(val => setMaximizee(val));
         });
     }
 
     return <div className="flex">
-        <Card className="w-full mr-1 app-region">
-            <span className="ml-1"><Flower2 size={14} color="var(--THEME_COLOR)" style={{ transform: 'translateY(2px)' }} /></span>
-            <span style={{ color: 'var(--THEME_COLOR)' }}>{import.meta.env['VITE_NAME']}</span>
+        <Card className="min-w-30 text-center select-none" style={sysBG}>
+            <span className="mr-2"><Flower2 size={14} style={{ transform: 'translateY(2px)' }} /></span>
+            <span className="effect-text-mask">{import.meta.env['VITE_NAME']}</span>
         </Card>
+        <Card className="w-full mx-1 app-region"></Card>
         <Popover content={<SettingView />} trigger={"click"} placement={"bottom"}>
             <Button className="mr-1" type={"primary"}>
                 <Bolt size={14} />
             </Button>
         </Popover>
-        <Space direction={"horizontal"} size={3.5}>
+        <Space direction={"horizontal"} size={3}>
             <Button onClick={() => win.minimize()}><Minus size={14} /></Button>
             <Button onClick={() => toggleMaximize()}>{maximizee ? <Minimize size={14} /> : <Maximize size={14} />}</Button>
             <Button onClick={() => win.close()} danger type={"primary"}><X size={14} /></Button>

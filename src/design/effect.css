@@ -1,0 +1,10 @@
+.effect-box-show {
+    box-shadow: 0 1px 10px var(--THEME_COLOR) !important;
+}
+
+.effect-text-mask {
+    font-weight: bold;
+    background: linear-gradient(90deg, var(--THEME_COLOR), white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
