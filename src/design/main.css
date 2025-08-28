@@ -3,6 +3,16 @@
 @import url('./effect.css');
 @import url('./flow.css');
 
+@font-face {
+  font-family: 'shouxie';
+  src: url("./../assets/font/JinNianYeYaoJiaYouYa-2.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'qtxt';
+  src: url("./../assets/font/QianTuXiaoTuTi-2.ttf") format('truetype');
+}
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;

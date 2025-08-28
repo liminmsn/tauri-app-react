@@ -3,10 +3,11 @@
 }
 
 .effect-text-mask {
-    background: linear-gradient(90deg, transparent, white);
+    background: linear-gradient(90deg, white, rgba(255, 255, 255, 0.5), white);
     font-weight: bold;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-family: 'qtxt';
     /* animation: effect-text-mask-anim infinite alternate 360ms; */
 }
 

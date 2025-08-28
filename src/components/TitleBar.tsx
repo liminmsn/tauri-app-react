@@ -1,4 +1,4 @@
-import { Button, Card, Popover, Space, Switch } from "antd";
+import { Button, Card, Popover, Space, Switch, Tag } from "antd";
 import { Minus, X, Maximize, Minimize, Flower2, Bolt } from "lucide-react";
 import { Window } from "@tauri-apps/api/window";
 import { useState, CSSProperties } from "react";
@@ -21,7 +21,7 @@ export function TitleBar() {
             <span className="mr-2"><Flower2 size={14} style={{ transform: 'translateY(2px)' }} /></span>
             <span className="effect-text-mask">{import.meta.env['VITE_NAME']}</span>
         </Card>
-        <Card className="w-full mx-1 app-region"></Card>
+        <Card className="w-full mx-1 app-region text-nowrap overflow-x-auto"></Card>
         <Popover content={<SettingView />} trigger={"click"} placement={"bottom"}>
             <Button className="mr-1" type={"primary"}>
                 <Bolt size={14} />

@@ -1,13 +1,3 @@
-.dark .react-flow__node {
-  background: #777;
-  color: white;
-}
- 
-.light .react-flow__node {
-  background: white;
-  color: #111;
-}
-
 .react-flow__panel{
   display: none;
 }

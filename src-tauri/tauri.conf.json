@@ -12,8 +12,8 @@
   "app": {
     "windows": [
       {
-        "title": "tauri-app-react",
-        "width": 800,
+        "title": "萌妹写真",
+        "width": 900,
         "height": 600,
         "decorations": false,
         "transparent": true,
