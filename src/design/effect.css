@@ -14,7 +14,7 @@
 .effect-border {
     box-sizing: border-box;
     /* box-shadow: 0 0 6px 1px var(--THEME_COLOR) inset; */
-    border: 2px dashed var(--THEME_COLOR);
+    border: 1px dashed var(--THEME_COLOR);
 }
 
 .effect-border-top-none {

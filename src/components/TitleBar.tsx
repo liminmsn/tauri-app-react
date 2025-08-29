@@ -17,13 +17,13 @@ export function TitleBar() {
     }
 
     return <div className="flex">
-        <Card className="min-w-30 text-center select-none" style={sysBG}>
+        <Card className="min-w-30 text-center select-none ymr-2" style={sysBG}>
             <span className="mr-2"><Flower2 size={14} style={{ transform: 'translateY(2px)' }} /></span>
             <span className="effect-text-mask">{import.meta.env['VITE_NAME']}</span>
         </Card>
-        <Card className="w-full mx-1 app-region text-nowrap overflow-x-auto"></Card>
+        <Card className="w-full ymr-2 app-region text-nowrap overflow-x-auto effect-border"></Card>
         <Popover content={<SettingView />} trigger={"click"} placement={"bottom"}>
-            <Button className="mr-1" type={"primary"}>
+            <Button className="ymr-2" type={"primary"}>
                 <Bolt size={14} />
             </Button>
         </Popover>
