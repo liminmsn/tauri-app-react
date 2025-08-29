@@ -1,45 +1,8 @@
-import { addEdge, Background, BackgroundVariant, Controls, Edge, Node, NodeTypes, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
+import { addEdge, Background, BackgroundVariant, Controls, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
 import { Card, theme } from "antd";
 import { useCallback } from "react";
 import { useThemeData } from "../theme";
-import { TextUpdaterNode } from "./node/TextUpdateNode";
-import FlowTag from "./node/FlowTag";
-import FlowCard from "./node/FlowCard";
-
-
-const NodesType: NodeTypes = {
-    textUpdater: TextUpdaterNode,
-    Tag: FlowTag,
-    Card: FlowCard
-};
-const initialNodes: Node[] = [];
-const initialEdges: Edge[] = [];
-
-initialNodes.push({
-    id: '0',
-    type: 'Tag',
-    position: { x: 0, y: 0 },
-    data: { tag: '纯正' },
-});
-initialNodes.push(...(function () {
-    const arr = [];
-    const containerWidth = document.body.clientWidth;
-    const containerHeight = document.body.clientHeight ;
-    for (let i = 0; i < 10; i++) {
-        const x = Math.floor(Math.random() * (containerWidth - 120));
-        const y = Math.floor(Math.random() * (containerHeight - 120));
-        arr.push(
-            {
-                id: `${i + 1}`,
-                type: 'Card',
-                position: { x, y },
-                data: { src: 'https://img-s.msn.cn/tenant/amp/entityid/BB1msIHt?w=0&h=0&q=60&m=6&f=jpg&u=t' },
-            }
-        );
-    }
-    return arr;
-})());
-
+import { initialNodes, initialEdges, NodesType } from "./data/flow";
 
 function Flow() {
     const theme_ = useThemeData();

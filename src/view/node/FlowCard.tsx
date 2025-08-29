@@ -1,9 +1,16 @@
 import { Node, NodeProps } from "@xyflow/react";
-import { Card, Image } from "antd";
+import { Card, Tag } from "antd";
+import { TagIcon } from "lucide-react";
 
-function FlowCard(prop: NodeProps<Node<{ src: string }>>) {
+function FlowCard(prop: NodeProps<Node<{ tags: string[] }>>) {
     return <Card className="p-1 shadow-xl">
-        <Image width={100} height={150} src={prop.data.src} />
+        <div className="gird cols-6">
+            {prop.data.tags.map(tag => {
+                return <Tag key={tag} icon={<TagIcon />}>
+                    {tag}
+                </Tag>
+            })}
+        </div>
     </Card>;
 }
 
