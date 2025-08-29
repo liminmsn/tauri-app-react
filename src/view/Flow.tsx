@@ -1,8 +1,9 @@
 import { addEdge, Background, BackgroundVariant, Controls, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
 import { Card, theme } from "antd";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useThemeData } from "../theme";
 import { initialNodes, initialEdges, NodesType } from "./data/flow";
+import { getTags } from "../net/api";
 
 function Flow() {
     const theme_ = useThemeData();
@@ -12,6 +13,11 @@ function Flow() {
         (params: any) => setEdges((eds) => addEdge(params, eds)),
         [setEdges],
     );
+    useEffect(() => () => {
+        getTags().then(val => {
+            console.log(val);
+        })
+    }, []);
 
     return <div className="flow" style={{ paddingTop: '2px' }}>
         <Card className="h-full overflow-hidden rounded-2xl effect-border effect-border-top-none">
