@@ -11,6 +11,15 @@
     /* animation: effect-text-mask-anim infinite alternate 360ms; */
 }
 
+.effect-text-mask_two {
+    background: linear-gradient(90deg, black, rgba(255, 255, 255, 0.5), black);
+    font-weight: bold;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'qtxt';
+    /* animation: effect-text-mask-anim infinite alternate 360ms; */
+}
+
 .effect-border {
     box-sizing: border-box;
     /* box-shadow: 0 0 6px 1px var(--THEME_COLOR) inset; */

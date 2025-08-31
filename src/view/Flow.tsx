@@ -1,8 +1,8 @@
 import { addEdge, Background, BackgroundVariant, Controls, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
 import { Card, theme } from "antd";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useThemeData } from "../theme";
-import { initialNodes, initialEdges, NodesType } from "./data/flow";
+import { initialNodes, initialEdges, NodesType } from "./flow_data";
 import { getTags } from "../net/api";
 
 function Flow() {
@@ -13,16 +13,18 @@ function Flow() {
         (params: any) => setEdges((eds) => addEdge(params, eds)),
         [setEdges],
     );
-    useEffect(() => () => {
-        getTags().then(val => {
-            console.log(val);
-        })
-    }, []);
+    // useEffect(() => {
+    //     _setNodes(nodes => [
+    //         ...nodes,
+    //     ]);
+    // }, []);
 
     return <div className="flow" style={{ paddingTop: '2px' }}>
         <Card className="h-full overflow-hidden rounded-2xl effect-border effect-border-top-none">
             <div className="" style={{ height: 'calc(100vh - 31px)' }}>
                 <ReactFlow
+                    minZoom={0.5}
+                    maxZoom={2}
                     colorMode={theme_.themeData.algorithm == theme.darkAlgorithm ? 'dark' : 'light'}
                     nodes={nodes}
                     edges={edges}
