@@ -2,22 +2,18 @@ import { addEdge, Background, BackgroundVariant, Controls, Edge, Node, NodeTypes
 import { Card, theme } from "antd";
 import { useCallback } from "react";
 import { useThemeData } from "../theme";
-import { FlowPagInation } from "./node/FlowPagInation";
 import FlowTags from "./node/FlowTags";
-import FlowTag from "./node/FlowTag";
 import FlowImage from "./node/FlowImage";
 
 const NodesType: NodeTypes = {
-    Pag: FlowPagInation,
     Image: FlowImage,
     Tags: FlowTags,
-    Tag: FlowTag,
 };
 
 const initialEdges: Edge[] = [];
 const initialNodes: Node[] = [
     {
-        id: `0`,
+        id: `tags`,
         type: 'Tags',
         position: { x: 0, y: 0 },
         data: { tags: [] },
@@ -32,17 +28,12 @@ function Flow() {
         (params: any) => setEdges((eds) => addEdge(params, eds)),
         [setEdges],
     );
-    // useEffect(() => {
-    //     _setNodes(nodes => [
-    //         ...nodes,
-    //     ]);
-    // }, []);
 
     return <div className="flow" style={{ paddingTop: '2px' }}>
         <Card className="h-full overflow-hidden rounded-2xl effect-border effect-border-top-none">
             <div className="" style={{ height: 'calc(100vh - 31px)' }}>
                 <ReactFlow
-                    minZoom={0.5}
+                    minZoom={0.3}
                     maxZoom={2}
                     colorMode={theme_.themeData.algorithm == theme.darkAlgorithm ? 'dark' : 'light'}
                     nodes={nodes}
