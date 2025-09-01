@@ -1,5 +1,5 @@
 import { Card, Pagination, Spin, Tag } from "antd";
-import { getTags, TagType } from "../../net/api";
+import { fetchTags, TagType } from "../../net/api";
 import { Handle, Position } from "@xyflow/react";
 import { Suspense, useCallback, useDeferredValue, useEffect, useState } from "react";
 import { TagIcon } from "lucide-react";
@@ -12,7 +12,7 @@ function FlowTags() {
     const deferredTagArr = useDeferredValue(tagArr);
 
     const init = useCallback(() => {
-        getTags().then(res => {
+        fetchTags().then(res => {
             setTagArr(res);
             // setSelect(res[0]);
             // setTimeout(() => {

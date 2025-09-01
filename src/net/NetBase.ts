@@ -3,7 +3,7 @@ class NetBase {
     private url: string = import.meta.env['VITE_URL'];
     private init: (RequestInit & ClientOptions) = {};
     constructor(src: string = '') {
-        this.url.concat(src);
+        this.url = this.url.concat(src);
     }
     get() {
         this.init.method = 'GET';
@@ -15,8 +15,14 @@ class NetBase {
         return this;
     }
     async send() {
-        return await fetch(this.url, this.init);
+        const res = await fetch(this.url, this.init);
+        return globalThis.caches.open('v1')
+            .then(cache => {
+                cache.put(this.url, res.clone()); // 缓存响应
+                return res; // 返回原始响应供页面使用
+            });
     }
+
 }
 
 export { NetBase }
