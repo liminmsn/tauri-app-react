@@ -16,7 +16,7 @@ function FlowTags() {
             reactFlow.addNodes({
                 id: nodeId,
                 type: 'Image',
-                position: { x: 300 + (Math.random() * Number(Date.now().toString().slice(0, 4))), y: idx * 80 },
+                position: { x: 300 + idx * 200, y:Math.random() * Number.parseFloat(Date.now().toString().slice(0, 4)) },
                 data: { parentId: id, val: item }
             });
 
@@ -29,7 +29,7 @@ function FlowTags() {
                 targetHandle: 'image-target',
             });
         });
-        // reactFlow.fitView();
+        reactFlow.fitView();
     }
 
 

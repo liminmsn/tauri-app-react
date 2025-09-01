@@ -33,7 +33,7 @@ function Flow() {
         <Card className="h-full overflow-hidden rounded-2xl effect-border effect-border-top-none">
             <div className="" style={{ height: 'calc(100vh - 31px)' }}>
                 <ReactFlow
-                    minZoom={0.3}
+                    minZoom={0.5}
                     maxZoom={2}
                     colorMode={theme_.themeData.algorithm == theme.darkAlgorithm ? 'dark' : 'light'}
                     nodes={nodes}
