@@ -1,9 +1,28 @@
-import { addEdge, Background, BackgroundVariant, Controls, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
+import { addEdge, Background, BackgroundVariant, Controls, Edge, Node, NodeTypes, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
 import { Card, theme } from "antd";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback } from "react";
 import { useThemeData } from "../theme";
-import { initialNodes, initialEdges, NodesType } from "./flow_data";
-import { getTags } from "../net/api";
+import { FlowPagInation } from "./node/FlowPagInation";
+import FlowTags from "./node/FlowTags";
+import FlowTag from "./node/FlowTag";
+import FlowImage from "./node/FlowImage";
+
+const NodesType: NodeTypes = {
+    Pag: FlowPagInation,
+    Image: FlowImage,
+    Tags: FlowTags,
+    Tag: FlowTag,
+};
+
+const initialEdges: Edge[] = [];
+const initialNodes: Node[] = [
+    {
+        id: `0`,
+        type: 'Tags',
+        position: { x: 0, y: 0 },
+        data: { tags: [] },
+    }
+];
 
 function Flow() {
     const theme_ = useThemeData();
