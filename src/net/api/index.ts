@@ -26,8 +26,17 @@ export async function fetchTags(): Promise<TagsType> {
         };
     }
     return {
-        tags: [],
         page: 0,
+        tags: [],
         imgs: []
     }
+}
+export async function fetchImgs(url: string): Promise<HTMLImageElement[]> {
+    const res = await new NetBase().setUrl(url).get().send();
+    if (res.status == 200) {
+        const { dom } = new Dom(await res.text());
+        const imageArr = dom.getElementById('masonry')?.getElementsByTagName('img');
+        return Array.from(imageArr ?? []);
+    }
+    return [];
 }

@@ -11,12 +11,13 @@ function FlowTags() {
     const reactFlow = useReactFlow();
     // debugger
     const addNodes = function (imgs: Element[]) {
+        
         imgs.forEach((item, idx) => {
             const nodeId = String('img_').concat(Math.random().toString(36).slice(2, 10));
             reactFlow.addNodes({
                 id: nodeId,
                 type: 'Image',
-                position: { x: 300 + idx * 200, y:Math.random() * Number.parseFloat(Date.now().toString().slice(0, 4)) },
+                position: { x: 200 + idx * (Math.random() * 400), y: (idx * 400) - 800 },
                 data: { parentId: id, val: item }
             });
 
@@ -24,12 +25,12 @@ function FlowTags() {
                 id: `${id}_to_${nodeId}`,
                 source: id,
                 target: nodeId,
-                animated: true,
+                // animated: true,
                 sourceHandle: 'tags-source',
                 targetHandle: 'image-target',
             });
         });
-        reactFlow.fitView();
+        // reactFlow.fitView();
     }
 
 
@@ -45,7 +46,7 @@ function FlowTags() {
 
     useEffect(() => () => init(), []);
 
-    return <Card className="p-2 shadow-sm max-w-60">
+    return <Card className="p-2 max-w-60 shadow-xl">
         <div className="mb-2 grid cols-2 gap-y-1 grid-content-baseline">
             {tags.tags.map(item => {
                 return <Tag

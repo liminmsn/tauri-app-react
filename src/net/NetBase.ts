@@ -14,6 +14,10 @@ class NetBase {
         this.init.body = body;
         return this;
     }
+    setUrl(url: string) {
+        this.url = url;
+        return this;
+    }
     async send() {
         const res = await fetch(this.url, this.init);
         return globalThis.caches.open('v1')
