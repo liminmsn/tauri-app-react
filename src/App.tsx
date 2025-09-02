@@ -9,7 +9,7 @@ export default function () {
 
   return (
     <ConfigProvider componentSize={"small"} locale={zhCN} theme={themeData}>
-      <App className="h-full p-0 rounded-2xl overflow-hidden">
+      <App className="h-full overflow-hidden rounded-2xl">
         <TitleBar />
         <Flow />
       </App>

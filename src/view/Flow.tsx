@@ -1,10 +1,11 @@
-import { addEdge, Background, BackgroundVariant, Controls, Edge, MiniMap, Node, NodeTypes, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
+import { addEdge, Background, BackgroundVariant, ControlButton, Controls, Edge, MiniMap, Node, NodeTypes, ReactFlow, useEdgesState, useNodesState } from "@xyflow/react";
 import { Card, theme } from "antd";
 import { useCallback } from "react";
 import { useThemeData } from "../theme";
 import FlowTags from "./node/FlowTags";
 import FlowImage from "./node/FlowImage";
-import { FlowImageItem } from "./node/FlowImageItem";
+import FlowImageItem from "./node/FlowImageItem";
+import { Gem, Wheat } from "lucide-react";
 
 const NodesType: NodeTypes = {
     Image: FlowImage,
@@ -33,7 +34,7 @@ function Flow() {
 
     return <div className="flow" style={{ paddingTop: '2px' }}>
         <Card className="h-full overflow-hidden rounded-2xl effect-border effect-border-top-none">
-            <div className="" style={{ height: 'calc(100vh - 31px)' }}>
+            <div className="" style={{ height: 'calc(100vh - 28px)' }}>
                 <ReactFlow
                     minZoom={0.3}
                     maxZoom={2}
@@ -46,12 +47,13 @@ function Flow() {
                     onConnect={onConnect}
                     fitView >
                     <Controls>
-                        {/* <ControlButton onClick={() => alert('Something magical just happened. ✨')}>
-                            <OrbitIcon />
-                        </ControlButton> */}
+                        <ControlButton onClick={() => alert('Something magical just happened. ✨')}>
+                            <Wheat color="var(--THEME_COLOR)" />
+                            {/* <Gem /> */}
+                        </ControlButton>
                     </Controls>
-                    {/* <Background variant={BackgroundVariant.Dots} gap={12} size={1} color="var(--THEME_COLOR)" bgColor="var(--THEME_COLOR_BG)" /> */}
-                    <MiniMap nodeStrokeWidth={3} position={'bottom-right'} />
+                    <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="var(--THEME_COLOR)" bgColor="var(--THEME_COLOR_BG)" />
+                    <MiniMap nodeStrokeWidth={2} position={'bottom-right'} />
                 </ReactFlow>
             </div>
         </Card>

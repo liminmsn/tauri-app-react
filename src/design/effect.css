@@ -22,7 +22,6 @@
 
 .effect-border {
     box-sizing: border-box;
-    /* box-shadow: 0 0 6px 1px var(--THEME_COLOR) inset; */
     border: 1px dashed var(--THEME_COLOR);
 }
 
@@ -31,8 +30,9 @@
     border-top-right-radius: var(--THEME_BORDER_RADIUS) !important;
 }
 
-@keyframes effect-text-mask-anim {
-    from {}
+.effect-select-tag {}
 
-    to {}
+.effect-border-light {
+    border: 1px dashed var(--THEME_COLOR);
+    box-shadow: 0 0 6px var(--THEME_COLOR);
 }

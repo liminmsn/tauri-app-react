@@ -1,13 +1,15 @@
 import { Node, Handle, Position, useReactFlow, useNodeId, useNodesData } from "@xyflow/react";
 import { Card, Image } from "antd";
-import { useEffect } from "react";
+import { memo, Suspense, useEffect } from "react";
 import { fetchImgs } from "../../net/api";
 
-function FlowImage() {
+const FlowImage = memo(function () {
     const id = useNodeId()!;
     const data = useNodesData<Node<{ val: Element }>>(id)!;
     const { val } = data.data;
-    const src = val.children[0].getAttribute('data-original');
+    const src = val.children[0].getAttribute('data-original') || '';
+    const title = val.children[0].getAttribute('alt') || '';
+    // debugger
     const href = val.children[1].children[0].getAttribute('href');
     const reactFlow = useReactFlow();
     const node = reactFlow.getNode(id)!;
@@ -32,10 +34,13 @@ function FlowImage() {
             })
         }));
     }, []);
-    return <Card className="p-1 shadow-xl" key={id}>
-        <Image width={180} src={src || ''} />
+    return <Card className="p-1 shadow-md" key={id}>
+        <Suspense fallback={<h2>Loding...🍝🍝🍝</h2>}>
+            <div style={{ fontFamily: 'shouxie' }}>{title}</div>
+            <Image width={180} src={src} />
+        </Suspense>
         <Handle id="image-target" type={"target"} position={Position.Left} />
         <Handle id="image-source" type={"source"} position={Position.Right} />
     </Card>
-}
+})
 export default FlowImage;

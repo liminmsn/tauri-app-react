@@ -1,7 +1,7 @@
 import { Card, Spin, Tag } from "antd";
 import { fetchTags, TagsType, TagType } from "../../net/api";
 import { Handle, Position, useNodeId, useReactFlow } from "@xyflow/react";
-import { Suspense, useCallback, useDeferredValue, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { TagIcon } from "lucide-react";
 import { LoadingOutlined } from "@ant-design/icons";
 
@@ -9,15 +9,13 @@ import { LoadingOutlined } from "@ant-design/icons";
 function FlowTags() {
     const id = useNodeId()!;
     const reactFlow = useReactFlow();
-    // debugger
     const addNodes = function (imgs: Element[]) {
-        
         imgs.forEach((item, idx) => {
             const nodeId = String('img_').concat(Math.random().toString(36).slice(2, 10));
             reactFlow.addNodes({
                 id: nodeId,
                 type: 'Image',
-                position: { x: 200 + idx * (Math.random() * 400), y: (idx * 400) - 800 },
+                position: { x: 300 + idx * (Math.random() * 400), y: (idx * 400) - 800 },
                 data: { parentId: id, val: item }
             });
 
@@ -34,42 +32,39 @@ function FlowTags() {
     }
 
 
-    const [tags, setTags] = useState<TagsType>({ tags: [], page: 0, imgs: [] });
+    const [tags, setTags] = useState<TagsType>({ tags: [], imgs: [], page: 0, });
     const [select, setSelect] = useState<TagType>({ tag: '', src: '' });
-    const deferredTagArr = useDeferredValue(tags);
     const init = useCallback(() => {
         fetchTags().then(res => {
             addNodes(res.imgs)
             setTags(res);
+            reactFlow.fitView();
         });
     }, [tags]);
 
     useEffect(() => () => init(), []);
 
-    return <Card className="p-2 max-w-60 shadow-xl">
+    return <Card className="p-2 max-w-60 effect-border-light">
         <div className="mb-2 grid cols-2 gap-y-1 grid-content-baseline">
             {tags.tags.map(item => {
                 return <Tag
                     key={item.tag}
-                    color={select.tag == item.tag ? 'var(--THEME_COLOR)' : 'default'}>
-                    <span
-                        className={`cursor-pointer ${item == select ? 'effect-text-mask' : 'effect-text-mask_two'}`}
-                        style={{ fontFamily: "shouxie" }}
-                        onClick={() => setSelect(item)}>
+                    onClick={() => setSelect(item)}
+                    color={select.tag == item.tag ? 'var(--THEME_COLOR)' : ''}
+                    className={String("cursor-pointer").concat(select.tag == item.tag ? 'effect-border-light' : '')}>
+                    <span style={{ fontFamily: "shouxie" }}>
                         <TagIcon className="mr-2" size={14} style={{ transform: 'translateY(4px)' }} />
                         {item.tag}
                     </span>
                 </Tag>
             })}
         </div>
-        <Suspense fallback={null}>
-            {deferredTagArr.tags.length == 0 && <Spin indicator={<LoadingOutlined spin />} /> ||
-                <div className="">
-                    {tags.page} / 1
-                </div>
-            }
-        </Suspense>
-        <Handle id="tags-source" type={"source"} position={Position.Right} />
+        {tags.tags.length == 0 && <Spin indicator={<LoadingOutlined spin />} /> ||
+            <div className="">
+                {tags.page} / 1
+            </div>
+        }
+        {tags.tags.length > 0 && <Handle id="tags-source" type={"source"} position={Position.Right} />}
     </Card>;
 }
 
