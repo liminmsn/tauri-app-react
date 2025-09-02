@@ -12,3 +12,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     </ThemeProvider>
   </React.StrictMode>,
 );
+
+globalThis.addEventListener('contextmenu', (e: MouseEvent) => {
+  e.preventDefault();
+  // debugger
+})
