@@ -47,13 +47,16 @@ function Flow() {
                     onConnect={onConnect}
                     fitView >
                     <Controls>
-                        <ControlButton onClick={() => alert('Something magical just happened. ✨')}>
+                        {/* <ControlButton onClick={() => alert('Something magical just happened. ✨')}>
                             <Wheat color="var(--THEME_COLOR)" />
-                            {/* <Gem /> */}
+                        </ControlButton> */}
+                        <ControlButton>
+
+                            <Gem color="var(--THEME_COLOR)" size={14} />
                         </ControlButton>
                     </Controls>
                     <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="var(--THEME_COLOR)" bgColor="var(--THEME_COLOR_BG)" />
-                    <MiniMap nodeStrokeWidth={2} position={'bottom-right'} />
+                    <MiniMap nodeStrokeWidth={1} />
                 </ReactFlow>
             </div>
         </Card>

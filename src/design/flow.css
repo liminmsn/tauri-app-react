@@ -1,3 +1,6 @@
 .react-flow__panel{
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.08);
+}
+.react-flow__panel a{
   display: none;
 }

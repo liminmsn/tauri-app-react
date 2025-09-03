@@ -36,7 +36,7 @@ const FlowImage = memo(function () {
     }, []);
     return <Card className="p-1 shadow-md" key={id}>
         <Suspense fallback={<h2>Loding...🍝🍝🍝</h2>}>
-            <div style={{ fontFamily: 'shouxie' }}>{title}</div>
+            <div className="text-right" style={{ fontFamily: 'shouxie' }}>{title}</div>
             <Image width={180} src={src} />
         </Suspense>
         <Handle id="image-target" type={"target"} position={Position.Left} />
