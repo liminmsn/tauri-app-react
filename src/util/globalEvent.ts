@@ -1,12 +1,12 @@
-class GlobalEvent extends EventTarget {
-    constructor() {
-        super();
-    }
-    on(type: string, call: EventListenerOrEventListenerObject) {
-        this.addEventListener(type, call)
+export class GlobalEvent {
+    private static store: EventTarget = new EventTarget();
+    on(type: string, call: (detail: any) => void) {
+        GlobalEvent.store.addEventListener(type, function (e) {
+            e instanceof CustomEvent && call(e.detail);
+        });
     }
     send(type: string, detail?: any) {
         const event = new CustomEvent(type, { detail });
-        this.dispatchEvent(event);
+        GlobalEvent.store.dispatchEvent(event);
     }
 }

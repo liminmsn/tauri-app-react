@@ -15,7 +15,7 @@ function FlowTags() {
             reactFlow.addNodes({
                 id: nodeId,
                 type: 'Image',
-                position: { x: 300 + idx * (Math.random() * 400), y: (idx * 400) - 800 },
+                position: { x: 300 + (Math.random() * 400), y: (idx * 400) - 800 },
                 data: { parentId: id, val: item }
             });
 
@@ -23,9 +23,13 @@ function FlowTags() {
                 id: `${id}_to_${nodeId}`,
                 source: id,
                 target: nodeId,
-                // animated: true,
+                animated: true,
+                type: 'straight',
                 sourceHandle: 'tags-source',
                 targetHandle: 'image-target',
+                style: {
+                    colorScheme: 'red'
+                }
             });
         });
         // reactFlow.fitView();

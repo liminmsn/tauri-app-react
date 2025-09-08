@@ -1,20 +1,30 @@
 import { Button, Card, Popover } from "antd";
-import { Flower2, Bolt, RotateCw, Volleyball } from "lucide-react";
+import { Map, Bolt, RotateCw, Venus } from "lucide-react";
 import { CSSProperties } from "react";
 import SettingView from "./btn/SettingView";
 import ControlButton from "./btn/ControlButton";
+import { GlobalEvent } from "../util/globalEvent";
 
 
-const sysBG: CSSProperties = { background: 'var(--THEME_COLOR)', border: 'none', color: 'white' };
+const sysBG: CSSProperties = { color: 'var(--THEME_COLOR)' };
 
 export function TitleBar() {
+    let mini_map = false;
+
+    function ToggleShowMap() {
+        mini_map = !mini_map;
+        new GlobalEvent().send('mini_map', mini_map)
+    }
+
     return <div className="flex">
-        <Card className="min-w-30 text-center select-none ymr-2 animate__fadeIn" style={sysBG}>
-            <span className="mr-2"><Flower2 size={14} style={{ transform: 'translateY(2px)' }} /></span>
-            <span className="effect-text-mask">{import.meta.env['VITE_NAME']}</span>
+        <Button className="ymr-2 !border-none" style={{ background: 'var(--THEME_COLOR)', color: 'white' }}>
+            <Venus size={14} />
+        </Button>
+        <Card className="min-w-20 text-center select-none ymr-2 effect-border" style={sysBG}>
+            <span>{import.meta.env['VITE_NAME']}</span>
         </Card>
-        <Button className="ymr-2" onClick={() => globalThis.location.reload()} type={"primary"}>
-            <Volleyball size={14} />
+        <Button className="ymr-2" onClick={() => ToggleShowMap()} type={"primary"}>
+            <Map size={14} />
         </Button>
         <Button className="ymr-2" onClick={() => globalThis.location.reload()} type={"primary"}>
             <RotateCw size={14} />
