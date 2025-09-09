@@ -14,10 +14,10 @@ export function TitleBar() {
             <span>{import.meta.env['VITE_NAME']}</span>
         </Card>
         <Card className="mr-1 w-full app-region"></Card>
+        <SearchIpt />
         <Button className="mr-1 !mb-0" type={"primary"}>
             <RefreshCw size={14} />
         </Button>
-        <SearchIpt />
         <Popover content={<SettingView />} trigger={"click"} placement={"bottom"}>
             <Button className="mr-1 !mb-0" type={"primary"}>
                 <Bolt size={14} />
