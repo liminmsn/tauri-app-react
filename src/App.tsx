@@ -11,7 +11,7 @@ export default function () {
     <ConfigProvider componentSize={"small"} theme={themeData}>
       <App className="h-full p-1">
         <TitleBar />
-        <div style={{ height: 'calc(100% - 25px)' }}>
+        <div style={{ height: 'calc(100% - 28px)'}} className="pt-1">
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home />} />

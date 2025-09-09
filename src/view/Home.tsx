@@ -7,12 +7,12 @@ function get() {
     });
 }
 function Home() {
-    return <div className="flex h-full w-full box-border pt-1">
-        <Card className="w-full p-1 overflow-y-auto overflow-x-hidden">
+    return <div className="flex h-full w-full box-border">
+        <Card className="w-full overflow-y-auto overflow-x-hidden p-1">
             <Button onClick={get}>TEST</Button>
             <div className="h-1000"></div>
         </Card>
-        <Card className="w3/10  p-1 ml-1">
+        <Card className="w3/10 ml-1 p-1">
             hello
         </Card>
     </div>

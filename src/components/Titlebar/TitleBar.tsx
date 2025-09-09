@@ -1,8 +1,9 @@
-import { Button, Card, Input, Popover } from "antd";
-import { Flower2, Bolt, Search } from "lucide-react";
+import { Button, Card, Popover } from "antd";
+import { Flower2, Bolt, RefreshCw } from "lucide-react";
 import SettingView from "./children/SettingView";
 import ControlBtn from "./children/ControlBtn";
 import { CSSProperties } from "react";
+import SearchIpt from "./children/SearchIpt";
 
 const sys_bg: CSSProperties = { background: 'var(--THEME_COLOR)', color: "white" }
 
@@ -13,12 +14,10 @@ export function TitleBar() {
             <span>{import.meta.env['VITE_NAME']}</span>
         </Card>
         <Card className="mr-1 w-full app-region"></Card>
-        <Card className="mr-1 w-100 ">
-            <div className="flex">
-                <Input className="border-none" placeholder="搜索动漫" />
-                <Button type="primary"><Search size={14} /></Button>
-            </div>
-        </Card>
+        <Button className="mr-1 !mb-0" type={"primary"}>
+            <RefreshCw size={14} />
+        </Button>
+        <SearchIpt />
         <Popover content={<SettingView />} trigger={"click"} placement={"bottom"}>
             <Button className="mr-1 !mb-0" type={"primary"}>
                 <Bolt size={14} />
