@@ -7,9 +7,13 @@ function get() {
     });
 }
 function Home() {
-    return <div className="home w-full pt-0 box-border" style={{ height: 'calc(100% - 26px)', paddingTop: '2px' }}>
-        <Card className="h-full p-1">
+    return <div className="flex h-full w-full box-border pt-1">
+        <Card className="w-full p-1 overflow-y-auto overflow-x-hidden">
             <Button onClick={get}>TEST</Button>
+            <div className="h-1000"></div>
+        </Card>
+        <Card className="w3/10  p-1 ml-1">
+            hello
         </Card>
     </div>
 }

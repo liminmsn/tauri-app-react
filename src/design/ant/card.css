@@ -3,6 +3,7 @@
 }
 
 .ant-card {
-    /* background-color: hsla(359, 100%, 50%, 1) !important; */
-    /* background-color: antiquewhite; */
+    /* box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.6); */
+    /* background-color: var(--THEME_COLOR_BG); */
+    border: none;
 }

@@ -6,15 +6,18 @@ import { TitleBar } from "./components/Titlebar/TitleBar";
 
 export default function () {
   const { themeData } = useThemeData();
+
   return (
     <ConfigProvider componentSize={"small"} theme={themeData}>
       <App className="h-full p-1">
         <TitleBar />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </BrowserRouter>
+        <div style={{ height: 'calc(100% - 25px)' }}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
       </App>
     </ConfigProvider>
   );

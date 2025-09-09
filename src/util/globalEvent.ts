@@ -5,7 +5,7 @@ class GlobalEvent {
             e instanceof CustomEvent && call(e.detail)
         });
     }
-    send(type: string, detail = null) {
+    send(type: string, detail: any = null) {
         const event = new CustomEvent(type, { detail });
         this.store.dispatchEvent(event);
     }

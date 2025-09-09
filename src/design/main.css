@@ -1,14 +1,6 @@
 @import url('./ant/card.css');
 @import url('./ant/btn.css');
 
-:root {
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
 html,
 body,
 #root {
@@ -19,6 +11,7 @@ body,
 body {
   margin: 0;
   background-color: var(--THEME_COLOR_BG);
+  background-size: auto 100%;
 }
 
 .app-region {
@@ -27,4 +20,34 @@ body {
 
 .app-region-no {
   -webkit-app-region: no-drag;
+}
+
+
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  ::-webkit-scrollbar-thumb {
+    background: repeating-linear-gradient(var(--THEME_COLOR_BG), var(--THEME_COLOR), var(--THEME_COLOR_BG));
+    cursor: pointer;
+  }
+
+  ::-webkit-scrollbar {
+    appearance: none;
+    height: 6px;
+    width: 6px;
+    background-color: var(--THEME_COLOR_BG);
+  }
+
+  ::-webkit-scrollbar-button {
+    width: 6px;
+    height: 6px;
+    content: 'sd';
+    background-color: var(--THEME_COLOR);
+    cursor: pointer;
+  }
 }
