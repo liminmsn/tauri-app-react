@@ -27,8 +27,6 @@ export function getStringArr(str: string, key: string) {
     if (str.lastIndexOf(key) == -1) return [str, ''];
     const a = str.slice(0, str.lastIndexOf(key));
     const b = str.slice(str.lastIndexOf(key));
-    console.log(a, b);
-
     return [a, b];
 }
 export function idxColor(idx: number): CSSProperties {
