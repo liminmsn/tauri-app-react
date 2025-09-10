@@ -14,8 +14,8 @@ class NetBase {
         this.init.body = body;
         return this;
     }
-    async then(callback: (res: Response) => void) {
-        return callback(await fetch(this.url, this.init));
+    async then() {
+        return fetch(this.url, this.init);
     }
 }
 

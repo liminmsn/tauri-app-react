@@ -3,15 +3,16 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { useThemeData } from './theme/index';
 import Home from "./view/Home";
 import { TitleBar } from "./components/Titlebar/TitleBar";
+import zhCN from 'antd/locale/zh_CN';
 
 export default function () {
   const { themeData } = useThemeData();
 
   return (
-    <ConfigProvider componentSize={"small"} theme={themeData}>
+    <ConfigProvider locale={zhCN} componentSize={"small"} theme={themeData}>
       <App className="h-full p-1">
         <TitleBar />
-        <div style={{ height: 'calc(100% - 28px)'}} className="pt-1">
+        <div style={{ height: 'calc(100% - 28px)' }} className="pt-1">
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home />} />
