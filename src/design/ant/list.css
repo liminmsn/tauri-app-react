@@ -1,7 +1,8 @@
 .ant-list-item {
     cursor: pointer;
     padding: 4px !important;
-    /* background-image: repeating-linear-gradient(to left, var(--THEME_COLOR), var(--THEME_COLOR_BG)); */
+    background-image: repeating-linear-gradient(to right, transparent, var(--THEME_COLOR_BG));
+    border-bottom-right-radius: 1.25em;
 }
 
 .ant-list-item p {

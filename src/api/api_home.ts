@@ -9,9 +9,12 @@ export function api_home() {
     return new Promise<HomeType>(async (resolve, reject) => {
         const res = await new NetBase().get().then();
         const dom = new DOMParser().parseFromString(await res.text(), "text/html");
-        // -----
-        const data = api_home_data;
         const all = dom.getElementsByClassName('warp')[0].children[0];
+        const data = api_home_data;
+        console.log(all);
+        
+
+        // -----尾部
         data.recently.title = all.children[6].children[0].children[0].textContent;
         data.recently.list = Array.from(all.children[6].children[0].children[1].children).map(item => {
             const img = item.getElementsByTagName('amp-img')[0];
