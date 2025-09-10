@@ -50,10 +50,10 @@ function Home() {
                     <>
                         <div className="pl-1 text-3 font-bold">{data.recently.title}</div>
                         <List
-                            itemLayout="horizontal"
+                            // itemLayout="horizontal"
                             dataSource={data.recently.list}
                             renderItem={(item, index) => (
-                                <List.Item className="shadow-md">
+                                <List.Item className="shadow-md ml-1">
                                     <p className="h-4 min-w-4 text-center text-2" style={{ lineHeight: 2, ...idxColor(index) }}>{index + 1}</p>
                                     <div className="mx-1">
                                         <Image width={30} src={item.img} preview={false} />
