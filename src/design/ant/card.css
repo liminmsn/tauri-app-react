@@ -1,9 +1,8 @@
 .ant-card-body {
     padding: 0 !important;
+    height: 100%;
 }
 
 .ant-card {
-    /* box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.6); */
-    /* background-color: var(--THEME_COLOR_BG); */
     border: none;
 }

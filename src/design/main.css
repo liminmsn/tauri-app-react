@@ -1,17 +1,18 @@
 @import url('./ant/card.css');
 @import url('./ant/btn.css');
 
+
+body {
+  background-color: var(--THEME_COLOR_BG);
+}
+
+
 html,
 body,
 #root {
   height: 100%;
   box-sizing: border-box;
-}
-
-body {
   margin: 0;
-  background-color: var(--THEME_COLOR_BG);
-  background-size: auto 100%;
 }
 
 .app-region {
@@ -21,8 +22,6 @@ body {
 .app-region-no {
   -webkit-app-region: no-drag;
 }
-
-
 
 :root {
   font-synthesis: none;
