@@ -30,15 +30,15 @@ function Home() {
     return <div className="flex h-full w-full box-border">
         <Card className="w-full overflow-y-auto overflow-x-hidden p-1">
             <div className="flex">
-                <Card className="min-w-100 shadow-md mr-2 overflow-hidden">
+                <Card className="w-full mr-1 shadow-md p-1">
+                    hello
+                </Card>
+                <Card className="min-w-100 shadow-md overflow-hidden">
                     <Carousel autoplay>
-                        <div className="h-full bg-amber">
+                        <div className="h-full">
                             <h3 style={contentStyle}>1</h3>
                         </div>
                     </Carousel>
-                </Card>
-                <Card className="w-full shadow-md p-1">
-                    hello
                 </Card>
             </div>
 
@@ -53,7 +53,7 @@ function Home() {
                             className="pb-1"
                             dataSource={data.recently.list}
                             renderItem={(item, index) => (
-                                <List.Item className="my-1 rounded-sm">
+                                <List.Item className="my-1 rounded-md">
                                     <p className="h-4 min-w-4 text-center text-2" style={{ lineHeight: 2, ...idxColor(index) }}>{index + 1}</p>
                                     <div className="mx-1">
                                         <Image width={30} src={item.img} preview={false} />
