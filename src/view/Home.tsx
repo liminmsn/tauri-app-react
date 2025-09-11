@@ -4,13 +4,13 @@ import { useCallback, useEffect, useState } from "react";
 import { getStringArr, idxColor } from "../util/util";
 import JLTitle from "../components/JL_Title";
 import JLLoading from "../components/JL_Loding";
+import JLCard from "../components/Home/JL_Card";
 
 const contentStyle: React.CSSProperties = {
     height: '160px',
     color: '#fff',
     lineHeight: '160px',
     textAlign: 'center',
-    background: '#364d79',
 };
 
 
@@ -30,8 +30,8 @@ function Home() {
 
     return <div className="flex h-full w-full box-border">
         <Card className="w-full overflow-y-auto overflow-x-hidden p-1">
-            <div className="flex">
-                <Card className="w-full shadow-md p-1 pt-0">
+            <div className="flex h-70">
+                <Card className="w-50 shadow-md p-1 pt-0">
                     {
                         data.carousel.two.length > 0 ?
                             <>
@@ -46,11 +46,9 @@ function Home() {
                             <JLLoading />
                     }
                 </Card>
-                <Card className="min-w-100 shadow-md ml-1 overflow-hidden">
+                <Card className="w-full shadow-md ml-1 overflow-hidden">
                     <Carousel autoplay>
-                        <div className="h-full">
-                            <h3 style={contentStyle}>1</h3>
-                        </div>
+                        {data.carousel.one.map(item => <JLCard key={item.author} id={item.author} onRender={() => null} item={item} />)}
                     </Carousel>
                 </Card>
             </div>

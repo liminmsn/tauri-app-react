@@ -2,7 +2,7 @@ import { NetBase } from "../net/NetBase";
 import { rmAllSpace } from "../util/util";
 
 export const api_home_data: HomeType = {
-    carousel: { title: '', two: [] },
+    carousel: { title: '', one: [], two: [] },
     recently: { title: '', list: [] }
 };
 
@@ -12,9 +12,18 @@ export function api_home() {
         const dom = new DOMParser().parseFromString(await res.text(), "text/html");
         const all = dom.getElementsByClassName('warp')[0].children[0];
         const data = api_home_data;
-        console.log(all);
         // -----one
         data.carousel.title = all.children[1].children[0].children[1].children[0].children[0].textContent;
+        data.carousel.one = Array.from(all.children[1].children[0].children[0].getElementsByTagName('a')).map(a => {
+            return {
+                href: a.href,
+                img: a.children[0].getAttribute('src') || ' ',
+                tags: Array.from(a.children[1].children[0].children).map(tag => rmAllSpace(tag.textContent)),
+                author: rmAllSpace(a.children[1].children[1].textContent),
+                title: rmAllSpace(a.children[1].children[2].textContent),
+                truncate: rmAllSpace(a.children[1].children[3].textContent)
+            }
+        });
         data.carousel.two = Array.from(all.children[1].children[0].children[1].getElementsByClassName('hot-search__content')[0].getElementsByTagName('a')).map(a => {
             return {
                 id: a.children[0].textContent,
@@ -36,6 +45,8 @@ export function api_home() {
                 dateTime: rmAllSpace(dateTime.innerHTML)
             } as RecentlyItem;
         });
+        
+        console.log(data);
         resolve(data);
     });
 }
@@ -43,7 +54,8 @@ export function api_home() {
 export type HomeType = {
     carousel: {
         title: string;
-        two: CarouselItem[]
+        one: CarouseOnelItem[],
+        two: CarouseTwolItem[]
     };
     recently: {
         title: string;
@@ -57,8 +69,16 @@ type RecentlyItem = {
     title: string;
     dateTime: string;
 }
+export type CarouseOnelItem = {
+    href: string;
+    img: string;
+    tags: string[];
+    author: string;
+    title: string;
+    truncate: string;
+}
 
-type CarouselItem = {
+type CarouseTwolItem = {
     id: string;
     href: string;
     title: string;
