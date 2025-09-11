@@ -6,11 +6,6 @@ body {
   background-color: var(--THEME_COLOR_BG);
 }
 
-* {
-  font-family: 'wxxlt';
-}
-
-
 html,
 body,
 #root {
@@ -53,6 +48,13 @@ body,
     background-color: var(--THEME_COLOR);
     cursor: pointer;
   }
+}
+
+.font_one {
+  font-family: 'wxxlt';
+}
+.font_two {
+  font-family: 'sx';
 }
 
 @font-face {
