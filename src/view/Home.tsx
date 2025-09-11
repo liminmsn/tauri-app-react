@@ -48,7 +48,7 @@ function Home() {
                 </Card>
                 <Card className="min-w-100 shadow-md ml-1 overflow-hidden">
                     <Carousel autoplay>
-                        <div className="h-full bg-amber">
+                        <div className="h-full">
                             <h3 style={contentStyle}>1</h3>
                         </div>
                     </Carousel>
