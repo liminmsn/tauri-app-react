@@ -2,9 +2,12 @@
 @import url('./ant/btn.css');
 @import url('./ant/list.css');
 
-
 body {
   background-color: var(--THEME_COLOR_BG);
+}
+
+* {
+  font-family: 'wxxlt';
 }
 
 
@@ -47,8 +50,17 @@ body,
   ::-webkit-scrollbar-button {
     width: 6px;
     height: 6px;
-    content: 'sd';
     background-color: var(--THEME_COLOR);
     cursor: pointer;
   }
+}
+
+@font-face {
+  font-family: 'wxxlt';
+  src: url("/fonts/文心喜乐体.ttf");
+}
+
+@font-face {
+  font-family: 'sx';
+  src: url("/fonts/WrittenSC-Regular.ttf");
 }

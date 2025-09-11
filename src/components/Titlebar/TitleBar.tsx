@@ -15,7 +15,7 @@ export function TitleBar() {
         </Card>
         <Card className="mr-1 w-full app-region"></Card>
         <SearchIpt />
-        <Button className="mr-1 !mb-0" type={"primary"}>
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => globalThis.location.reload()}>
             <RefreshCw size={14} />
         </Button>
         <Popover content={<SettingView />} trigger={"click"} placement={"bottom"}>

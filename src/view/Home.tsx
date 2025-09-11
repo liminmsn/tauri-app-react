@@ -37,32 +37,32 @@ function Home() {
                         </div>
                     </Carousel>
                 </Card>
-                <Card className="w-full shadow-md">
+                <Card className="w-full shadow-md p-1">
                     hello
                 </Card>
             </div>
 
             <Button onClick={() => initData()}>TEST</Button>
         </Card>
-        <Card className="w-90 ml-1 overflow-y-auto overflow-x-hidden">
+        <Card className="w-90 pl-1 ml-1 overflow-y-auto overflow-x-hidden">
             {
                 data.recently.list.length > 0 ?
                     <>
-                        <div className="pl-1 text-3 font-bold">{data.recently.title}</div>
+                        <div className="text-3 font-bold">{data.recently.title}</div>
                         <List
-                            // itemLayout="horizontal"
+                            className="pb-1"
                             dataSource={data.recently.list}
                             renderItem={(item, index) => (
-                                <List.Item className="shadow-md ml-1">
+                                <List.Item className="my-1 rounded-sm">
                                     <p className="h-4 min-w-4 text-center text-2" style={{ lineHeight: 2, ...idxColor(index) }}>{index + 1}</p>
                                     <div className="mx-1">
                                         <Image width={30} src={item.img} preview={false} />
                                     </div>
                                     <div className="w8/10">
                                         <Tooltip placement={"left"} title={item.title} arrow>
-                                            <p className="text-3 font-bold">{getStringArr(item.title, '第')[0]}</p>
+                                            <p className="text-3">{getStringArr(item.title, '第')[0]}</p>
                                         </Tooltip>
-                                        <p className="text-2 font-bold">{getStringArr(item.title, '第')[1]}</p>
+                                        <p className="text-2">{getStringArr(item.title, '第')[1]}</p>
                                         <p className="text-2">更新时间:{item.dateTime}</p>
                                     </div>
                                 </List.Item>
