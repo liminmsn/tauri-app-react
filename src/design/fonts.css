@@ -1,0 +1,18 @@
+
+@font-face {
+  font-family: 'wxxlt';
+  src: url("/fonts/文心喜乐体.ttf");
+}
+
+@font-face {
+  font-family: 'sx';
+  src: url("/fonts/WrittenSC-Regular.ttf");
+}
+
+.font_one {
+  font-family: 'wxxlt';
+}
+
+.font_two {
+  font-family: 'sx';
+}

@@ -1,0 +1,12 @@
+.effect_hover_bg_size {
+    cursor: pointer;
+    transition: all 250ms ease-out;
+    background-size: auto 100%;
+    background-position: center;
+
+    &:hover {
+        transition: all 250ms ease-in;
+        /* background-size: auto 120% !important; */
+        background-size: auto 120%;
+    }
+}

@@ -1,16 +1,12 @@
 .ant-list-item {
     cursor: pointer;
     padding: 4px !important;
-    background-image: repeating-linear-gradient(to right, transparent, var(--THEME_COLOR_BG));
+    /* background-image: repeating-linear-gradient(to left, transparent, var(--THEME_COLOR_BG)); */
     /* border-top-left-radius: 1.25em;
     border-bottom-left-radius: 1.25em; */
 }
 
 .ant-list-item p {
-    max-width: 100%;
-    overflow: hidden;
-    text-wrap: nowrap;
-    text-overflow: ellipsis;
     margin: 0;
-    line-height: 1.25;
+    /* line-height: 1.25; */
 }

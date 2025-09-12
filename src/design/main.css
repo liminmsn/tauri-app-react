@@ -1,6 +1,8 @@
 @import url('./ant/card.css');
 @import url('./ant/btn.css');
 @import url('./ant/list.css');
+@import url('./fonts.css');
+@import url('./effect.css');
 
 body {
   background-color: var(--THEME_COLOR_BG);
@@ -29,40 +31,25 @@ body,
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  user-select: none;
 
   ::-webkit-scrollbar-thumb {
-    background: repeating-linear-gradient(var(--THEME_COLOR_BG), var(--THEME_COLOR), var(--THEME_COLOR_BG));
+    background: repeating-linear-gradient(to bottom, var(--THEME_COLOR_BG), var(--THEME_COLOR), var(--THEME_COLOR_BG));
     cursor: pointer;
   }
 
   ::-webkit-scrollbar {
+    height: 3px;
+    width: 3px;
     appearance: none;
-    height: 6px;
-    width: 6px;
     background-color: var(--THEME_COLOR_BG);
   }
 
   ::-webkit-scrollbar-button {
-    width: 6px;
-    height: 6px;
+    height: 3px;
+    width: 3px;
     background-color: var(--THEME_COLOR);
+    background-image: repeating-radial-gradient(var(--THEME_COLOR), transparent);
     cursor: pointer;
   }
-}
-
-.font_one {
-  font-family: 'wxxlt';
-}
-.font_two {
-  font-family: 'sx';
-}
-
-@font-face {
-  font-family: 'wxxlt';
-  src: url("/fonts/文心喜乐体.ttf");
-}
-
-@font-face {
-  font-family: 'sx';
-  src: url("/fonts/WrittenSC-Regular.ttf");
 }

@@ -16,4 +16,4 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 globalThis.addEventListener('contextmenu', (e: MouseEvent) => {
   e.preventDefault();
   // debugger
-})
+});

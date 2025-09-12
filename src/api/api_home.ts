@@ -2,6 +2,8 @@ import { NetBase } from "../net/NetBase";
 import { rmAllSpace } from "../util/util";
 
 export const api_home_data: HomeType = {
+    category: [],
+    indexhost: [],
     carousel: { title: '', one: [], two: [] },
     recently: { title: '', list: [] }
 };
@@ -28,7 +30,42 @@ export function api_home() {
             return {
                 id: a.children[0].textContent,
                 title: a.children[1].textContent,
-                href: a.href
+                href: a.href,
+                state: a.children[3].getAttribute('class') || ''
+            }
+        });
+        //------host List
+        data.indexhost = Array.from(all.getElementsByClassName('index-hot')).map((item => {
+            return {
+                title: item.children[0].textContent,
+                list: Array.from(item.children[1].children).map(idxitem => {
+                    return {
+                        href: idxitem.children[0].children[0].getAttribute('href') || '',
+                        img: idxitem.children[0].children[0].children[0].getAttribute('src') || '',
+                        title: idxitem.children[0].children[1].children[0].textContent,
+                        dateTime: idxitem.children[0].children[2].children[0].textContent,
+                    }
+                })
+            }
+        }));
+        //------host tag
+        data.category = Array.from(all.getElementsByClassName('index-category')[0].children).map(item => {
+            return {
+                head: item.children[0].children[0].textContent,
+                top_item: {
+                    href: item.children[0].children[1].children[0].getAttribute('href') || '',
+                    img: item.children[0].children[1].children[0].children[0].getAttribute('src') || '',
+                    title: item.children[0].children[1].children[0].children[1].children[0].textContent,
+                    dateTime: item.children[0].children[1].children[0].children[1].children[1].textContent
+                },
+                list: Array.from(item.children[0].children[2].children).map(item => {
+                    return {
+                        href: item.getAttribute('href') || '',
+                        img: item.children[0].children[0].getAttribute('src') || '',
+                        title: item.children[1].children[0].textContent,
+                        dateTime: item.children[1].children[1].textContent,
+                    }
+                })
             }
         });
 
@@ -45,7 +82,7 @@ export function api_home() {
                 dateTime: rmAllSpace(dateTime.innerHTML)
             } as RecentlyItem;
         });
-        
+
         console.log(data);
         resolve(data);
     });
@@ -54,16 +91,28 @@ export function api_home() {
 export type HomeType = {
     carousel: {
         title: string;
-        one: CarouseOnelItem[],
-        two: CarouseTwolItem[]
+        one: CarouseOnelItem[];
+        two: CarouseTwolItem[];
     };
+    indexhost: IndexHostItem[];
     recently: {
         title: string;
         list: RecentlyItem[];
     };
+    category: CategoryItem[]
 }
 
-type RecentlyItem = {
+export type CategoryItem = {
+    head: string;
+    top_item: RecentlyItem;
+    list: RecentlyItem[]
+}
+
+type IndexHostItem = {
+    title: string
+    list: RecentlyItem[]
+}
+export type RecentlyItem = {
     href: string;
     img: string;
     title: string;
@@ -82,4 +131,5 @@ type CarouseTwolItem = {
     id: string;
     href: string;
     title: string;
+    state: string;
 }

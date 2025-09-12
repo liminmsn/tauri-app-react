@@ -11,7 +11,7 @@ export function TitleBar() {
     return <div className="flex" style={{ height: '24px' }}>
         <Card className="mr-1 app-region w-60" style={sys_bg}>
             <span className="ml-1"><Flower2 size={14} style={{ transform: 'translateY(2px)' }} /></span>
-            <span>{import.meta.env['VITE_NAME']}</span>
+            <span className="font_one">{import.meta.env['VITE_NAME']}</span>
         </Card>
         <Card className="mr-1 w-full app-region"></Card>
         <SearchIpt />

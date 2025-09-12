@@ -1,23 +1,24 @@
-import { Button, Card, Carousel, Image, List, Tooltip } from "antd";
+import { Card, Carousel, Col, Image, List, Row, Tooltip } from "antd";
 import { api_home, api_home_data } from "../api/api_home";
 import { useCallback, useEffect, useState } from "react";
-import { getStringArr, idxColor } from "../util/util";
+import { getStateIcon, getStringArr, idxColor } from "../util/util";
 import JLTitle from "../components/JL_Title";
 import JLLoading from "../components/JL_Loding";
 import JLCard from "../components/Home/JL_Card";
+import JLCategoryTop from "../components/Home/JL_CategoryTop";
 
 function Home() {
     const [data, setData] = useState(Object.assign({}, api_home_data));
 
     const initData = useCallback(() => {
-        console.count('a');
+        console.count('home');
         api_home().then(val => setData(val))
     }, [])
 
     useEffect(() => () => initData(), []);
 
     return <div className="flex h-full w-full box-border">
-        <Card className="w-full overflow-y-auto overflow-x-hidden p-1">
+        <Card className="w-full overflow-y-auto overflow-x-hidden p-1 pb-10">
             <div className="flex h-70">
                 <div className="flex flex-col w-50">
                     <Card className="shadow-md w-full h-full pl-1">
@@ -27,6 +28,7 @@ function Home() {
                             <div key={item.id} className="flex items-center">
                                 <div className="h-4 min-w-4 text-center text-2 font_two mr-1" style={{ lineHeight: 2, ...idxColor(Number.parseInt(item.id)) }}>{item.id}</div>
                                 <span>{item.title}</span>
+                                <span className="ml-1">{getStateIcon(item.state)}</span>
                             </div>
                         )}
                     </Card>
@@ -41,28 +43,54 @@ function Home() {
                     </Carousel>
                 </Card>
             </div>
-
-            <Card className="mt-1 shadow-md p-1">
-                <Button onClick={() => initData()}>TEST</Button>
-            </Card>
+            {data.carousel.one.length == 0 && <JLLoading />}
+            {
+                data.indexhost.map(item => {
+                    return <Card className="mt-1" key={item.list[0].img}>
+                        <JLTitle>{item.title}</JLTitle>
+                        <Row gutter={[10, 10]}>
+                            {item.list.map(item => {
+                                return <Col span={6} key={item.href}>
+                                    <Card className="shadow-md h-full overflow-hidden cursor-pointer">
+                                        <Image className="w-full" src={item.img} preview={false} />
+                                        <div className="text-3 p-1 font-bold">{item.title}</div>
+                                        <div className="text-3 p-1">{item.dateTime}</div>
+                                    </Card>
+                                </Col>
+                            })}
+                        </Row>
+                    </Card>
+                })
+            }
+            <Row gutter={[10, 10]} className="mt-2">
+                {
+                    data.category.map(item => {
+                        return <Col span={6} key={item.top_item.href}>
+                            <Card className="shadow-md p-1">
+                                <JLTitle>{item.head}</JLTitle>
+                                <JLCategoryTop item={item} />
+                            </Card>
+                        </Col>
+                    })
+                }
+            </Row>
         </Card>
-        <Card className="w-90 p-1 ml-1 overflow-y-auto">
+        <Card className="w-70 px-1 ml-1 overflow-y-auto">
             <JLTitle>{data.recently.title}</JLTitle>
             {data.recently.list.length == 0 && <JLLoading />}
             <List
+                className="pb-1"
                 dataSource={data.recently.list}
                 renderItem={(item, index) => (
-                    <List.Item className="my-1 overflow-hidden rounded-sm shadow-md font_one">
+                    <List.Item className="mb-1 overflow-hidden rounded shadow-md">
                         <p className="h-4 min-w-4 text-center text-2 font_two" style={{ lineHeight: 2, ...idxColor(index) }}>{index + 1}</p>
                         <div className="mx-1 min-w-8 rounded-sm overflow-hidden">
                             <Image width={30} src={item.img} preview={false} />
                         </div>
                         <div className="w8/10">
-                            <Tooltip placement={"left"} title={item.title} arrow>
-                                <p className="text-3 !line-height-snug">{getStringArr(item.title, '第')[0]}</p>
-                            </Tooltip>
-                            <p className="text-2 !line-height-snug">{getStringArr(item.title, '第')[1]}</p>
-                            <p className="text-2 font_two">更新时间:{item.dateTime}</p>
+                            <p className="text-3 font-bold">{getStringArr(item.title, '第')[0]}</p>
+                            <p className="text-2">{getStringArr(item.title, '第')[1]}</p>
+                            <p className="text-2">更新时间:{item.dateTime}</p>
                         </div>
                     </List.Item>
                 )}

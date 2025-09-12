@@ -1,3 +1,4 @@
+import { ChevronDown, ChevronUp, Minus } from "lucide-react";
 import { CSSProperties } from "react";
 
 /**判断两个变量是否全等 返回给入的3参数|null */
@@ -32,4 +33,15 @@ export function getStringArr(str: string, key: string) {
 export function idxColor(idx: number): CSSProperties {
     const colors = ['red', 'green', 'orange']
     return { color: 'white', borderRadius: '2px', background: colors[idx] || 'var(--THEME_COLOR)' }
+}
+
+export function getStateIcon(str: string) {
+    const size = 14;
+    if (str.indexOf('up') > -1) {
+        return <ChevronUp color="red" size={size} />
+    } else if (str.indexOf('stay') > -1) {
+        return <Minus color="gray" size={size}/>
+    } else if (str.lastIndexOf('down') > -1) {
+        return <ChevronDown color="green" size={size} />
+    }
 }
