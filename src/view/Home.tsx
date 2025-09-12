@@ -1,4 +1,4 @@
-import { Card, Carousel, Col, Image, List, Row, Tooltip } from "antd";
+import { Card, Carousel, Col, Image, List, Row } from "antd";
 import { api_home, api_home_data } from "../api/api_home";
 import { useCallback, useEffect, useState } from "react";
 import { getStateIcon, getStringArr, idxColor } from "../util/util";
@@ -6,6 +6,7 @@ import JLTitle from "../components/JL_Title";
 import JLLoading from "../components/JL_Loding";
 import JLCard from "../components/Home/JL_Card";
 import JLCategoryTop from "../components/Home/JL_CategoryTop";
+import { NavLink } from "react-router";
 
 function Home() {
     const [data, setData] = useState(Object.assign({}, api_home_data));
@@ -33,7 +34,10 @@ function Home() {
                         )}
                     </Card>
                     <Card style={{ backgroundColor: 'var(--THEME_COLOR_BG)' }} className="shadow-md h-20 mt-1 text-center">
-                        <span style={{ lineHeight: 4 }} className="font-bold font_Two text-5"></span>
+                        {/* <a href="detail">DETAIL</a> */}
+                        <NavLink to="/detail">
+                            Trending Concerts
+                        </NavLink>
                     </Card>
                 </div>
                 <Card className="w-full shadow-md ml-1 overflow-hidden">

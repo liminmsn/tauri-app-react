@@ -1,5 +1,5 @@
 import { Button, Card, Popover } from "antd";
-import { Flower2, Bolt, RefreshCw } from "lucide-react";
+import { Flower2, Bolt, RefreshCw, CircleArrowLeft } from "lucide-react";
 import SettingView from "./children/SettingView";
 import ControlBtn from "./children/ControlBtn";
 import { CSSProperties } from "react";
@@ -14,10 +14,13 @@ export function TitleBar() {
             <span className="font_one">{import.meta.env['VITE_NAME']}</span>
         </Card>
         <Card className="mr-1 w-full app-region"></Card>
-        <SearchIpt />
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => globalThis.history.back()}>
+            <CircleArrowLeft size={14} />
+        </Button>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => globalThis.location.reload()}>
             <RefreshCw size={14} />
         </Button>
+        <SearchIpt />
         <Popover content={<SettingView />} trigger={"click"} placement={"bottom"}>
             <Button className="mr-1 !mb-0" type={"primary"}>
                 <Bolt size={14} />

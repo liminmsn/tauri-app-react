@@ -4,6 +4,11 @@
 @import url('./fonts.css');
 @import url('./effect.css');
 
+
+.main-h {
+  height: calc(100% - 28px);
+}
+
 body {
   background-color: var(--THEME_COLOR_BG);
 }
