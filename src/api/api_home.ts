@@ -28,10 +28,10 @@ export function api_home() {
         });
         data.carousel.two = Array.from(all.children[1].children[0].children[1].getElementsByClassName('hot-search__content')[0].getElementsByTagName('a')).map(a => {
             return {
-                id: a.children[0].textContent,
-                title: a.children[1].textContent,
-                href: a.href,
-                state: a.children[3].getAttribute('class') || ''
+                id: rmAllSpace(a.children[0].textContent),
+                title: rmAllSpace(a.children[1].textContent),
+                href: a.search,
+                state: rmAllSpace(a.children[3].getAttribute('class') || '')
             }
         });
         //------host List

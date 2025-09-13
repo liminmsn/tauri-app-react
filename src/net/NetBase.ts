@@ -3,7 +3,7 @@ class NetBase {
     private url: string = import.meta.env['VITE_URL'];
     private init: (RequestInit & ClientOptions) = {};
     constructor(src: string = '') {
-        this.url.concat(src);
+        this.url = this.url.concat(src);
     }
     get() {
         this.init.method = 'GET';
@@ -15,6 +15,7 @@ class NetBase {
         return this;
     }
     async then() {
+        console.log(this.url);
         return fetch(this.url, this.init);
     }
 }

@@ -10,3 +10,7 @@
         background-size: auto 120%;
     }
 }
+
+.text-word-break {
+    word-break: break-all;
+}

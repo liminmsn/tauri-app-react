@@ -6,18 +6,17 @@ import JLTitle from "../components/JL_Title";
 import JLLoading from "../components/JL_Loding";
 import JLCard from "../components/Home/JL_Card";
 import JLCategoryTop from "../components/Home/JL_CategoryTop";
-import { NavLink } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 function Home() {
     const [data, setData] = useState(Object.assign({}, api_home_data));
-
     const initData = useCallback(() => {
         console.count('home');
         api_home().then(val => setData(val))
     }, [])
-
     useEffect(() => () => initData(), []);
 
+    const navigate = useNavigate();
     return <div className="flex h-full w-full box-border">
         <Card className="w-full overflow-y-auto overflow-x-hidden p-1 pb-10">
             <div className="flex h-70">
@@ -26,19 +25,14 @@ function Home() {
                         <JLTitle>{data.carousel.title}</JLTitle>
                         {data.carousel.two.length == 0 && <JLLoading />}
                         {data.carousel.two.map(item =>
-                            <div key={item.id} className="flex items-center">
+                            <div className="flex items-center cursor-pointer" key={item.href} onClick={() => navigate(`/search?id=${item.href}`)}>
                                 <div className="h-4 min-w-4 text-center text-2 font_two mr-1" style={{ lineHeight: 2, ...idxColor(Number.parseInt(item.id)) }}>{item.id}</div>
                                 <span>{item.title}</span>
                                 <span className="ml-1">{getStateIcon(item.state)}</span>
                             </div>
                         )}
                     </Card>
-                    <Card style={{ backgroundColor: 'var(--THEME_COLOR_BG)' }} className="shadow-md h-20 mt-1 text-center">
-                        {/* <a href="detail">DETAIL</a> */}
-                        <NavLink to="/detail">
-                            Trending Concerts
-                        </NavLink>
-                    </Card>
+                    <Card style={{ backgroundColor: 'var(--THEME_COLOR_BG)' }} className="shadow-md h-10 mt-1 text-center"></Card>
                 </div>
                 <Card className="w-full shadow-md ml-1 overflow-hidden">
                     {data.carousel.one.length == 0 && <JLLoading />}

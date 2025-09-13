@@ -5,23 +5,25 @@ import Home from "./view/Home";
 import { TitleBar } from "./components/Titlebar/TitleBar";
 import zhCN from 'antd/locale/zh_CN';
 import Detail from "./view/Detail";
+import Search from "./view/Search";
 
 export default function () {
   const { themeData } = useThemeData();
 
   return (
     <ConfigProvider locale={zhCN} componentSize={"small"} theme={themeData}>
-      <App className="h-full p-1">
-        <TitleBar />
-        <div className="pt-1 main-h">
-          <BrowserRouter>
+      <BrowserRouter>
+        <App className="h-full p-1">
+          <TitleBar />
+          <div className="pt-1 main-h">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/detail" element={<Detail />} />
+              <Route path="/search" element={<Search />} />
             </Routes>
-          </BrowserRouter>
-        </div>
-      </App>
+          </div>
+        </App>
+      </BrowserRouter>
     </ConfigProvider>
   );
 };
