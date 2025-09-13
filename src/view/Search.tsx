@@ -1,6 +1,6 @@
 import { Card, Col, Row, Space } from "antd";
 import { CSSProperties, useCallback, useEffect, useState } from "react";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { api_search, api_search_data, SearchType } from "../api/api_search";
 import { rmAllSpace } from "../util/util";
 import JLLoading from "../components/JL_Loding";
@@ -24,13 +24,14 @@ function Search() {
         initData();
     }, [initData]);
 
+    const navigate = useNavigate();
     return <Card className="h-full p-1 overflow-x-hidden overflow-y-auto">
         {data.list.length == 0 && <JLLoading />}
         <div>{data.title}</div>
         <Row gutter={[10, 0]}>
             {data.list.map(item => {
                 return <Col key={item.href} span={4}>
-                    <Card>
+                    <Card onClick={() => navigate(`/detail?id=${item.href}`)}>
                         <Card className="h-25 shadow-md overflow-hidden effect_hover_bg_size" style={{ ...itemStyle, backgroundImage: `url('${item.img}')` }}></Card>
                         <div className="text-3 text-white pt-1">
                             <Space size={4}>

@@ -1,7 +1,10 @@
-import { Image, Tag } from "antd";
+import { Tag } from "antd";
 import { CarouseOnelItem } from "../../api/api_home";
+import { useNavigate } from "react-router";
 
 function JLCard({ item }: React.ProfilerProps & { item: CarouseOnelItem }) {
+    const navigate = useNavigate();
+
     const style: React.CSSProperties = {
         backgroundImage: `url('${item.img}')`,
         backgroundSize: 'auto 100%',
@@ -17,7 +20,7 @@ function JLCard({ item }: React.ProfilerProps & { item: CarouseOnelItem }) {
         backdropFilter: 'blur(6px)'
     }
 
-    return < div className="w-full h-70" style={style} >
+    return < div className="w-full h-70" style={style} onClick={() => navigate(`/detail?id=${item.href}`)}>
         <div className="w-full p-1 pb-4" style={style_item}>
             <div className="text-3 text-white">{item.title}</div>
             <div>

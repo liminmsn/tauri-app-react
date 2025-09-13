@@ -17,7 +17,7 @@ function Home() {
     useEffect(() => () => initData(), []);
 
     const navigate = useNavigate();
-    return <div className="flex h-full w-full box-border">
+    return <div className="flex h-full w-full box-border cursor-pointer">
         <Card className="w-full overflow-y-auto overflow-x-hidden p-1 pb-10">
             <div className="flex h-70">
                 <div className="flex flex-col w-50">
@@ -49,7 +49,7 @@ function Home() {
                         <Row gutter={[10, 10]}>
                             {item.list.map(item => {
                                 return <Col span={6} key={item.href}>
-                                    <Card className="shadow-md h-full overflow-hidden cursor-pointer">
+                                    <Card className="shadow-md h-full overflow-hidden cursor-pointer" onClick={() => navigate(`/detail?id=${item.href}`)}>
                                         <Image className="w-full" src={item.img} preview={false} />
                                         <div className="text-3 p-1 font-bold">{item.title}</div>
                                         <div className="text-3 p-1">{item.dateTime}</div>
@@ -80,7 +80,7 @@ function Home() {
                 className="pb-1"
                 dataSource={data.recently.list}
                 renderItem={(item, index) => (
-                    <List.Item className="mb-1 overflow-hidden rounded shadow-md">
+                    <List.Item className="mb-1 overflow-hidden rounded shadow-md cursor-pointer" onClick={() => navigate(`/detail?id=${item.href}`)}>
                         <p className="h-4 min-w-4 text-center text-2 font_two" style={{ lineHeight: 2, ...idxColor(index) }}>{index + 1}</p>
                         <div className="mx-1 min-w-8 rounded-sm overflow-hidden">
                             <Image width={30} src={item.img} preview={false} />

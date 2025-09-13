@@ -18,7 +18,7 @@ export function api_home() {
         data.carousel.title = all.children[1].children[0].children[1].children[0].children[0].textContent;
         data.carousel.one = Array.from(all.children[1].children[0].children[0].getElementsByTagName('a')).map(a => {
             return {
-                href: a.href,
+                href: a.pathname,
                 img: a.children[0].getAttribute('src') || ' ',
                 tags: Array.from(a.children[1].children[0].children).map(tag => rmAllSpace(tag.textContent)),
                 author: rmAllSpace(a.children[1].children[1].textContent),
@@ -40,7 +40,7 @@ export function api_home() {
                 title: item.children[0].textContent,
                 list: Array.from(item.children[1].children).map(idxitem => {
                     return {
-                        href: idxitem.children[0].children[0].getAttribute('href') || '',
+                        href: (idxitem.children[0].children[0] as HTMLAnchorElement).pathname,
                         img: idxitem.children[0].children[0].children[0].getAttribute('src') || '',
                         title: idxitem.children[0].children[1].children[0].textContent,
                         dateTime: idxitem.children[0].children[2].children[0].textContent,
@@ -82,8 +82,6 @@ export function api_home() {
                 dateTime: rmAllSpace(dateTime.innerHTML)
             } as RecentlyItem;
         });
-
-        console.log(data);
         resolve(data);
     });
 }
