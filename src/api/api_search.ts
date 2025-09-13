@@ -19,7 +19,7 @@ export function api_search(q: string) {
                 title: item.children[0].children[1].children[1].textContent,
             }
         });
-
+        console.log(api_search_data);
         resolve(api_search_data);
     });
 }

@@ -1,5 +1,5 @@
 import { Card, Col, Row, Space } from "antd";
-import { CSSProperties, useCallback, useEffect, useState } from "react";
+import { CSSProperties, useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { api_search, api_search_data, SearchType } from "../api/api_search";
 import { rmAllSpace } from "../util/util";
@@ -14,15 +14,15 @@ function Search() {
     const [data, setData] = useState<SearchType>(Object.assign({}, api_search_data));
 
     const initData = useCallback(() => {
-        setData({ title: '', list: [] })
+        setData({ title: '', list: [] });
         if (id) {
-            api_search(id).then(val => setData(val))
+            api_search(id).then(val => setData(val));
         }
-    }, [id]);
+    }, [id]); // 只依赖 id
 
     useEffect(() => {
         initData();
-    }, [initData]);
+    }, []); // 空数组表示只在组件加载时调用一次
 
     const navigate = useNavigate();
     return <Card className="h-full p-1 overflow-x-hidden overflow-y-auto">
@@ -32,7 +32,7 @@ function Search() {
             {data.list.map(item => {
                 return <Col key={item.href} span={4}>
                     <Card onClick={() => navigate(`/detail?id=${item.href}`)}>
-                        <Card className="h-25 shadow-md overflow-hidden effect_hover_bg_size" style={{ ...itemStyle, backgroundImage: `url('${item.img}')` }}></Card>
+                        <Card className="h-45 shadow-md overflow-hidden effect_hover_bg_size" style={{ ...itemStyle, backgroundImage: `url('${item.img}')` }}></Card>
                         <div className="text-3 text-white pt-1">
                             <Space size={4}>
                                 {item.tags.map((item, idx) => {
