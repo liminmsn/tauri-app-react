@@ -7,6 +7,7 @@ import JLLoading from "../components/JL_Loding";
 import JLCard from "../components/Home/JL_Card";
 import JLCategoryTop from "../components/Home/JL_CategoryTop";
 import { Link, useNavigate } from "react-router";
+import { WindowManager } from "../util/WindowManager";
 
 function Home() {
     const [data, setData] = useState(Object.assign({}, api_home_data));
@@ -32,7 +33,9 @@ function Home() {
                             </div>
                         )}
                     </Card>
-                    <Card style={{ backgroundColor: 'var(--THEME_COLOR_BG)' }} className="shadow-md h-10 mt-1 text-center"></Card>
+                    <Card style={{ backgroundColor: 'var(--THEME_COLOR_BG)' }} className="shadow-md h-10 mt-1 text-center" onClick={()=>WindowManager.open()}>
+                        123
+                    </Card>
                 </div>
                 <Card className="w-full shadow-md ml-1 overflow-hidden">
                     {data.carousel.one.length == 0 && <JLLoading />}

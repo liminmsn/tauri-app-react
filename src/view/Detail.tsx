@@ -9,7 +9,7 @@ import { rmAllSpace } from "../util/util";
 function Detail() {
     const [params] = useSearchParams();
     const id = params.get('id');
-    const [data, setData] = useState(api_detail_data)
+    const [data, setData] = useState(api_detail_data);
 
     const initData = useCallback(() => {
         if (id) {
@@ -25,14 +25,18 @@ function Detail() {
     const navigate = useNavigate();
     return <div className="h-full flex">
         <Card className="h-full p-1 w2/10">
-            {data.right.tags.length == 0 && <JLLoading />}
-            <Image className="shadow-md rounded-md" src={data.left.img} />
-            <Space className="my-1">
-                <Button type={"primary"} icon={<CirclePlay size={14} />}>播放</Button>
-                <Button type={"primary"} icon={<Heart size={14} />}>收藏</Button>
-            </Space>
-            <div><span className="text-blueGray">更新时间：</span>{data.left.upDate}</div>
-            <div><span className="text-blueGray">更新状态：</span>{data.left.desc}</div>
+            {data.right.tags.length == 0
+                ? <JLLoading /> :
+                <>
+                    <Image className="shadow-md rounded-md" src={data.left.img} />
+                    <Space className="my-1">
+                        <Button type={"primary"} icon={<CirclePlay size={14} />}>播放</Button>
+                        <Button type={"primary"} icon={<Heart size={14} />}>收藏</Button>
+                    </Space>
+                    <div><span className="text-blueGray">更新时间：</span>{data.left.upDate}</div>
+                    <div><span className="text-blueGray">更新状态：</span>{data.left.desc}</div>
+                </>
+            }
         </Card>
         <Card className="h-full p-2 pb-10 box-border w8/10 ml-1 overflow-y-auto">
             <Space size={4} direction={"vertical"}>
@@ -48,7 +52,7 @@ function Detail() {
                     {data.right.ref.map(item => {
                         return <Col key={item.href} span={6}>
                             <Card className="cursor-pointer" onClick={() => navigate(`/detail?id=${item.href}`)}>
-                                <Card className="h-30 effect_hover_bg_size" style={{backgroundImage:`url('${item.img}')`}}></Card>
+                                <Card className="h-30 effect_hover_bg_size" style={{ backgroundImage: `url('${item.img}')` }}></Card>
                                 <div>{item.title}</div>
                             </Card>
                         </Col>
