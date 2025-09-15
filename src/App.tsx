@@ -6,6 +6,7 @@ import { TitleBar } from "./components/Titlebar/TitleBar";
 import zhCN from 'antd/locale/zh_CN';
 import Detail from "./view/Detail";
 import Search from "./view/Search";
+import Video from "./view/Video";
 
 export default function () {
   const { themeData } = useThemeData();
@@ -20,6 +21,7 @@ export default function () {
               <Route path="/" element={<Home />} />
               <Route path="/detail" element={<Detail />} />
               <Route path="/search" element={<Search />} />
+              <Route path="/video" element={<Video />} />
             </Routes>
           </div>
         </App>

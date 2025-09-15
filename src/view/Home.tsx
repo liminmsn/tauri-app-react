@@ -33,9 +33,7 @@ function Home() {
                             </div>
                         )}
                     </Card>
-                    <Card style={{ backgroundColor: 'var(--THEME_COLOR_BG)' }} className="shadow-md h-10 mt-1 text-center" onClick={()=>WindowManager.open()}>
-                        123
-                    </Card>
+                    <Card style={{ backgroundColor: 'var(--THEME_COLOR_BG)' }} className="shadow-md h-10 mt-1 text-center" onClick={()=>WindowManager.open()}></Card>
                 </div>
                 <Card className="w-full shadow-md ml-1 overflow-hidden">
                     {data.carousel.one.length == 0 && <JLLoading />}
