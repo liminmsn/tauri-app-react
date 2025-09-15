@@ -23,9 +23,9 @@ function JLCard({ item }: React.ProfilerProps & { item: CarouseOnelItem }) {
     return < div className="w-full h-70" style={style} onClick={() => navigate(`/detail?id=${item.href}`)}>
         <div className="w-full p-1 pb-4" style={style_item}>
             {item.tags.map(tag => <Tag key={tag} color="var(--THEME_COLOR)" className="mr-1 line-height-none" style={{ padding: '2px' }}>{tag}</Tag>)}
-            <div className="text-white">{item.title}</div>
+            <div className="text-white font-bold">{item.title}</div>
+            <div className="text-white">{item.author}</div>
             {/* <div>{item.truncate}</div> */}
-            {/* <div>{item.author}</div> */}
         </div>
     </div >
 }

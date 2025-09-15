@@ -12,6 +12,7 @@
 
 body {
   background-color: var(--THEME_COLOR_BG);
+  /* box-shadow: ; */
 }
 
 html,
@@ -38,6 +39,7 @@ body,
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   user-select: none;
+  --un-shadow-color: rgba(125.5, 125.5, 125.5, 0.2) !important;
 
   ::-webkit-scrollbar-thumb {
     background: repeating-linear-gradient(to bottom, var(--THEME_COLOR_BG), var(--THEME_COLOR), var(--THEME_COLOR_BG));

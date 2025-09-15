@@ -6,11 +6,17 @@
 
     &:hover {
         transition: all 250ms ease-in;
-        background-size: auto 90%;
+        background-size: auto 110%;
         /* background-size: auto 120% !important; */
     }
 }
 
-.text-word-break {
-    word-break: break-all;
+.effect_scale {
+    cursor: pointer;
+    transform: scale(1);
+    transition: all 250ms ease-in;
+    &:active{
+        transition: all 250ms ease-in-out;
+        transform: scale(0.8);
+    }
 }
