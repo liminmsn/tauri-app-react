@@ -31,7 +31,7 @@ function Search() {
         <Row gutter={[10, 0]}>
             {data.list.map(item => {
                 return <Col key={item.href} span={4}>
-                    <Card onClick={() => navigate(`/detail?id=${item.href}`)}>
+                    <Card onClick={() => navigate(`/detail?id=${item.href}`)} className="cursor-pointer">
                         <Card className="h-45 shadow-md overflow-hidden effect_hover_bg_size" style={{ ...itemStyle, backgroundImage: `url('${item.img}')` }}></Card>
                         <div className="text-3 text-white pt-1">
                             <Space size={4}>
@@ -41,7 +41,7 @@ function Search() {
                             </Space>
                         </div>
                         {/* <span className="text-3 text-word-break">{rmAllSpace(item.author)}</span> */}
-                        <div className="p-2 pt-1 text-3 box-border font-bold text-word-break">{rmAllSpace(item.title)}</div>
+                        <div className="p-2 pt-1 box-border font-bold text-word-break">{rmAllSpace(item.title)}</div>
                     </Card>
                 </Col>
             })}

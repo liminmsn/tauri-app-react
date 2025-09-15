@@ -61,7 +61,7 @@ function Home() {
                     </Card>
                 })
             }
-            <Row gutter={[10, 10]} className="mt-2">
+            <Row gutter={[10, 10]} className="mt-2 pb-2">
                 {
                     data.category.map(item => {
                         return <Col span={6} key={item.top_item.href}>
@@ -74,7 +74,7 @@ function Home() {
                 }
             </Row>
         </Card>
-        <Card className="w-70 px-1 ml-1 overflow-y-auto">
+        <Card className="w-70 px-1 pt-1 ml-1 overflow-y-auto">
             <JLTitle>{data.recently.title}</JLTitle>
             {data.recently.list.length == 0 && <JLLoading />}
             <List
@@ -82,14 +82,14 @@ function Home() {
                 dataSource={data.recently.list}
                 renderItem={(item, index) => (
                     <List.Item className="mb-1 overflow-hidden rounded shadow-md cursor-pointer" onClick={() => navigate(`/detail?id=${item.href}`)}>
-                        <p className="h-4 min-w-4 text-center text-2 font_two" style={{ lineHeight: 2, ...idxColor(index) }}>{index + 1}</p>
+                        {/* <p className="h-4 min-w-4 text-center text-2 font_two" style={{ lineHeight: 2, ...idxColor(index) }}>{index + 1}</p> */}
                         <div className="mx-1 min-w-8 rounded-sm overflow-hidden">
-                            <Image width={30} src={item.img} preview={false} />
+                            <Image width={40} src={item.img} preview={false} />
                         </div>
                         <div className="w8/10">
                             <p className="text-3 font-bold">{getStringArr(item.title, '第')[0]}</p>
-                            <p className="text-2">{getStringArr(item.title, '第')[1]}</p>
-                            <p className="text-2">更新时间:{item.dateTime}</p>
+                            <p className="text-3">{getStringArr(item.title, '第')[1]}</p>
+                            <p className="text-3">更新时间:{item.dateTime}</p>
                         </div>
                     </List.Item>
                 )}

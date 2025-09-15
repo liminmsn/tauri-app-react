@@ -1,4 +1,5 @@
 .ant-btn-sm {
+    font-family: 'wxxlt';
     &:hover {
         cursor: pointer !important;
     }

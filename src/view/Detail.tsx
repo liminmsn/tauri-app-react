@@ -10,6 +10,7 @@ function Detail() {
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
     const [data, setData] = useState(api_detail_data);
+    const [select, setSelect] = useState('');
 
     const initData = useCallback(() => {
         if (id) {
@@ -29,12 +30,20 @@ function Detail() {
                 ? <JLLoading /> :
                 <>
                     <Image className="shadow-md rounded-md" src={data.left.img} />
-                    <Space className="my-1">
-                        <Button type={"primary"} icon={<CirclePlay size={14} />} onClick={() => navigate(`/video?id=${data.left.href}`)}>播放</Button>
-                        <Button type={"primary"} icon={<Heart size={14} />}>收藏</Button>
-                    </Space>
-                    <div><span className="text-blueGray">更新时间：</span>{data.left.upDate}</div>
-                    <div><span className="text-blueGray">更新状态：</span>{data.left.desc}</div>
+                    <div className="my-1 w-full text-center">
+                        <Space size={4}>
+                            <Button type={"primary"} icon={<CirclePlay size={14} />} onClick={() => navigate(`/video?id=${data.left.href}`)}>播放</Button>
+                            <Button type={"primary"} icon={<Heart size={14} />}>收藏</Button>
+                        </Space>
+                    </div>
+                    <div>
+                        <span className="font-bold">更新时间：</span><br />
+                        <span className="text-blueGray">{data.left.upDate}</span>
+                    </div>
+                    <div>
+                        <span className="font-bold">更新状态：</span><br />
+                        <span className="text-blueGray">{data.left.desc}</span>
+                    </div>
                 </>
             }
         </Card>
@@ -49,32 +58,30 @@ function Detail() {
                     </Space>
                     <span className="text-5 font-bold">{data.right.title.one}</span>
                     <span className="text-blueGray">{data.right.title.two}</span>
-                    <div className="text-4 font-bold">相关推荐：</div>
-                    <Row gutter={10}>
+                    <div className=" font-bold">相关推荐：</div>
+                    <div className="w-8/10 overflow-x-auto flex gap-2">
                         {data.right.ref.map(item => {
-                            return <Col key={item.href} span={6}>
-                                <Card className="cursor-pointer" onClick={() => navigate(`/detail?id=${item.href}`)}>
-                                    <Card className="h-30 effect_hover_bg_size" style={{ backgroundImage: `url('${item.img}')` }}></Card>
-                                    <div>{item.title}</div>
-                                </Card>
-                            </Col>
+                            return <Card className="w3/10 cursor-pointer overflow-hidden" onClick={() => navigate(`/detail?id=${item.href}`)}>
+                                <Card className="h-20 effect_hover_bg_size" style={{ backgroundImage: `url('${item.img}')` }}></Card>
+                                <div className="text-3 max-h-10 overflow-hidden text-ellipsis">{item.title}</div>
+                            </Card>
                         })}
-                    </Row>
-                    <div className="text-4 font-bold">简介：</div>
+                    </div>
+                    <div className=" font-bold">简介：</div>
                     <span className="text-blueGray">{data.right.desc}</span>
                     {data.right.volumes.map(item => {
                         return <div className="mb-2" key={item.list[0].href}>
-                            <div className="my-2 text-4 font-bold">{rmAllSpace(item.title)}</div>
+                            <div className="my-2  font-bold">{rmAllSpace(item.title)}</div>
                             <Row gutter={[4, 4]}>
                                 {item.list.map(item => {
-                                    return <Col key={item.href} span={4}>
-                                        <Card className="shadow-md p-2">
-                                            <Tooltip title={<span className="text-3">{item.title}</span>} arrow color="var(--THEME_COLOR)" >
+                                    return <Col span={3}>
+                                        <Tooltip placement={'bottom'} title={<span className="text-3">{item.title}</span>} arrow color="var(--THEME_COLOR)" >
+                                            <Card className={`shadow-md p-2`} style={{ backgroundColor: `${select == item.title ? 'var(--THEME_COLOR_BG)' : ''}` }} onClick={() => setSelect(() => item.title)}>
                                                 <div className="text-nowrap text-3 text-ellipsis overflow-hidden cursor-pointer">
                                                     {item.title}
                                                 </div>
-                                            </Tooltip>
-                                        </Card>
+                                            </Card>
+                                        </Tooltip>
                                     </Col>
                                 })}
                             </Row>
