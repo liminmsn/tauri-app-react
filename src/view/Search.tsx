@@ -1,12 +1,9 @@
-import { Card, Col, Row, Space } from "antd";
-import { CSSProperties, useCallback, useEffect, useMemo, useState } from "react";
+import { Card, Col, Row, Space, Tag } from "antd";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { api_search, api_search_data, SearchType } from "../api/api_search";
 import { rmAllSpace } from "../util/util";
 import JLLoading from "../components/JL_Loding";
-
-const itemStyle: CSSProperties = {};
-const tagStyle: CSSProperties = { paddingInline: '4px', background: 'var(--THEME_COLOR)', border: '1px solid var(--THEME_COLOR)' };
 
 function Search() {
     const [params] = useSearchParams();
@@ -18,30 +15,27 @@ function Search() {
         if (id) {
             api_search(id).then(val => setData(val));
         }
-    }, [id]); // 只依赖 id
+    }, [id]);
 
-    useEffect(() => {
-        initData();
-    }, []); // 空数组表示只在组件加载时调用一次
+    useEffect(() => initData(), []);
 
     const navigate = useNavigate();
     return <Card className="h-full p-1 overflow-x-hidden overflow-y-auto">
         {data.list.length == 0 && <JLLoading />}
-        <div>{data.title}</div>
-        <Row gutter={[10, 0]}>
+        <Card className="shadow-sm mb-1 text-center" style={{ backgroundColor: 'var(--THEME_COLOR_BG)', color: 'var(--THEME_COLOR)' }}>{data.title}</Card>
+        <Row gutter={[4, 0]}>
             {data.list.map(item => {
                 return <Col key={item.href} span={4}>
                     <Card onClick={() => navigate(`/detail?id=${item.href}`)} className="cursor-pointer">
-                        <Card className="h-45 shadow-md overflow-hidden effect_hover_bg_size" style={{ ...itemStyle, backgroundImage: `url('${item.img}')` }}></Card>
+                        <Card className="h-45 shadow-md overflow-hidden effect_hover_bg_size" style={{ backgroundImage: `url('${item.img}')` }}></Card>
                         <div className="text-3 text-white pt-1">
                             <Space size={4}>
                                 {item.tags.map((item, idx) => {
-                                    return <span key={idx} style={tagStyle} className="font-bold">{item}</span>
+                                    return <Tag key={idx} color="var(--THEME_COLOR)" className="mr-1 line-height-none" style={{ padding: '2px' }}>{item}</Tag>
                                 })}
                             </Space>
                         </div>
-                        {/* <span className="text-3 text-word-break">{rmAllSpace(item.author)}</span> */}
-                        <div className="p-2 pt-1 box-border font-bold text-word-break">{rmAllSpace(item.title)}</div>
+                        <div className="p-2 pt-1 box-border text-word-break">{rmAllSpace(item.title)}</div>
                     </Card>
                 </Col>
             })}

@@ -2,7 +2,7 @@ import { NetBase } from "../net/NetBase";
 
 export const api_search_data: SearchType = { title: '', list: [] };
 export function api_search(q: string) {
-    return new Promise<SearchType>(async (resolve, reject) => {
+    return new Promise<SearchType>(async (resolve, _reject) => {
         const res = await new NetBase(`/search${q}`).get().then();
         const dom = new DOMParser().parseFromString(await res.text(), 'text/html');
         const all = dom.getElementsByClassName('search')[0].children;

@@ -9,7 +9,7 @@ export const api_home_data: HomeType = {
 };
 
 export function api_home() {
-    return new Promise<HomeType>(async (resolve, reject) => {
+    return new Promise<HomeType>(async (resolve, _reject) => {
         const res = await new NetBase().get().then();
         const dom = new DOMParser().parseFromString(await res.text(), "text/html");
         const all = dom.getElementsByClassName('warp')[0].children[0];

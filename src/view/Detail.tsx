@@ -5,7 +5,10 @@ import { api_detail, api_detail_data } from "../api/api_detail";
 import { CirclePlay, Heart } from "lucide-react";
 import JLLoading from "../components/JL_Loding";
 import { rmAllSpace } from "../util/util";
-import { video_config } from "./Video";
+
+export let video_config = {
+    url: ''
+};
 
 function Detail() {
     const [searchParams] = useSearchParams();
@@ -27,6 +30,7 @@ function Detail() {
     const navigate = useNavigate();
 
     function nav(url: string) {
+        setSelect(() => url);
         navigate(`/video`);
         video_config.url = url;
     }
@@ -44,18 +48,17 @@ function Detail() {
                             </div>
                             <div>
                                 <span className="font-bold">更新时间：</span><br />
-                                <span className="text-blueGray">{data.left.upDate}</span>
+                                <span className="text-blueGray font_two text-3">{data.left.upDate}</span>
                             </div>
                             <div>
                                 <span className="font-bold">更新状态：</span><br />
-                                <span className="text-blueGray">{data.left.desc}</span>
+                                <span className="text-blueGray font_two text-3">{data.left.desc}</span>
                             </div>
                         </>
                     }
                 </Card>
-                <Card className="h4/10 mt-1 shadow-md" style={{ background: 'var(--THEME_COLOR_BG)' }}>
-                    {data.left.href}
-                </Card>
+                <Card className="h1/11 mt-1 shadow-md" ></Card>
+                <Card className="h1/11 mt-1 shadow-md" ></Card>
             </div>
             <Card className="h-full w-full box-border overflow-y-auto shadow-md p-2 ml-1">
                 {data.right.tags.length == 0
@@ -67,7 +70,7 @@ function Detail() {
                             })}
                         </Space>
                         <span className="text-4 font-bold">{data.right.title.one}</span>
-                        <span className="text-blueGray">{data.right.title.two}</span>
+                        <span className="text-blueGray font_two">{data.right.title.two}</span>
                         <div className=" font-bold">相关推荐：</div>
                         <div className="w-8/10 overflow-x-auto flex gap-2">
                             {data.right.ref.map(item => {
@@ -78,15 +81,15 @@ function Detail() {
                             })}
                         </div>
                         <div className=" font-bold">简介：</div>
-                        <span className="text-blueGray">{data.right.desc}</span>
+                        <span className="text-blueGray font_two">{data.right.desc}</span>
                         {data.right.volumes.map(item => {
                             return <div key={item.list[0].href}>
                                 <div className="my-2  font-bold">{rmAllSpace(item.title)}</div>
-                                <Row gutter={[4, 4]}>
+                                <Row gutter={[6, 6]}>
                                     {item.list.map(item => {
                                         return <Col key={item.href} span={3}>
-                                            <Tooltip placement={'bottom'} title={<span className="text-3">{item.title}</span>} arrow color="var(--THEME_COLOR)" >
-                                                <Card className={`shadow-md p-2 effect_scale`} style={{ backgroundColor: `${select == item.title ? 'var(--THEME_COLOR_BG)' : ''}` }} onClick={() => setSelect(() => item.title)}>
+                                            <Tooltip placement={'bottom'} title={<span className="text-3">{item.title}</span>} arrow >
+                                                <Card className={`shadow-md p-2 effect_scale`} style={{ backgroundColor: `${select == item.title ? 'var(--THEME_COLOR_BG)' : ''}` }} onClick={() => nav(item.href)}>
                                                     <div className="text-nowrap text-3 text-ellipsis overflow-hidden cursor-pointer">
                                                         {item.title}
                                                     </div>

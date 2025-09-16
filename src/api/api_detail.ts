@@ -14,7 +14,7 @@ export const api_detail_data: DetailType = {
     }
 }
 export function api_detail(src: string) {
-    return new Promise<DetailType>(async (resolve, resject) => {
+    return new Promise<DetailType>(async (resolve, _resject) => {
         const res = await new NetBase(src).get().then();
         const dom = new DOMParser().parseFromString(await res.text(), 'text/html');
         const all = dom.getElementsByClassName('detail')[0].children[0];

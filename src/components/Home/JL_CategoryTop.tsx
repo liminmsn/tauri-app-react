@@ -1,4 +1,4 @@
-import { Card, Image, Tooltip } from "antd";
+import { Image, Tooltip } from "antd";
 import { CategoryItem } from "../../api/api_home";
 import { useNavigate } from "react-router";
 
