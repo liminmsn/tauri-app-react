@@ -9,7 +9,7 @@ function Video() {
     const url = searchParams.get('id');
     const [src, setSrc] = useState<string>();
     useEffect(() => {
-        url && api_video(url).then(res => {
+        url && api_video(globalThis.atob(url)).then(res => {
             console.log(res);
             if (res != null) {
                 setSrc(res);

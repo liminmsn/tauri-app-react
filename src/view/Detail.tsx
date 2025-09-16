@@ -27,7 +27,7 @@ function Detail() {
 
     function nav(url: string) {
         setSelect(() => url);
-        navigate(`/video?id=${globalThis.atob(url)}`);
+        navigate(`/video?id=${globalThis.btoa(url)}`);
     }
     return <Card className="h-full">
         <div className="h-full box-border flex p-1">

@@ -18,11 +18,11 @@ function Home() {
 
     const navigate = useNavigate();
     return <div className="flex h-full w-full box-border">
-        <Card className="w-full overflow-y-auto overflow-x-hidden p-1">
-            <div className="flex h-70">
+        <Card className="w-full overflow-y-auto overflow-x-hidden p-1 pb-2">
+            <div className="flex h-60">
                 <div className="flex flex-col w-50">
                     {data.carousel.two.length == 0 && <JLLoading />}
-                    <Card className="shadow-md flex-1 pl-1 pb-3">
+                    <Card className="shadow-md flex-1 pl-1">
                         <JLTitle>{data.carousel.title}</JLTitle>
                         {data.carousel.two.map(item =>
                             <div className="flex items-center cursor-pointer" key={item.href} onClick={() => navigate(`/search?id=${item.href}`)}>
@@ -81,7 +81,7 @@ function Home() {
         </Card>
         {/*#TODO:Right list */}
         <Card className="w2/10 min-w-50 px-1 ml-1 overflow-y-auto">
-            {/* {data.recently.list.length == 0 && <JLLoading />} */}
+            {data.recently.list.length == 0 && <JLLoading />}
             <JLTitle>{data.recently.title}</JLTitle>
             <List
                 className="pb-1"
