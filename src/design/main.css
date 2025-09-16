@@ -39,7 +39,8 @@ body,
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   user-select: none;
-  --un-shadow-color: rgba(125.5, 125.5, 125.5, 0.2) !important;
+  /* --un-shadow-color: rgba(125.5, 125.5, 125.5, 0.2) !important; */
+  --un-shadow-color: var(--THEME_COLOR_BG) !important;
 
   ::-webkit-scrollbar-thumb {
     background: repeating-linear-gradient(to bottom, var(--THEME_COLOR_BG), var(--THEME_COLOR), var(--THEME_COLOR_BG));

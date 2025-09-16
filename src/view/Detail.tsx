@@ -6,10 +6,6 @@ import { CirclePlay, Heart } from "lucide-react";
 import JLLoading from "../components/JL_Loding";
 import { rmAllSpace } from "../util/util";
 
-export let video_config = {
-    url: ''
-};
-
 function Detail() {
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
@@ -31,8 +27,7 @@ function Detail() {
 
     function nav(url: string) {
         setSelect(() => url);
-        navigate(`/video`);
-        video_config.url = url;
+        navigate(`/video?id=${globalThis.atob(url)}`);
     }
     return <Card className="h-full">
         <div className="h-full box-border flex p-1">

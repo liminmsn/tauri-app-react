@@ -1,16 +1,15 @@
 import { Card } from "antd";
 import { useEffect, useState } from "react";
 import { api_video } from "../api/api_video";
+import { useSearchParams } from "react-router";
 import JLLoading from "../components/JL_Loding";
-import { useNavigate } from "react-router";
-import { video_config } from "./Detail";
 
 function Video() {
+    const [searchParams] = useSearchParams();
+    const url = searchParams.get('id');
     const [src, setSrc] = useState<string>();
-    const navigate = useNavigate();
     useEffect(() => {
-        if (video_config.url == '') navigate(-1);
-        api_video(video_config.url).then(res => {
+        url && api_video(url).then(res => {
             console.log(res);
             if (res != null) {
                 setSrc(res);
