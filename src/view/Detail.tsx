@@ -82,7 +82,7 @@ function Detail() {
                                 <div className="my-2  font-bold">{rmAllSpace(item.title)}</div>
                                 <Row gutter={[6, 6]}>
                                     {item.list.map(item => {
-                                        return <Col key={item.href} span={3}>
+                                        return <Col key={item.href} span={6}>
                                             <Tooltip placement={'bottom'} title={<span className="text-3">{item.title}</span>} arrow >
                                                 <Card className={`shadow-md p-2 effect_scale`} style={{ backgroundColor: `${select == item.title ? 'var(--THEME_COLOR_BG)' : ''}` }} onClick={() => nav(item.href)}>
                                                     <div className="text-nowrap text-3 text-ellipsis overflow-hidden cursor-pointer">
