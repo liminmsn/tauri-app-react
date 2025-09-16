@@ -1,22 +1,28 @@
 import { Card } from "antd";
-import { useEffect } from "react";
-import { useSearchParams } from "react-router";
+import { useEffect, useState } from "react";
 import { api_video } from "../api/api_video";
+import JLLoading from "../components/JL_Loding";
 
+export let video_config = {
+    url: ''
+};
 function Video() {
-    const [searchParams] = useSearchParams();
+    const [src, setSrc] = useState<string>();
     useEffect(() => {
-        const id = searchParams.get('id');
-        console.log(id);
-        if (id) {
-            api_video(id).then(res => {
-                console.log(res);
-            })
-        }
-    }, [searchParams])
+        api_video(video_config.url).then(res => {
+            console.log(res);
+            if (res != null) {
+                setSrc(res);
+            }
+        })
+    }, [])
 
     return <Card className="h-full w-full overflow-hidden">
-        <iframe className="border-none w-full h-full" src="https://pframe.xgcartoon.com/player.htm?vid=fbe1f3de-dd5f-416a-8b3b-faf60c8712b9&autoplay=false" />
+        {
+            src != undefined ?
+                <iframe className="border-none w-full h-full" src={src} /> :
+                <JLLoading />
+        }
     </Card>
 }
 export default Video;

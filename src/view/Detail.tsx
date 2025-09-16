@@ -5,6 +5,7 @@ import { api_detail, api_detail_data } from "../api/api_detail";
 import { CirclePlay, Heart } from "lucide-react";
 import JLLoading from "../components/JL_Loding";
 import { rmAllSpace } from "../util/util";
+import { video_config } from "./Video";
 
 function Detail() {
     const [searchParams] = useSearchParams();
@@ -19,11 +20,16 @@ function Detail() {
                 setData({ ...res })
             });
         }
-    }, [id])
+    }, [id]);
 
-    useEffect(() => { initData() }, [initData])
+    useEffect(() => { initData() }, [initData]);
 
     const navigate = useNavigate();
+
+    function nav(url: string) {
+        navigate(`/video`);
+        video_config.url = url;
+    }
     return <Card className="h-full">
         <div className="h-full box-border flex p-1">
             <div className="h-full w2/10 max-w-60 flex flex-col">
@@ -33,7 +39,7 @@ function Detail() {
                         <>
                             <Image className="shadow-md rounded-md w-full" preview={false} src={data.left.img} />
                             <div className="my-1 w-full flex gap-1">
-                                <Button className="w-full" type={"primary"} icon={<CirclePlay size={14} />} onClick={() => navigate(`/video?id=${data.left.href}`)}>播放</Button>
+                                <Button className="w-full" type={"primary"} icon={<CirclePlay size={14} />} onClick={() => nav(data.left.href)}>播放</Button>
                                 <Button className="w-full" type={"primary"} icon={<Heart size={14} />}>收藏</Button>
                             </div>
                             <div>
@@ -47,7 +53,9 @@ function Detail() {
                         </>
                     }
                 </Card>
-                <Card className="h4/10 mt-1 shadow-md" style={{ background: 'var(--THEME_COLOR_BG)' }}></Card>
+                <Card className="h4/10 mt-1 shadow-md" style={{ background: 'var(--THEME_COLOR_BG)' }}>
+                    {data.left.href}
+                </Card>
             </div>
             <Card className="h-full w-full box-border overflow-y-auto shadow-md p-2 ml-1">
                 {data.right.tags.length == 0
@@ -63,7 +71,7 @@ function Detail() {
                         <div className=" font-bold">相关推荐：</div>
                         <div className="w-8/10 overflow-x-auto flex gap-2">
                             {data.right.ref.map(item => {
-                                return <Card className="w3/10 max-w-40 effect_scale" onClick={() => navigate(`/detail?id=${item.href}`)}>
+                                return <Card key={item.href} className="w3/10 max-w-40 effect_scale" onClick={() => navigate(`/detail?id=${item.href}`)}>
                                     <Card className="h-20 effect_hover_bg_size" style={{ backgroundImage: `url('${item.img}')` }}></Card>
                                     <div className="text-3 max-h-10 p-1 multiline-ellipsis">{item.title}</div>
                                 </Card>
@@ -76,7 +84,7 @@ function Detail() {
                                 <div className="my-2  font-bold">{rmAllSpace(item.title)}</div>
                                 <Row gutter={[4, 4]}>
                                     {item.list.map(item => {
-                                        return <Col span={3}>
+                                        return <Col key={item.href} span={3}>
                                             <Tooltip placement={'bottom'} title={<span className="text-3">{item.title}</span>} arrow color="var(--THEME_COLOR)" >
                                                 <Card className={`shadow-md p-2 effect_scale`} style={{ backgroundColor: `${select == item.title ? 'var(--THEME_COLOR_BG)' : ''}` }} onClick={() => setSelect(() => item.title)}>
                                                     <div className="text-nowrap text-3 text-ellipsis overflow-hidden cursor-pointer">
