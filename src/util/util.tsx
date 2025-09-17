@@ -33,7 +33,7 @@ export function getStringArr(str: string, key: string) {
 /**更具123分别返回红橙绿 其它默认色 */
 export function idxColor(idx: number): CSSProperties {
     const colors = ['red', 'green', 'orange']
-    return { color: 'white', borderRadius: '2px', background: colors[idx] || 'var(--THEME_COLOR)' }
+    return { color: 'white', borderRadius: '2px', background: colors[idx - 1] || 'var(--THEME_COLOR)' }
 }
 /**上 中 下三种图标状态更具字符串 */
 export function getStateIcon(str: string) {

@@ -12,9 +12,9 @@ export function TitleBar() {
     const navigate = useNavigate();
 
     return <div className="flex" style={{ height: '24px' }}>
-        <img className="app-region" width={24} src="/icon_2.png" alt="" />
+        <img className="app-region" width={24} src="/icon_2.png" />
         <Card className="mr-1 app-region w-40" style={sys_bg}>
-            <span className="ml-1 font_one">{import.meta.env['VITE_NAME']}</span>
+            <span className="ml-1 font_one select-none cursor-pointer" onClick={() => { history.go(-(history.length - 1)) }}>{import.meta.env['VITE_NAME']}</span>
         </Card>
         <Card className="mr-1 w-full app-region"></Card>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => navigate(-1)}>

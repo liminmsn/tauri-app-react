@@ -20,7 +20,7 @@ function Home() {
     return <div className="flex h-full w-full box-border">
         <Card className="w-full overflow-y-auto overflow-x-hidden p-1 pb-2">
             <div className="flex h-60">
-                <div className="flex flex-col w-40">
+                <div className="flex flex-col min-w-40 max-w-40">
                     {data.carousel.two.length == 0 && <JLLoading />}
                     <Card className="shadow-md flex-1 pl-1 pb-2">
                         <JLTitle>{data.carousel.title}</JLTitle>

@@ -6,6 +6,17 @@ import { CirclePlay, Heart } from "lucide-react";
 import JLLoading from "../components/JL_Loding";
 import { rmAllSpace } from "../util/util";
 
+
+const itemSelect_NO: React.CSSProperties = {
+    backgroundColor: 'var(--THEME_COLOR_BG)',
+    fontWeight: 'bold'
+}
+const itemSelect_YES: React.CSSProperties = {
+    backgroundColor: 'var(--THEME_COLOR)',
+    fontWeight: 'bold',
+    color: 'white'
+}
+
 function Detail() {
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
@@ -34,9 +45,10 @@ function Detail() {
             navigate(`/video?id=${globalThis.btoa(url)}&title=${title}`);
         }, 200);
     }
+
     return <Card className="h-full">
         <div className="h-full box-border flex p-1">
-            <div className="h-full w2/10 max-w-60 flex flex-col">
+            <div className="h-full flex flex-col min-w-40 max-w-40">
                 <Card className="flex-1 shadow-md p-1">
                     {data.right.tags.length == 0
                         ? <JLLoading /> :
@@ -57,11 +69,11 @@ function Detail() {
                         </>
                     }
                 </Card>
-                <div className="h1/11 mt-1 flex gap-1">
+                <div className="h-10 mt-1 flex gap-1">
                     <Card className="shadow-md flex-1"></Card>
                     <Card className="shadow-md flex-1" ></Card>
                 </div>
-                <Card className="h1/11 mt-1 shadow-md" ></Card>
+                <Card className="h-10 mt-1 shadow-md" ></Card>
             </div>
             <Card className="h-full w-full box-border overflow-y-auto shadow-md p-2 ml-1">
                 {data.right.tags.length == 0
@@ -92,7 +104,7 @@ function Detail() {
                                     {item.list.map(item => {
                                         return <Col key={item.href} span={6}>
                                             <Tooltip placement={'bottom'} title={<span className="text-3">{item.title}</span>} arrow >
-                                                <Card className={`shadow-md p-2 effect_scale`} style={{ backgroundColor: `${select == item.href ? 'var(--THEME_COLOR_BG)' : ''}` }} onClick={() => nav(item.href, item.title)}>
+                                                <Card className={`shadow p-2 effect_scale select-none`} style={select == item.href ? itemSelect_YES : itemSelect_NO} onClick={() => nav(item.href, item.title)}>
                                                     <div className="text-nowrap text-3 text-ellipsis overflow-hidden cursor-pointer">
                                                         {item.title}
                                                     </div>
