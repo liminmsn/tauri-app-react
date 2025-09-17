@@ -4,7 +4,7 @@ import SettingView from "./children/SettingView";
 import ControlBtn from "./children/ControlBtn";
 import { CSSProperties } from "react";
 import SearchIpt from "./children/SearchIpt";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const sys_bg: CSSProperties = { background: 'var(--THEME_COLOR)', color: "white", marginLeft: '2px' }
 

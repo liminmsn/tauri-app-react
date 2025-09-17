@@ -1,5 +1,5 @@
 import { ConfigProvider, App } from "antd";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useThemeData } from './theme/index';
 import Home from "./view/Home";
 import { TitleBar } from "./components/Titlebar/TitleBar";

@@ -1,7 +1,7 @@
 import { Card, Image } from "antd";
 import { useEffect, useState } from "react";
 import { api_video } from "../api/api_video";
-import { useSearchParams } from "react-router";
+import { useSearchParams } from "react-router-dom";
 import JLLoading from "../components/JL_Loding";
 import JlVideoControl from "../components/Video/JL_Video_Control";
 

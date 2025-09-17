@@ -1,7 +1,7 @@
 import { Input, Button, Card, message } from "antd";
 import { Search } from "lucide-react";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 function SearchIpt() {
     const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import { Window } from "@tauri-apps/api/window";
 import { Minimize, Fullscreen, ChevronLeft } from "lucide-react";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const win = new Window('main');
 

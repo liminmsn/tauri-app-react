@@ -1,6 +1,6 @@
 import { Image, Tooltip } from "antd";
 import { CategoryItem } from "../../api/api_home";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 function JLCategoryTop({ item }: { item: CategoryItem }) {
     const navigate = useNavigate();

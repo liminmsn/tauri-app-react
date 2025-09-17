@@ -1,6 +1,6 @@
 import { Tag } from "antd";
 import { CarouseOnelItem } from "../../api/api_home";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 function JLCard({ item }: React.ProfilerProps & { item: CarouseOnelItem }) {
     const navigate = useNavigate();

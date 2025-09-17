@@ -1,6 +1,6 @@
 import { Button, Card, Col, Image, Row, Space, Tag, Tooltip } from "antd";
 import { useCallback, useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { api_detail, api_detail_data } from "../api/api_detail";
 import { CirclePlay, Heart } from "lucide-react";
 import JLLoading from "../components/JL_Loding";
@@ -21,7 +21,7 @@ function Detail() {
                 setData({ ...res })
             });
         }
-    }, []);
+    }, [id]);
 
     useEffect(() => initData(), []);
 
