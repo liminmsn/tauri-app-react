@@ -18,10 +18,7 @@ function Video() {
         {
             src == undefined ?
                 <JLLoading icon={<Image width={60} src={"/icon_2.png"} preview={false} />} /> :
-                <div className="jl_video w-full h-full">
-                    <iframe className="border-none w-full h-full" src={src} />
-                    <JlVideoControl title={title || ''} />
-                </div>
+                <JlVideoControl src={src} title={title || ''} />
         }
     </Card>
 }

@@ -9,6 +9,7 @@
 
 .jl_video_control {
     display: flex;
+    align-items: center;
     position: absolute;
     width: 100%;
     top: 0;
