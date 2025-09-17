@@ -6,7 +6,7 @@ import { Space, Button } from "antd";
 const win = new Window('main');
 function ControlBtn() {
     const [maximizee, setMaximizee] = useState(false);
-    function toggleMaximize() {
+    async function toggleMaximize() {
         win.toggleMaximize().then(() => {
             win.isMaximized().then(val => setMaximizee(val))
         });

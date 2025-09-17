@@ -81,25 +81,29 @@ function Home() {
         </Card>
         {/*#TODO:Right list */}
         <Card className="w2/10 min-w-50 px-1 ml-1 overflow-y-auto">
-            {data.recently.list.length == 0 && <JLLoading />}
-            <JLTitle>{data.recently.title}</JLTitle>
-            <List
-                className="pb-1"
-                dataSource={data.recently.list}
-                renderItem={(item, _index) => (
-                    <List.Item className="overflow-hidden rounded shadow-md effect_scale" onClick={() => navigate(`/detail?id=${item.href}`)}>
-                        {/* <p className="h-4 min-w-4 text-center text-2 font_two" style={{ lineHeight: 2, ...idxColor(_index) }}>{_index + 1}</p> */}
-                        <div className="w-10 mx-1 rounded-sm overflow-hidden">
-                            <Image src={item.img} preview={false} />
-                        </div>
-                        <div className="w-full overflow-auto">
-                            <div className="text-3 font-bold text-nowrap text-ellipsis overflow-hidden">{getStringArr(item.title, '第')[0]}</div>
-                            <div className="text-3 text-nowrap text-ellipsis overflow-hidden" style={{ lineHeight: 1, color: 'var(--THEME_COLOR)' }}>{getStringArr(item.title, '第')[1]}</div>
-                            <div className="text-3">{item.dateTime}</div>
-                        </div>
-                    </List.Item>
-                )}
-            />
+            {data.recently.list.length == 0 ?
+                <JLLoading /> :
+                <>
+                    <JLTitle>{data.recently.title}</JLTitle>
+                    <List
+                        className="pb-1"
+                        dataSource={data.recently.list}
+                        renderItem={(item, _index) => (
+                            <List.Item className="overflow-hidden rounded shadow-md effect_scale" onClick={() => navigate(`/detail?id=${item.href}`)}>
+                                {/* <p className="h-4 min-w-4 text-center text-2 font_two" style={{ lineHeight: 2, ...idxColor(_index) }}>{_index + 1}</p> */}
+                                <div className="w-10 mx-1 rounded-sm overflow-hidden">
+                                    <Image src={item.img} preview={false} />
+                                </div>
+                                <div className="w-full overflow-auto">
+                                    <div className="text-3 font-bold text-nowrap text-ellipsis overflow-hidden">{getStringArr(item.title, '第')[0]}</div>
+                                    <div className="text-3 text-nowrap text-ellipsis overflow-hidden" style={{ lineHeight: 1, color: 'var(--THEME_COLOR)' }}>{getStringArr(item.title, '第')[1]}</div>
+                                    <div className="text-3">{item.dateTime}</div>
+                                </div>
+                            </List.Item>
+                        )}
+                    />
+                </>
+            }
         </Card>
     </div>
 }

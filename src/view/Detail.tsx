@@ -13,6 +13,8 @@ function Detail() {
     const [select, setSelect] = useState('');
 
     const initData = useCallback(() => {
+        const select_l = localStorage.getItem('detail_select');
+        if (select_l) setSelect(select_l);
         if (id) {
             setData({ ...api_detail_data })
             api_detail(id).then(res => {
@@ -27,7 +29,10 @@ function Detail() {
 
     function nav(url: string) {
         setSelect(() => url);
-        navigate(`/video?id=${globalThis.btoa(url)}`);
+        localStorage.setItem('detail_select', url);
+        setTimeout(() => {
+            navigate(`/video?id=${globalThis.btoa(url)}`);
+        }, 200);
     }
     return <Card className="h-full">
         <div className="h-full box-border flex p-1">
@@ -52,7 +57,10 @@ function Detail() {
                         </>
                     }
                 </Card>
-                <Card className="h1/11 mt-1 shadow-md" ></Card>
+                <div className="h1/11 mt-1 flex gap-1">
+                    <Card className="shadow-md flex-1"></Card>
+                    <Card className="shadow-md flex-1" ></Card>
+                </div>
                 <Card className="h1/11 mt-1 shadow-md" ></Card>
             </div>
             <Card className="h-full w-full box-border overflow-y-auto shadow-md p-2 ml-1">
@@ -84,7 +92,7 @@ function Detail() {
                                     {item.list.map(item => {
                                         return <Col key={item.href} span={6}>
                                             <Tooltip placement={'bottom'} title={<span className="text-3">{item.title}</span>} arrow >
-                                                <Card className={`shadow-md p-2 effect_scale`} style={{ backgroundColor: `${select == item.title ? 'var(--THEME_COLOR_BG)' : ''}` }} onClick={() => nav(item.href)}>
+                                                <Card className={`shadow-md p-2 effect_scale`} style={{ backgroundColor: `${select == item.href ? 'var(--THEME_COLOR_BG)' : ''}` }} onClick={() => nav(item.href)}>
                                                     <div className="text-nowrap text-3 text-ellipsis overflow-hidden cursor-pointer">
                                                         {item.title}
                                                     </div>
