@@ -13,8 +13,8 @@ function ControlBtn() {
     }
 
     return <Space direction={"horizontal"} size={3.5}>
-        <Button onClick={() => win.minimize()}><Minus size={14} /></Button>
-        <Button onClick={() => toggleMaximize()}>{maximizee ? <Minimize size={14} /> : <Maximize size={14} />}</Button>
+        <Button onClick={() => win.minimize()}><Minus size={14} color="var(--THEME_COLOR)" /></Button>
+        <Button onClick={() => toggleMaximize()}>{maximizee ? <Minimize size={14} color="var(--THEME_COLOR)" /> : <Maximize size={14} color="var(--THEME_COLOR)" />}</Button>
         <Button onClick={() => win.close()} danger type={"primary"}><X size={14} /></Button>
     </Space>
 }
