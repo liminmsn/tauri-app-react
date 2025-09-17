@@ -18,7 +18,7 @@ export default function () {
           <TitleBar />
           <div className="pt-1 main-h">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route index element={<Home />} />
               <Route path="/detail" element={<Detail />} />
               <Route path="/search" element={<Search />} />
               <Route path="/video" element={<Video />} />

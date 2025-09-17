@@ -1,5 +1,5 @@
 import { Card, Col, Row, Space, Tag } from "antd";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { api_search, api_search_data, SearchType } from "../api/api_search";
 import { rmAllSpace } from "../util/util";
@@ -10,19 +10,17 @@ function Search() {
     const id = params.get('id');
     const [data, setData] = useState<SearchType>(Object.assign({}, api_search_data));
 
-    const initData = useCallback(() => {
+    useEffect(() => {
         setData({ title: '', list: [] });
         if (id) {
             api_search(id).then(val => setData(val));
         }
     }, [id]);
 
-    useEffect(() => initData(), []);
-
     const navigate = useNavigate();
     return <Card className="h-full p-1 overflow-x-hidden overflow-y-auto">
         {data.list.length == 0 && <JLLoading />}
-        <Card className="shadow-sm mb-1 text-center" style={{ backgroundColor: 'var(--THEME_COLOR_BG)', color: 'var(--THEME_COLOR)' }}>{data.title}</Card>
+        <Card className="shadow-sm mb-1 text-center font-bold" style={{ backgroundColor: 'var(--THEME_COLOR_BG)', color: 'var(--THEME_COLOR)' }}>{data.title}</Card>
         <Row gutter={[4, 0]}>
             {data.list.map(item => {
                 return <Col key={item.href} span={4}>

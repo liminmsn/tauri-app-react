@@ -30,17 +30,18 @@ export function getStringArr(str: string, key: string) {
     const b = str.slice(str.lastIndexOf(key));
     return [a, b];
 }
+/**更具123分别返回红橙绿 其它默认色 */
 export function idxColor(idx: number): CSSProperties {
     const colors = ['red', 'green', 'orange']
     return { color: 'white', borderRadius: '2px', background: colors[idx] || 'var(--THEME_COLOR)' }
 }
-
+/**上 中 下三种图标状态更具字符串 */
 export function getStateIcon(str: string) {
     const size = 14;
     if (str.indexOf('up') > -1) {
         return <ChevronUp color="red" size={size} />
     } else if (str.indexOf('stay') > -1) {
-        return <Minus color="gray" size={size}/>
+        return <Minus color="gray" size={size} />
     } else if (str.lastIndexOf('down') > -1) {
         return <ChevronDown color="green" size={size} />
     }

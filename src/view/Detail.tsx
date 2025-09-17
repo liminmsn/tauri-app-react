@@ -21,17 +21,17 @@ function Detail() {
                 setData({ ...res })
             });
         }
-    }, [id]);
+    }, []);
 
-    useEffect(() => { initData() }, [initData]);
+    useEffect(() => initData(), []);
 
     const navigate = useNavigate();
 
-    function nav(url: string) {
-        setSelect(() => url);
+    function nav(url: string, title?: string) {
         localStorage.setItem('detail_select', url);
+        setSelect(() => url);
         setTimeout(() => {
-            navigate(`/video?id=${globalThis.btoa(url)}`);
+            navigate(`/video?id=${globalThis.btoa(url)}&title=${title}`);
         }, 200);
     }
     return <Card className="h-full">
@@ -43,7 +43,7 @@ function Detail() {
                         <>
                             <Image className="shadow-md rounded-md w-full" preview={false} src={data.left.img} />
                             <div className="my-1 w-full flex gap-1">
-                                <Button className="w-full" type={"primary"} icon={<CirclePlay size={14} />} onClick={() => nav(data.left.href)}>播放</Button>
+                                <Button className="w-full" type={"primary"} icon={<CirclePlay size={14} />} onClick={() => nav(data.left.href, data.right.volumes[0].list[0].title)}>播放</Button>
                                 <Button className="w-full" type={"primary"} icon={<Heart size={14} />}>收藏</Button>
                             </div>
                             <div>
@@ -92,7 +92,7 @@ function Detail() {
                                     {item.list.map(item => {
                                         return <Col key={item.href} span={6}>
                                             <Tooltip placement={'bottom'} title={<span className="text-3">{item.title}</span>} arrow >
-                                                <Card className={`shadow-md p-2 effect_scale`} style={{ backgroundColor: `${select == item.href ? 'var(--THEME_COLOR_BG)' : ''}` }} onClick={() => nav(item.href)}>
+                                                <Card className={`shadow-md p-2 effect_scale`} style={{ backgroundColor: `${select == item.href ? 'var(--THEME_COLOR_BG)' : ''}` }} onClick={() => nav(item.href, item.title)}>
                                                     <div className="text-nowrap text-3 text-ellipsis overflow-hidden cursor-pointer">
                                                         {item.title}
                                                     </div>

@@ -1,0 +1,19 @@
+.jl_video {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: #000;
+}
+
+.jl_video_control {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    background-image: repeating-linear-gradient(rgba(0, 0, 0, 0.8), transparent);
+    /* backdrop-filter: blur(2px); */
+    color: white;
+    box-sizing: border-box;
+}
