@@ -15,8 +15,15 @@ class NetBase {
         return this;
     }
     async then() {
-        console.log(this.url);
-        return fetch(this.url, this.init);
+        const res = await fetch(this.url, this.init);
+        if (res.status == 200) {
+            return globalThis.caches.open('v1')
+                .then(cache => {
+                    cache.put(this.url, res.clone()); // 缓存响应
+                    return res; // 返回原始响应供页面使用
+                });
+        }
+        return res;
     }
 }
 
