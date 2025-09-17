@@ -1,12 +1,12 @@
-class GlobalEvent {
-    private store = new EventTarget();
+export class GlobalEvent {
+    private static store: EventTarget = new EventTarget();
     on(type: string, call: (detail: any) => void) {
-        this.store.addEventListener(type, function (e) {
-            e instanceof CustomEvent && call(e.detail)
+        GlobalEvent.store.addEventListener(type, function (e) {
+            e instanceof CustomEvent && call(e.detail);
         });
     }
-    send(type: string, detail = null) {
+    send(type: string, detail?: any) {
         const event = new CustomEvent(type, { detail });
-        this.store.dispatchEvent(event);
+        GlobalEvent.store.dispatchEvent(event);
     }
 }
