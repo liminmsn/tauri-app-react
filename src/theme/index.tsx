@@ -1,6 +1,6 @@
 import { theme, ThemeConfig } from "antd";
 import { createContext, useContext, useState } from "react";
-import { hexToRgba } from "../util/util";
+import { hexToRgba } from "../core/util/util";
 type ThemeContextType = { themeData: ThemeConfig; setThemeData: React.Dispatch<React.SetStateAction<ThemeConfig>> };
 type ThemeProviderType = React.FC<{ children: React.ReactNode }>;
 

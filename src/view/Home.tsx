@@ -1,7 +1,7 @@
 import { Card, Carousel, Col, Image, List, Row } from "antd";
-import { api_home, api_home_data } from "../api/api_home";
+import { api_home, api_home_data } from "../core/api/api_home";
 import { useCallback, useEffect, useState } from "react";
-import { getStateIcon, getStringArr, idxColor } from "../util/util";
+import { getStateIcon, getStringArr, idxColor } from "../core/util/util";
 import { useNavigate } from "react-router-dom";
 import JLTitle from "../components/JL_Title";
 import JLLoading from "../components/JL_Loding";

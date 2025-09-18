@@ -1,8 +1,8 @@
 import { ConfigProvider, App } from "antd";
 import { useThemeData } from './theme/index';
 import { TitleBar } from "./components/Titlebar/TitleBar";
-import zhCN from 'antd/locale/zh_CN';
 import { Outlet } from "react-router-dom";
+import zhCN from 'antd/locale/zh_CN';
 
 export default function () {
   const { themeData } = useThemeData();

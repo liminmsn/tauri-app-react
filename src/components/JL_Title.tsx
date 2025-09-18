@@ -1,5 +1,5 @@
 import { Tag } from "lucide-react";
-import { rmAllSpace } from "../util/util";
+import { rmAllSpace } from "../core/util/util";
 
 function JLTitle({ children }: { children: string }) {
     return <div className="py-1 font-bold" style={{ color: 'var(--THEME_COLOR)' }}>

@@ -1,10 +1,10 @@
 import { Button, Card, Col, Image, Row, Space, Tag, Tooltip } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { api_detail, api_detail_data } from "../api/api_detail";
+import { api_detail, api_detail_data } from "../core/api/api_detail";
 import { CirclePlay, Heart } from "lucide-react";
 import JLLoading from "../components/JL_Loding";
-import { rmAllSpace } from "../util/util";
+import { rmAllSpace } from "../core/util/util";
 
 
 const itemSelect_NO: React.CSSProperties = {
@@ -52,7 +52,7 @@ function Detail() {
                     {data.right.tags.length == 0
                         ? <JLLoading /> :
                         <>
-                            <Image className="shadow-md rounded-md w-full" preview={false} src={data.left.img} />
+                            <Card className="h-45 shadow-md effect_hover_bg_size" style={{ backgroundImage: `url('${data.left.img}')`, backgroundSize: "cover" }}></Card>
                             <div className="my-1 w-full flex gap-1">
                                 <Button className="w-full" type={"primary"} icon={<CirclePlay size={14} />} onClick={() => nav(data.left.href, data.right.volumes[0].list[0].title)}>播放</Button>
                                 <Button className="w-full" type={"primary"} icon={<Heart size={14} />}>收藏</Button>
