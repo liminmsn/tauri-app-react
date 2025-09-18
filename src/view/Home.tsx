@@ -34,8 +34,7 @@ function Home() {
                     </Card>
                     <div className="h-16 mt-1 flex">
                         <Card className="shadow-md flex-1"></Card>
-                        <Card className="shadow-md flex-1 mx-1" ></Card>
-                        <Card className="shadow-md flex-1"></Card>
+                        <Card className="shadow-md flex-1 ml-1"></Card>
                     </div>
                 </div>
                 <Card className="flex-1 shadow-md ml-1 overflow-hidden">
@@ -55,9 +54,12 @@ function Home() {
                             {item.list.map(item => {
                                 return <Col span={6} key={item.href}>
                                     <Card className="shadow-md h-full overflow-hidden effect_scale" onClick={() => navigate(`/detail?id=${item.href}`)}>
-                                        <Card className="w-full h-20" style={{ backgroundImage: `url('${item.img}')` }}></Card>
-                                        <div className="text-3 p-1 font-bold">{item.title}</div>
-                                        <div className="text-3 p-1">{item.dateTime}</div>
+                                        <div className="h-full flex flex-col">
+                                            <Card className="w-full min-h-18" style={{ backgroundImage: `url('${item.img}')` }}></Card>
+                                            <div className="text-3 p-1 font-bold">{item.title}</div>
+                                            <div className="h-full"></div>
+                                            <div className="text-3 text-bluegray p-1">{item.dateTime}</div>
+                                        </div>
                                     </Card>
                                 </Col>
                             })}
@@ -95,9 +97,9 @@ function Home() {
                                     <Image src={item.img} preview={false} />
                                 </div>
                                 <div className="w-full overflow-auto">
-                                    <div className="text-3 font-bold text-nowrap text-ellipsis overflow-hidden">{getStringArr(item.title, '第')[0]}</div>
+                                    <div className="text-3 font-600 text-nowrap text-ellipsis overflow-hidden">{getStringArr(item.title, '第')[0]}</div>
                                     <div className="text-3 text-nowrap text-ellipsis overflow-hidden" style={{ lineHeight: 1, color: 'var(--THEME_COLOR)' }}>{getStringArr(item.title, '第')[1]}</div>
-                                    <div className="text-3">{item.dateTime}</div>
+                                    <div className="text-3 text-bluegray">{item.dateTime}</div>
                                 </div>
                             </List.Item>
                         )}

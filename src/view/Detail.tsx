@@ -8,12 +8,11 @@ import { rmAllSpace } from "../util/util";
 
 
 const itemSelect_NO: React.CSSProperties = {
-    backgroundColor: 'var(--THEME_COLOR_BG)',
-    fontWeight: 'bold'
+    // fontWeight: 'bold'
 }
 const itemSelect_YES: React.CSSProperties = {
     backgroundColor: 'var(--THEME_COLOR)',
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     color: 'white'
 }
 
@@ -34,7 +33,7 @@ function Detail() {
         }
     }, [id]);
 
-    useEffect(() => initData(), []);
+    useEffect(() => initData(), [id]);
 
     const navigate = useNavigate();
 
