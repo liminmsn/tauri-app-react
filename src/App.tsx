@@ -3,7 +3,6 @@ import { useThemeData } from './theme/index';
 import { TitleBar } from "./components/Titlebar/TitleBar";
 import { Outlet } from "react-router-dom";
 import zhCN from 'antd/locale/zh_CN';
-import { JLHistory } from "./core/JL_LocalStorage";
 
 export default function () {
   const { themeData } = useThemeData();
@@ -19,8 +18,6 @@ export default function () {
     </ConfigProvider >
   );
 };
-
-new JLHistory();
 
 globalThis.addEventListener('contextmenu', (e: MouseEvent) => {
   e.preventDefault();

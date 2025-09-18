@@ -5,7 +5,7 @@ import { api_detail, api_detail_data } from "../core/api/api_detail";
 import { CirclePlay, Heart } from "lucide-react";
 import JLLoading from "../components/JL_Loding";
 import { rmAllSpace } from "../core/util/util";
-import { JLHistory } from "../core/JL_LocalStorage";
+import { JLHistory } from "../core/store/JL_LocalStorage";
 
 
 const itemSelect_NO: React.CSSProperties = {
@@ -37,11 +37,14 @@ function Detail() {
 
     const navigate = useNavigate();
     function nav(url: string, title?: string) {
+        const data_ = { ...data, history_item: url };
+        new JLHistory((obj) => {
+            obj.addHistory(data_);
+        });
         localStorage.setItem('page_detail_select', url);
-        setData({ ...data, history_item: url });
+        setData(data);
         setTimeout(() => {
             navigate(`/video?id=${globalThis.btoa(url)}&title=${title}`);
-            // new JLHistory().addHistory()
         }, 200);
     }
 
