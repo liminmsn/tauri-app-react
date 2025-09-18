@@ -95,4 +95,5 @@ export type DetailType = {
         }[],
         volumes: volumesType[];
     }
+    history_item?: string;
 }

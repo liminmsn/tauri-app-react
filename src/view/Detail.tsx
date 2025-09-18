@@ -1,10 +1,11 @@
-import { Button, Card, Col, Image, Row, Space, Tag, Tooltip } from "antd";
+import { Button, Card, Col, Row, Space, Tag, Tooltip } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { api_detail, api_detail_data } from "../core/api/api_detail";
 import { CirclePlay, Heart } from "lucide-react";
 import JLLoading from "../components/JL_Loding";
 import { rmAllSpace } from "../core/util/util";
+import { JLHistory } from "../core/JL_LocalStorage";
 
 
 const itemSelect_NO: React.CSSProperties = {
@@ -20,11 +21,10 @@ function Detail() {
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
     const [data, setData] = useState(api_detail_data);
-    const [select, setSelect] = useState('');
 
     const initData = useCallback(() => {
-        const select_l = localStorage.getItem('detail_select');
-        if (select_l) setSelect(select_l);
+        const select_l = localStorage.getItem('page_detail_select');
+        if (select_l) setData({ ...data, history_item: select_l })
         if (id) {
             setData({ ...api_detail_data })
             api_detail(id).then(res => {
@@ -36,12 +36,12 @@ function Detail() {
     useEffect(() => initData(), [id]);
 
     const navigate = useNavigate();
-
     function nav(url: string, title?: string) {
-        localStorage.setItem('detail_select', url);
-        setSelect(() => url);
+        localStorage.setItem('page_detail_select', url);
+        setData({ ...data, history_item: url });
         setTimeout(() => {
             navigate(`/video?id=${globalThis.btoa(url)}&title=${title}`);
+            // new JLHistory().addHistory()
         }, 200);
     }
 
@@ -103,7 +103,7 @@ function Detail() {
                                     {item.list.map(item => {
                                         return <Col key={item.href} span={6}>
                                             <Tooltip placement={'bottom'} title={<span className="text-3">{item.title}</span>} arrow >
-                                                <Card className={`shadow p-2 effect_scale select-none`} style={select == item.href ? itemSelect_YES : itemSelect_NO} onClick={() => nav(item.href, item.title)}>
+                                                <Card className={`shadow p-2 effect_scale select-none`} style={data.history_item == item.href ? itemSelect_YES : itemSelect_NO} onClick={() => nav(item.href, item.title)}>
                                                     <div className="text-nowrap text-3 text-ellipsis overflow-hidden cursor-pointer">
                                                         {item.title}
                                                     </div>
