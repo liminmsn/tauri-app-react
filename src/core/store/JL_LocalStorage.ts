@@ -23,19 +23,32 @@ abstract class JLLocalStorage {
             }
         }
     }
-    add(storeNames: string, detail: any) {
+    getAll(call: (data: DetailType[]) => void) {
+        if (this.db) {
+            const tx = this.db.transaction('history', 'readonly');
+            const store = tx.objectStore('history');
+            const request = store.getAll();
+
+            request.onsuccess = () => {
+                call(request.result);
+            };
+        } else {
+            call([]);
+        }
+    }
+    protected add(storeName: string, detail: any) {
         if (this.db) {
             // 创建读写事务
             // console.log(detail);
-            const writeTx = this.db.transaction(storeNames, 'readwrite');
-            const writeStore = writeTx.objectStore(storeNames);
+            const writeTx = this.db.transaction(storeName, 'readwrite');
+            const writeStore = writeTx.objectStore(storeName);
             return writeStore.put({ ...detail, time: Date.now() });
         }
     }
-    delete(storeNames: string, key: string) {
+    protected delete(storeName: string, key: string) {
         if (this.db) {
-            const tx = this.db.transaction(storeNames, 'readwrite');
-            const store = tx.objectStore(storeNames);
+            const tx = this.db.transaction(storeName, 'readwrite');
+            const store = tx.objectStore(storeName);
             return store.index(key);
         }
     }

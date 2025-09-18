@@ -9,6 +9,7 @@ import Detail from "./view/Detail";
 import Home from "./view/Home";
 import Search from "./view/Search";
 import Video from "./view/Video";
+import History from "./view/History";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
             <Route path="/detail" element={<Detail />} />
             <Route path="/search" element={<Search />} />
             <Route path="/video" element={<Video />} />
+            <Route path="/history" element={<History />} />
           </Route>
         </Routes>
       </BrowserRouter>

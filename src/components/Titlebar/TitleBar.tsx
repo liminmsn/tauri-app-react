@@ -1,5 +1,5 @@
 import { Button, Card, Popover } from "antd";
-import { Bolt, RefreshCw, ArrowLeft } from "lucide-react";
+import { Bolt, RefreshCw, ArrowLeft, ClipboardClock } from "lucide-react";
 import SettingView from "./children/SettingView";
 import ControlBtn from "./children/ControlBtn";
 import { CSSProperties, useEffect } from "react";
@@ -16,11 +16,14 @@ export function TitleBar() {
     }, []);
 
     return <div className="flex" style={{ height: '24px' }}>
-        <img className="app-region" width={24} src="/icon_2.png" />
+        <img className="app-region" style={{ width: '60px' }} src="/icon_2.png" />
         <Card className="mr-1 app-region w-40" style={sys_bg}>
             <span className="ml-1 font_one select-none cursor-pointer" onClick={() => { history.go(-(history.length - 1)) }}>{import.meta.env['VITE_NAME']}</span>
         </Card>
         <Card className="mr-1 w-full app-region"></Card>
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => navigate('/history')}>
+            <ClipboardClock size={14} />
+        </Button>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => navigate(-1)}>
             <ArrowLeft size={14} />
         </Button>
