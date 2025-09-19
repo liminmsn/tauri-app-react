@@ -4,6 +4,7 @@ import { api_video } from "../core/api/api_video";
 import { useSearchParams } from "react-router-dom";
 import JLLoading from "../components/JL_Loding";
 import JlVideoControl from "../components/Video/JL_Video_Control";
+import icon from "./../assets/icon.png";
 
 function Video() {
     const [searchParams] = useSearchParams();
@@ -17,7 +18,7 @@ function Video() {
     return <Card className="h-full w-full overflow-hidden">
         {
             src == undefined ?
-                <JLLoading icon={<Image width={60} src={"/icon_2.png"} preview={false} />} /> :
+                <JLLoading icon={<Image width={60} srcSet={icon} preview={false} />} /> :
                 <JlVideoControl src={src} title={title || ''} />
         }
     </Card>
