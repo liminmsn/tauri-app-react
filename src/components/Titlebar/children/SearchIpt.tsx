@@ -12,10 +12,12 @@ function SearchIpt() {
         }
     }
     const go = function () {
-        if (ipt_val.length > 0) {
-            navigate(`/search?id=?q=${ipt_val}`);
-        } else {
-            message.error('搜索内容不能为空!')
+        if (globalThis.location.href.lastIndexOf(`/search?id=?q=${ipt_val}`) < 0) {
+            if (ipt_val.length > 0) {
+                navigate(`/search?id=?q=${ipt_val}`);
+            } else {
+                message.error('搜索内容不能为空!')
+            }
         }
     }
     return <Card className="mr-1 w-120 ">
