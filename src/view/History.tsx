@@ -26,7 +26,9 @@ function History() {
         new JLHistory((obj) => {
             obj.getAll(data => {
                 setData(data.reverse());
-                setSelect({ ...data[0] });
+                if (data.length > 0) {
+                    setSelect({ ...data[0] });
+                }
             });
         });
     }
@@ -53,7 +55,7 @@ function History() {
                 className="box-border"
                 mode={"alternate"}
                 items={
-                    [...data].map(item => {
+                    data.map(item => {
                         return {
                             color: 'blue',
                             children: <>
