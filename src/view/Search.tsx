@@ -11,10 +11,8 @@ function Search() {
     const [data, setData] = useState<SearchType>(Object.assign({}, api_search_data));
 
     useEffect(() => {
-        setData({ title: '', list: [] });
-        if (id) {
-            api_search(id).then(val => setData(val));
-        }
+        if (!id) return;
+        id && api_search(id).then(val => setData(val));
     }, [id]);
 
     const navigate = useNavigate();

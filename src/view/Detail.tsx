@@ -34,6 +34,12 @@ function Detail() {
                 setData({ ...res })
             });
         }
+        new JLLovels((db) => {
+            db.isIn('lovels', globalThis.location.search).then(bol => {
+                console.log(bol);
+                setLovel(bol);
+            });
+        });
     }, [id]);
 
     useEffect(() => initData(), [id]);
@@ -57,18 +63,18 @@ function Detail() {
         if (lovel) {
             new JLLovels(obj => {
                 const req = obj.delLovel(location.search);
-                req?.addEventListener('success', (e) => {
+                req?.addEventListener('success', (_e) => {
                     setLovel(false);
                     message.info('取消收藏');
                 });
             });
         } else {
-            //搜藏
+            //收藏
             new JLLovels((obj) => {
                 const res = obj.addLovel({ ...data, lovels_item: location.search });
-                res?.addEventListener('success', (e) => {
+                res?.addEventListener('success', (_e) => {
                     setLovel(true);
-                    message.success('添加搜藏');
+                    message.success('添加收藏');
                     obj.close();
                 });
             });
@@ -78,33 +84,32 @@ function Detail() {
     return <Card className="h-full">
         <div className="h-full box-border flex p-1">
             <div className="h-full flex flex-col min-w-40 max-w-40">
-                <Card className="flex-1 shadow-md p-1">
-                    {data.right.tags.length == 0
-                        ? <JLLoading /> :
-                        <>
-                            <Card className="h-45 shadow-md effect_hover_bg_size" style={{ backgroundImage: `url('${data.left.img}')`, backgroundSize: "cover" }}></Card>
-                            <div className="my-1 w-full flex gap-1">
-                                <Button className="w-full" type={"primary"} icon={<CirclePlay size={14} />} onClick={() => nav(data.left.href, data.right.volumes[0].list[0].title)}>播放</Button>
-                                <Button className="w-full" type={"primary"}
-                                    icon={<Heart size={14} color={lovel ? 'red' : 'white'} />}
-                                    onClick={() => add_lovel()}>收藏</Button>
-                            </div>
-                            <div>
-                                <span className="font-bold">更新时间：</span><br />
-                                <span className="text-blueGray font_two text-3">{data.left.upDate}</span>
-                            </div>
-                            <div>
-                                <span className="font-bold">更新状态：</span><br />
-                                <span className="text-blueGray font_two text-3">{data.left.desc}</span>
-                            </div>
-                        </>
-                    }
-                </Card>
-                <div className="h-10 mt-1 flex gap-1">
+                <Card className="min-h-45 h-45 shadow-md effect_hover_bg_size mb-1" style={{ backgroundImage: `url('${data.left.img}')`, backgroundSize: "cover" }}></Card>
+
+                {data.right.tags.length == 0
+                    ? <JLLoading /> :
+                    <Card className="flex-1 shadow-md p-1">
+                        <div className="my-1 w-full flex gap-1">
+                            <Button className="w-full" type={"primary"} icon={<CirclePlay size={14} />} onClick={() => nav(data.left.href, data.right.volumes[0].list[0].title)}>播放</Button>
+                            <Button className="w-full" type={"primary"}
+                                icon={<Heart size={14} color={lovel ? 'red' : 'white'} />}
+                                onClick={() => add_lovel()}>收藏</Button>
+                        </div>
+                        <div>
+                            <span className="font-bold">更新时间：</span><br />
+                            <span className="text-blueGray font_two text-3">{data.left.upDate}</span>
+                        </div>
+                        <div>
+                            <span className="font-bold">更新状态：</span><br />
+                            <span className="text-blueGray font_two text-3">{data.left.desc}</span>
+                        </div>
+                    </Card>
+                }
+                {/* <div className="h-10 mt-1 flex gap-1">
                     <Card className="shadow-md flex-1"></Card>
                     <Card className="shadow-md flex-1" ></Card>
-                </div>
-                <Card className="h-10 mt-1 shadow-md" ></Card>
+                </div> */}
+                {/* <Card className="h-10 mt-1 shadow-md" ></Card> */}
             </div>
             <Card className="h-full w-full box-border overflow-y-auto shadow-md p-2 ml-1">
                 {data.right.tags.length == 0

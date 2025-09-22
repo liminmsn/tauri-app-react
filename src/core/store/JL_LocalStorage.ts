@@ -36,6 +36,21 @@ abstract class JLLocalStorage {
             call([]);
         }
     }
+    isIn(storeName: string, key: string) {
+        return new Promise<boolean>((resolve, reject) => {
+            if (this.db) {
+                const readTx = this.db.transaction(storeName, 'readonly');
+                const store = readTx.objectStore(storeName);
+                const request = store.get(key);
+                request.onsuccess = () => {
+                    resolve(request.result !== undefined);
+                };
+                request.onerror = () => {
+                    reject(request.error);
+                };
+            }
+        });
+    }
     protected add(storeName: string, detail: any) {
         if (this.db) {
             // 创建读写事务
@@ -56,7 +71,7 @@ abstract class JLLocalStorage {
         this.db && this.db.close();
     }
 }
-
+//历史
 export class JLHistory extends JLLocalStorage {
     constructor(private call?: (obj: JLHistory) => void) {
         super(JLHistory.name);
@@ -81,7 +96,7 @@ export class JLHistory extends JLLocalStorage {
         }
     }
 }
-
+//收藏
 export class JLLovels extends JLLocalStorage {
     constructor(private call?: (obj: JLLovels) => void) {
         super(JLLovels.name);

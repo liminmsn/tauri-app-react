@@ -12,10 +12,9 @@ import icon from '../assets/icon.png';
 function Home() {
     const [data, setData] = useState(Object.assign({}, api_home_data));
     const initData = useCallback(() => {
-        console.count('home');
         api_home().then(val => setData(val))
     }, [])
-    useEffect(() => () => initData(), []);
+    useEffect(() => initData(), []);
 
     const navigate = useNavigate();
     return data.carousel.title === '' ?
@@ -38,10 +37,10 @@ function Home() {
                                 </div>
                             )}
                         </Card>
-                        <div className="h-16 mt-1 flex">
+                        {/* <div className="h-16 mt-1 flex">
                             <Card className="shadow-md flex-1"></Card>
                             <Card className="shadow-md flex-1 ml-1"></Card>
-                        </div>
+                        </div> */}
                     </div>
                     <Card className="flex-1 shadow-md ml-1 overflow-hidden">
                         <Carousel autoplay>

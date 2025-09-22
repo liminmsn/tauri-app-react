@@ -1,10 +1,9 @@
-import { Button, Card, Empty, Image, Timeline } from "antd";
+import { Button, Card, Image, Timeline } from "antd";
 import { JLHistory } from "../core/store/JL_LocalStorage";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { DetailType } from "../core/api/api_detail";
 import JLTitle from "../components/JL_Title";
 import { useNavigate } from "react-router-dom";
-import JLLoading from "../components/JL_Loding";
 
 function History() {
     const [data, setData] = useState<DetailType[]>([]);
@@ -48,7 +47,7 @@ function History() {
             <JLTitle>历史记录</JLTitle>
             {
                 data.length == 0 ?
-                    <JLLoading>暂无历史数据...</JLLoading>
+                    <p className="text-bluegray">暂无历史记录...</p>
                     :
                     <>
                         {/* <Segmented<string>
