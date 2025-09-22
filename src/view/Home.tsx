@@ -19,7 +19,7 @@ function Home() {
     const navigate = useNavigate();
     return data.carousel.title === '' ?
         <Card className="w-full h-full">
-            <JLLoading icon={<Image width={80} srcSet={icon} preview={false} />}>
+            <JLLoading icon={<Image width={60} srcSet={icon} preview={false} />}>
                 <span className="font-bold">动漫获取中...</span>
             </JLLoading>
         </Card> :

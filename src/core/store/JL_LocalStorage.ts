@@ -1,5 +1,5 @@
 import { DetailType } from "../api/api_detail";
-import { JLLOG } from "../util/JL_Log";
+import { JLLOG } from "../util/log";
 
 abstract class JLLocalStorage {
     protected db?: IDBDatabase;

@@ -1,8 +1,8 @@
 import { Button, Card, Popover } from "antd";
-import { Bolt, RefreshCw, ArrowLeft, History, Star, FolderHeart } from "lucide-react";
+import { Bolt, RefreshCw, ArrowLeft, History, FolderHeart, LucideHome, Heart } from "lucide-react";
 import SettingView from "./children/SettingView";
 import ControlBtn from "./children/ControlBtn";
-import { CSSProperties, use, useCallback, useEffect } from "react";
+import { CSSProperties, useCallback, useEffect } from "react";
 import SearchIpt from "./children/SearchIpt";
 import { useNavigate } from "react-router-dom";
 import { JLHistory, JLLovels } from "../../core/store/JL_LocalStorage";
@@ -28,9 +28,8 @@ export function TitleBar() {
     return <div className="flex" style={{ height: '24px' }}>
         <img className="app-region" srcSet={icon} />
         <Card className="mr-1 app-region" style={sys_bg}>
-            <div className="mx-1 select-none cursor-pointer text-nowrap" onClick={() => { history.go(-(history.length - 1)) }}>{import.meta.env['VITE_NAME']}</div>
+            <span className="mx-1 select-none cursor-pointer text-nowrap">{import.meta.env['VITE_NAME']}</span>
         </Card>
-        <Card className="mr-1 w-full app-region"></Card>
         <JLNavigate url="/history">
             <Button className="mr-1 !mb-0" type={"primary"} >
                 <History size={icon_size} />
@@ -41,8 +40,12 @@ export function TitleBar() {
                 <FolderHeart size={icon_size} />
             </Button>
         </JLNavigate>
+        <Card className="mr-1 w-full app-region"></Card>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => break_()}>
             <ArrowLeft size={icon_size} />
+        </Button>
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => { history.go(-(history.length - 1)) }}>
+            <LucideHome size={icon_size} />
         </Button>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => globalThis.location.reload()}>
             <RefreshCw size={icon_size} />

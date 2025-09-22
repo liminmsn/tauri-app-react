@@ -29,7 +29,7 @@ function Detail() {
     const initData = useCallback(() => {
         setSelect(localStorage.getItem('page_detail_select') || '');
         if (id) {
-            // setData({ ...api_detail_data });
+            setData({ ...api_detail_data });
             api_detail(id).then(res => {
                 setData({ ...res });
             });
