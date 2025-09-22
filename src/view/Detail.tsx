@@ -19,21 +19,22 @@ const itemSelect_YES: React.CSSProperties = {
 }
 
 function Detail() {
+    const { message } = useApp();
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
-    const { message } = useApp();
     const [data, setData] = useState(api_detail_data);
     const [lovel, setLovel] = useState(false);
+    const [select, setSelect] = useState('');
 
     const initData = useCallback(() => {
-        const select_l = localStorage.getItem('page_detail_select');
-        if (select_l) setData({ ...data, history_item: select_l })
+        setSelect(localStorage.getItem('page_detail_select') || '');
         if (id) {
-            setData({ ...api_detail_data })
+            // setData({ ...api_detail_data });
             api_detail(id).then(res => {
-                setData({ ...res })
+                setData({ ...res });
             });
         }
+        //收藏判断
         new JLLovels((db) => {
             db.isIn('lovels', globalThis.location.search).then(bol => {
                 console.log(bol);
@@ -85,7 +86,6 @@ function Detail() {
         <div className="h-full box-border flex p-1">
             <div className="h-full flex flex-col min-w-40 max-w-40">
                 <Card className="min-h-45 h-45 shadow-md effect_hover_bg_size mb-1" style={{ backgroundImage: `url('${data.left.img}')`, backgroundSize: "cover" }}></Card>
-
                 {data.right.tags.length == 0
                     ? <JLLoading /> :
                     <Card className="flex-1 shadow-md p-1">
@@ -112,6 +112,7 @@ function Detail() {
                 {/* <Card className="h-10 mt-1 shadow-md" ></Card> */}
             </div>
             <Card className="h-full w-full box-border overflow-y-auto shadow-md p-2 ml-1">
+                {data.history_item}
                 {data.right.tags.length == 0
                     ? <JLLoading /> :
                     <Space className="pb-2" size={4} direction={"vertical"}>
@@ -140,7 +141,7 @@ function Detail() {
                                     {item.list.map(item => {
                                         return <Col key={item.href} span={6}>
                                             <Tooltip placement={'bottom'} title={<span className="text-3">{item.title}</span>} arrow >
-                                                <Card className={`shadow p-2 effect_scale select-none`} style={data.history_item == item.href ? itemSelect_YES : itemSelect_NO} onClick={() => nav(item.href, item.title)}>
+                                                <Card className={`shadow p-2 effect_scale select-none`} style={select == item.href ? itemSelect_YES : itemSelect_NO} onClick={() => nav(item.href, item.title)}>
                                                     <div className="text-nowrap text-3 text-ellipsis overflow-hidden cursor-pointer">
                                                         {item.title}
                                                     </div>

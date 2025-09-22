@@ -11,7 +11,7 @@ function SettingView() {
     }
 
     return <div className="">
-        {/* <label className="text-sm">夜间：</label> */}
+        <label className="text-3">暗黑主题：</label>
         <Switch value={localStorage.getItem('theme_dart') === 'true'} onChange={(bol: boolean) => toggleThemeDark(config, bol)} />
         <div className="flex mt-1 gap-1">
             {theme_color_arr.map(color => {
@@ -21,6 +21,7 @@ function SettingView() {
                     onClick={() => setThemeColor(config, color)}></div>
             })}
         </div>
+        
     </div>
 }
 
