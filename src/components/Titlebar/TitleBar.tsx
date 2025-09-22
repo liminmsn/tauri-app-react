@@ -44,7 +44,7 @@ export function TitleBar() {
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => break_()}>
             <ArrowLeft size={icon_size} />
         </Button>
-        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => { history.go(-(history.length - 1)) }}>
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => navigate((history.length - 1) * -1)}>
             <LucideHome size={icon_size} />
         </Button>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => globalThis.location.reload()}>
