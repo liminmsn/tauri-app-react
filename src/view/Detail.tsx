@@ -5,7 +5,8 @@ import { api_detail, api_detail_data } from "../core/api/api_detail";
 import { CirclePlay, Heart } from "lucide-react";
 import JLLoading from "../components/JL_Loding";
 import { rmAllSpace } from "../core/util/util";
-import { JLHistory } from "../core/store/JL_LocalStorage";
+import { JLHistory, JLLovels } from "../core/store/JL_LocalStorage";
+import useApp from "antd/es/app/useApp";
 
 
 const itemSelect_NO: React.CSSProperties = {
@@ -20,7 +21,9 @@ const itemSelect_YES: React.CSSProperties = {
 function Detail() {
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
+    const { message } = useApp();
     const [data, setData] = useState(api_detail_data);
+    const [lovel, setLovel] = useState(false);
 
     const initData = useCallback(() => {
         const select_l = localStorage.getItem('page_detail_select');
@@ -35,17 +38,41 @@ function Detail() {
 
     useEffect(() => initData(), [id]);
 
+    //打开
     const navigate = useNavigate();
     function nav(url: string, title?: string) {
+        localStorage.setItem('page_detail_select', url);
         const data_ = { ...data, history_item: url };
         new JLHistory((obj) => {
             obj.addHistory(data_);
         });
-        localStorage.setItem('page_detail_select', url);
         setData(data);
         setTimeout(() => {
             navigate(`/video?id=${globalThis.btoa(url)}&title=${title}`);
         }, 200);
+    }
+
+    // 收藏
+    function add_lovel() {
+        if (lovel) {
+            new JLLovels(obj => {
+                const req = obj.delLovel(location.search);
+                req?.addEventListener('success', (e) => {
+                    setLovel(false);
+                    message.info('取消收藏');
+                });
+            });
+        } else {
+            //搜藏
+            new JLLovels((obj) => {
+                const res = obj.addLovel({ ...data, lovels_item: location.search });
+                res?.addEventListener('success', (e) => {
+                    setLovel(true);
+                    message.success('添加搜藏');
+                    obj.close();
+                });
+            });
+        }
     }
 
     return <Card className="h-full">
@@ -58,7 +85,9 @@ function Detail() {
                             <Card className="h-45 shadow-md effect_hover_bg_size" style={{ backgroundImage: `url('${data.left.img}')`, backgroundSize: "cover" }}></Card>
                             <div className="my-1 w-full flex gap-1">
                                 <Button className="w-full" type={"primary"} icon={<CirclePlay size={14} />} onClick={() => nav(data.left.href, data.right.volumes[0].list[0].title)}>播放</Button>
-                                <Button className="w-full" type={"primary"} icon={<Heart size={14} />}>收藏</Button>
+                                <Button className="w-full" type={"primary"}
+                                    icon={<Heart size={14} color={lovel ? 'red' : 'white'} />}
+                                    onClick={() => add_lovel()}>收藏</Button>
                             </div>
                             <div>
                                 <span className="font-bold">更新时间：</span><br />

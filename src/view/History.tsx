@@ -1,9 +1,10 @@
-import { Button, Card, Image, Timeline } from "antd";
+import { Button, Card, Empty, Image, Timeline } from "antd";
 import { JLHistory } from "../core/store/JL_LocalStorage";
 import { useEffect, useState } from "react";
 import { DetailType } from "../core/api/api_detail";
 import JLTitle from "../components/JL_Title";
 import { useNavigate } from "react-router-dom";
+import JLLoading from "../components/JL_Loding";
 
 function History() {
     const [data, setData] = useState<DetailType[]>([]);
@@ -24,7 +25,7 @@ function History() {
 
     function fetchData() {
         new JLHistory((obj) => {
-            obj.getAll(data => {
+            obj.getAll('history', data => {
                 setData(data.reverse());
                 if (data.length > 0) {
                     setSelect({ ...data[0] });
@@ -45,40 +46,47 @@ function History() {
     return <div className="flex w-full h-full">
         <Card className="shadow-md w5/10 max-w-150 p-2 pt-0 overflow-x-hidden overflow-y-auto">
             <JLTitle>历史记录</JLTitle>
-            {/* <Segmented<string>
-                options={['3天', '7天', '时间不限']}
-                onChange={(value) => {
-                    console.log(value);
-                }}
-            /> */}
-            <Timeline
-                className="box-border"
-                mode={"alternate"}
-                items={
-                    data.map(item => {
-                        return {
-                            color: 'blue',
-                            children: <>
-                                <div style={{ color: 'var(--THEME_COLOR)' }}>
-                                    {new Date(item.time || 0).toLocaleDateString()}
-                                    <span> </span>
-                                    {new Date(item.time || 0).toLocaleTimeString()}
-                                </div>
-                                <Card
-                                    className="shadow-md cursor-pointer p-2"
-                                    style={item.history_item == select?.history_item ? selectStyle : undefined}
-                                    onClick={() => setSelect(item)}>
-                                    <div className="flex">
-                                        <Card className="effect_hover_bg_size w-20 h-20 mr-2" style={{ backgroundImage: `url('${item.left.img}')` }}></Card>
-                                        <div className="flex-1">{item.right.title.one}</div>
-                                    </div>
-                                </Card>
-                                <span className="text-bluegray">{getSelectItem(item.history_item || '')}</span>
-                            </>
-                        }
-                    })
-                }
-            />
+            {
+                data.length == 0 ?
+                    <JLLoading>暂无历史数据...</JLLoading>
+                    :
+                    <>
+                        {/* <Segmented<string>
+                            options={['3天', '7天', '时间不限']}
+                            onChange={(value) => {
+                                console.log(value);
+                            }}
+                        /> */}
+                        <Timeline
+                            className="box-border"
+                            mode={"alternate"}
+                            items={
+                                data.map(item => {
+                                    return {
+                                        color: 'blue',
+                                        children: <>
+                                            <div style={{ color: 'var(--THEME_COLOR)' }}>
+                                                {new Date(item.time || 0).toLocaleDateString()}
+                                                <span> </span>
+                                                {new Date(item.time || 0).toLocaleTimeString()}
+                                            </div>
+                                            <Card
+                                                className="shadow-md cursor-pointer p-2"
+                                                style={item.history_item == select?.history_item ? selectStyle : undefined}
+                                                onClick={() => setSelect(item)}>
+                                                <div className="flex">
+                                                    <Card className="effect_hover_bg_size w-20 h-20 mr-2" style={{ backgroundImage: `url('${item.left.img}')` }}></Card>
+                                                    <div className="flex-1">{item.right.title.one}</div>
+                                                </div>
+                                            </Card>
+                                            <span className="text-bluegray">{getSelectItem(item.history_item || '')}</span>
+                                        </>
+                                    }
+                                })
+                            }
+                        />
+                    </>
+            }
         </Card>
         <Card className="shadow-md flex-1 ml-1 overflow-hidden">
             {

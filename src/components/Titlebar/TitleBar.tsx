@@ -1,43 +1,51 @@
 import { Button, Card, Popover } from "antd";
-import { Bolt, RefreshCw, ArrowLeft, History } from "lucide-react";
+import { Bolt, RefreshCw, ArrowLeft, History, Star, FolderHeart } from "lucide-react";
 import SettingView from "./children/SettingView";
 import ControlBtn from "./children/ControlBtn";
 import { CSSProperties, useEffect } from "react";
 import SearchIpt from "./children/SearchIpt";
 import { useNavigate } from "react-router-dom";
-import { JLHistory } from "../../core/store/JL_LocalStorage";
+import { JLHistory, JLLovels } from "../../core/store/JL_LocalStorage";
 import JLNavigate from "../JL_Navigate";
 import icon from '../../assets/icon.png';
 
 const sys_bg: CSSProperties = { background: 'var(--THEME_COLOR)', color: "white", marginLeft: '2px' }
 
+const icon_size = 15;
+
 export function TitleBar() {
     const navigate = useNavigate();
     useEffect(() => () => {
         new JLHistory();
+        new JLLovels();
     }, []);
 
     return <div className="flex" style={{ height: '24px' }}>
         <img className="app-region" srcSet={icon} />
-        <Card className="mr-1 app-region w-40" style={sys_bg}>
+        <Card className="mr-1 app-region min-w-20" style={sys_bg}>
             <span className="ml-1 select-none cursor-pointer" onClick={() => { history.go(-(history.length - 1)) }}>{import.meta.env['VITE_NAME']}</span>
         </Card>
+        <Card className="mr-1 w-full app-region"></Card>
         <JLNavigate url="/history">
             <Button className="mr-1 !mb-0" type={"primary"} >
-                <History size={15} />
+                <History size={icon_size} />
             </Button>
         </JLNavigate>
-        <Card className="mr-1 w-full app-region"></Card>
+        <JLNavigate url="/lovels">
+            <Button className="mr-1 !mb-0" type={"primary"} >
+                <FolderHeart size={icon_size} />
+            </Button>
+        </JLNavigate>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => navigate(-1)}>
-            <ArrowLeft size={15} />
+            <ArrowLeft size={icon_size} />
         </Button>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => globalThis.location.reload()}>
-            <RefreshCw size={14} />
+            <RefreshCw size={icon_size} />
         </Button>
         <SearchIpt />
         <Popover content={<SettingView />} trigger={"click"} placement={"bottom"}>
             <Button className="mr-1 !mb-0" type={"primary"}>
-                <Bolt size={15} />
+                <Bolt size={icon_size} />
             </Button>
         </Popover>
         <ControlBtn />

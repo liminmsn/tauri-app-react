@@ -23,10 +23,10 @@ abstract class JLLocalStorage {
             }
         }
     }
-    getAll(call: (data: DetailType[]) => void) {
+    getAll(storeName: string, call: (data: DetailType[]) => void) {
         if (this.db) {
-            const tx = this.db.transaction('history', 'readonly');
-            const store = tx.objectStore('history');
+            const tx = this.db.transaction(storeName, 'readonly');
+            const store = tx.objectStore(storeName);
             const request = store.getAll();
 
             request.onsuccess = () => {
@@ -49,7 +49,7 @@ abstract class JLLocalStorage {
         if (this.db) {
             const tx = this.db.transaction(storeName, 'readwrite');
             const store = tx.objectStore(storeName);
-            return store.index(key);
+            return store.delete(key);
         }
     }
     close() {
@@ -79,5 +79,26 @@ export class JLHistory extends JLLocalStorage {
             const store = tx.objectStore('history');
             return store.clear();
         }
+    }
+}
+
+export class JLLovels extends JLLocalStorage {
+    constructor(private call?: (obj: JLLovels) => void) {
+        super(JLLovels.name);
+    }
+    protected success() { this.call && this.call(this) };
+    protected init(db: IDBDatabase): void {
+        if (!db.objectStoreNames.contains('lovels')) {
+            const objectStore = db.createObjectStore('lovels', {
+                keyPath: 'lovels_item',
+            });
+            objectStore.createIndex('byTime', 'time', { unique: true });
+        }
+    }
+    delLovel(key: string) {
+        return this.delete('lovels', key);
+    }
+    addLovel(detail: DetailType) {
+        return this.add('lovels', { ...detail, time: Date.now() });
     }
 }
