@@ -2,6 +2,7 @@ import { Input, Button, Card, message } from "antd";
 import { Search } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { icon_size, icon_width } from "../TitleBar";
 
 function SearchIpt() {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ function SearchIpt() {
                 onChange={(e) => onInput(e.target)}
                 onKeyDown={(e) => (e.key == "Enter") && go()} />
             <Button type="primary" onClick={() => go()} >
-                <Search size={14} />
+                <Search size={icon_size} strokeWidth={icon_width} />
             </Button>
         </div>
     </Card>

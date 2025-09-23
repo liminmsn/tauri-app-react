@@ -1,5 +1,7 @@
 import { Card, FloatButton } from "antd";
+import { ArrowUpToLine } from "lucide-react";
 import React, { useRef, useState } from "react";
+import { icon_size, icon_width } from "./Titlebar/TitleBar";
 
 type JLScrollViewType = {
     children: React.ReactNode;
@@ -21,7 +23,12 @@ export function JLScrollView({ children, pos = { right: 12, bottom: 12 }, speed 
             {children}
         </Card>
         {show && <FloatButton.Group shape="square" style={pos}>
-            <FloatButton.BackTop visibilityHeight={0} type="primary"
+            {/* <FloatButton.BackTop
+                visibilityHeight={0}
+                onClick={() => scroll.current?.scrollTo({ top: 0, behavior: 'smooth' })} /> */}
+            <FloatButton
+                type="primary"
+                icon={<ArrowUpToLine size={icon_size} strokeWidth={icon_width} />}
                 onClick={() => scroll.current?.scrollTo({ top: 0, behavior: 'smooth' })} />
         </FloatButton.Group>}
     </div>

@@ -11,7 +11,8 @@ import icon from '../../assets/icon.png';
 
 const sys_bg: CSSProperties = { background: 'var(--THEME_COLOR)', color: "white", marginLeft: '2px' }
 
-const icon_size = 14;
+export const icon_size = 14;
+export const icon_width = 2.4;
 
 export function TitleBar() {
     const navigate = useNavigate();
@@ -26,34 +27,34 @@ export function TitleBar() {
     }
 
     return <div className="flex" style={{ height: '24px' }}>
-        <img className="app-region" srcSet={icon} />
-        <Card className="mr-1 app-region" style={sys_bg}>
+        <img className="app-region mr-1" srcSet={icon} />
+        {/* <Card className="mr-1 app-region" style={sys_bg}>
             <span className="mx-1 select-none cursor-pointer text-nowrap">{import.meta.env['VITE_NAME']}</span>
-        </Card>
-        <JLNavigate url="/lovels">
-            <Button className="mr-1 !mb-0" type={"primary"} >
-                <FolderHeart size={icon_size} />
-            </Button>
-        </JLNavigate>
-        <JLNavigate url="/history">
-            <Button className="mr-1 !mb-0" type={"primary"} >
-                <History size={icon_size} />
-            </Button>
-        </JLNavigate>
-        <Card className="mr-1 w-full app-region"></Card>
+        </Card> */}
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => break_()}>
-            <ArrowLeft size={icon_size} />
-        </Button>
-        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => break_((history.length - 1) * -1)}>
-            <LucideHome size={icon_size} />
+            <ArrowLeft size={icon_size} strokeWidth={icon_width} />
         </Button>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => globalThis.location.reload()}>
-            <RefreshCw size={icon_size} />
+            <RefreshCw size={icon_size} strokeWidth={icon_width} />
         </Button>
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => break_((history.length - 1) * -1)}>
+            <LucideHome size={icon_size} strokeWidth={icon_width} />
+        </Button>
+        <Card className="mr-1 w-full app-region"></Card>
+        <JLNavigate url="/history">
+            <Button className="mr-1 !mb-0" type={"primary"} >
+                <History size={icon_size} strokeWidth={icon_width} />
+            </Button>
+        </JLNavigate>
+        <JLNavigate url="/lovels">
+            <Button className="mr-1 !mb-0" type={"primary"} >
+                <FolderHeart size={icon_size} strokeWidth={icon_width} />
+            </Button>
+        </JLNavigate>
         <SearchIpt />
         <Popover content={<SettingView />} trigger={"click"} placement={"bottom"}>
             <Button className="mr-1 !mb-0" type={"primary"}>
-                <Bolt size={icon_size} />
+                <Bolt size={icon_size} strokeWidth={icon_width} />
             </Button>
         </Popover>
         <ControlBtn />

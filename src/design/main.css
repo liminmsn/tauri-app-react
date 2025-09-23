@@ -32,6 +32,7 @@ body,
 
 .app-region-no {
   -webkit-app-region: no-drag;
+  /* background:; */
 }
 
 :root {

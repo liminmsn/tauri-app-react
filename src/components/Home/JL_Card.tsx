@@ -9,23 +9,18 @@ function JLCard({ item }: React.ProfilerProps & { item: CarouseOnelItem }) {
         backgroundImage: `url('${item.img}')`,
         backgroundSize: 'auto 100%',
         backgroundPositionX: 'center',
-        position: 'relative',
         overflow: 'hidden'
     }
     const style_item: React.CSSProperties = {
-        position: 'absolute',
-        bottom: '0px',
-        // maxHeight: '40%',
         backgroundColor: 'rgba(0,0,0,0.2)',
-        backdropFilter: 'blur(6px)'
+        background: 'repeating-linear-gradient(rgba(0,0,0,0.2), black)'
     }
 
-    return < div key={item.author} className="w-full h-60 max-h-60 cursor-pointer" style={style} onClick={() => navigate(`/detail?id=${item.href}`)}>
-        <div className="w-full p-1 pb-4 overflow-hidden rounded-sm" style={style_item}>
+    return < div key={item.author} className="h-60 max-h-60 cursor-pointer flex flex-col" style={style} onClick={() => navigate(`/detail?id=${item.href}`)}>
+        <div className="flex-1"></div>
+        <div className="w-full p-1 pb-5 overflow-hidden rounded-sm" style={style_item}>
             {item.tags.map(tag => <Tag key={tag} color="var(--THEME_COLOR)" className="mr-1 line-height-none" style={{ padding: '2px' }}>{tag}</Tag>)}
-            <div className="text-white font-bold">{item.title}</div>
-            {/* <div className="text-white">{item.author}</div> */}
-            {/* <div>{item.truncate}</div> */}
+            <div className="text-white text-nowrap overflow-hidden text-ellipsis">{item.title}</div>
         </div>
     </div >
 }

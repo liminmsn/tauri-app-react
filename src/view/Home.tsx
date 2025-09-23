@@ -39,10 +39,6 @@ function Home() {
                                     </div>
                                 )}
                             </Card>
-                            {/* <div className="h-16 mt-1 flex">
-                            <Card className="shadow-md flex-1"></Card>
-                            <Card className="shadow-md flex-1 ml-1"></Card>
-                        </div> */}
                         </div>
                         <Card className="flex-1 shadow-md ml-1 overflow-hidden">
                             <Carousel autoplay>

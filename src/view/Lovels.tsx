@@ -10,7 +10,6 @@ function Levels() {
     const intData = useCallback(() => {
         new JLLovels(db => {
             db.getAll('lovels', (data) => {
-                debugger
                 setData([...data]);
             });
         });
