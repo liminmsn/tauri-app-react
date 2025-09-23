@@ -30,14 +30,14 @@ export function TitleBar() {
         <Card className="mr-1 app-region" style={sys_bg}>
             <span className="mx-1 select-none cursor-pointer text-nowrap">{import.meta.env['VITE_NAME']}</span>
         </Card>
-        <JLNavigate url="/history">
-            <Button className="mr-1 !mb-0" type={"primary"} >
-                <History size={icon_size} />
-            </Button>
-        </JLNavigate>
         <JLNavigate url="/lovels">
             <Button className="mr-1 !mb-0" type={"primary"} >
                 <FolderHeart size={icon_size} />
+            </Button>
+        </JLNavigate>
+        <JLNavigate url="/history">
+            <Button className="mr-1 !mb-0" type={"primary"} >
+                <History size={icon_size} />
             </Button>
         </JLNavigate>
         <Card className="mr-1 w-full app-region"></Card>
