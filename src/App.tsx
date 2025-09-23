@@ -1,4 +1,4 @@
-import { ConfigProvider, App, FloatButton } from "antd";
+import { ConfigProvider, App } from "antd";
 import { useThemeData } from './theme/index';
 import { TitleBar } from "./components/Titlebar/TitleBar";
 import { Outlet } from "react-router-dom";
@@ -13,9 +13,6 @@ export default function () {
         <TitleBar />
         <div className="pt-1 main-h">
           <Outlet />
-          <FloatButton.Group shape="square" style={{ insetInlineEnd: 10, insetBlockEnd: 10 }}>
-            <FloatButton.BackTop visibilityHeight={0} type="primary" />
-          </FloatButton.Group>
         </div>
       </App>
     </ConfigProvider >

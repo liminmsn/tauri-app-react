@@ -21,8 +21,8 @@ export function TitleBar() {
     }, []);
     useEffect(() => initData(), []);
 
-    function break_() {
-        navigate(-1)
+    function break_(sum: number = -1) {
+        navigate(sum);
     }
 
     return <div className="flex" style={{ height: '24px' }}>
@@ -44,7 +44,7 @@ export function TitleBar() {
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => break_()}>
             <ArrowLeft size={icon_size} />
         </Button>
-        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => navigate((history.length - 1) * -1)}>
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => break_((history.length - 1) * -1)}>
             <LucideHome size={icon_size} />
         </Button>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => globalThis.location.reload()}>

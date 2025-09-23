@@ -85,7 +85,9 @@ function Detail() {
     return <Card className="h-full">
         <div className="h-full box-border flex p-1">
             <div className="h-full flex flex-col min-w-40 max-w-40">
-                <Card className="min-h-45 h-45 shadow-md effect_hover_bg_size mb-1" style={{ backgroundImage: `url('${data.left.img}')`, backgroundSize: "cover" }}></Card>
+                <Card className="box-border p-1" style={{ backgroundColor: "var(--THEME_COLOR)" }}>
+                    <Card className="min-h-45 h-45 effect_hover_bg_size" style={{ backgroundImage: `url('${data.left.img}')`, backgroundSize: "cover" }}></Card>
+                </Card>
                 {data.right.tags.length == 0
                     ? <JLLoading /> :
                     <Card className="flex-1 shadow-md p-1">
@@ -105,13 +107,8 @@ function Detail() {
                         </div>
                     </Card>
                 }
-                {/* <div className="h-10 mt-1 flex gap-1">
-                    <Card className="shadow-md flex-1"></Card>
-                    <Card className="shadow-md flex-1" ></Card>
-                </div> */}
-                {/* <Card className="h-10 mt-1 shadow-md" ></Card> */}
             </div>
-            <Card className="h-full w-full box-border overflow-y-auto shadow-md p-2 ml-1">
+            <Card className="h-full w-full box-border overflow-y-auto shadow-md px-1 ml-1">
                 {data.history_item}
                 {data.right.tags.length == 0
                     ? <JLLoading /> :

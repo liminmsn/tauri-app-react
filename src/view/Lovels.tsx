@@ -18,7 +18,7 @@ function Levels() {
 
     useEffect(() => intData(), []);
     const navigate = useNavigate();
-    return <div className="w-full h-full overflow-y-auto">
+    return <Card className="w-full h-full overflow-x-hidden overflow-y-auto box-border p-1">
         <Row gutter={[4, 4]}>
             {data.map(item => {
                 return <Col key={item.lovels_item} span={4}>
@@ -45,7 +45,7 @@ function Levels() {
                 </Col>
             })}
         </Row>
-    </div>
+    </Card>
 }
 
 export default Levels;
