@@ -2,7 +2,7 @@
 // import { Spin } from "antd";
 
 import { LoadingOutlined } from "@ant-design/icons";
-import { Image, Spin } from "antd";
+import { Spin } from "antd";
 
 function JLLoading({ icon, children }: { icon?: React.ReactNode, children?: React.ReactNode }) {
     return <div className="w-full h-full flex flex-col justify-center items-center">

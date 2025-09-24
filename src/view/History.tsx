@@ -1,6 +1,6 @@
 import { Button, Card, Image, Timeline } from "antd";
 import { JLHistory } from "../core/store/JL_LocalStorage";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { DetailType } from "../core/api/api_detail";
 import JLTitle from "../components/JL_Title";
 import { useNavigate } from "react-router-dom";

@@ -21,8 +21,8 @@ function Levels() {
         {data.length === 0 ?
             <p className="text-bluegray text-center">暂无搜藏</p> :
             <Row gutter={[4, 4]}>
-                {data.map(item => {
-                    return <Col key={item.lovels_item} span={4}>
+                {[...data, ...data].map((item, idx) => {
+                    return <Col key={idx} span={4}>
                         <Card onClick={() => navigate('/detail'.concat(item.lovels_item || ''))} className="cursor-pointer">
                             <div className="flex flex-col h-full">
                                 <Card className="shadow-md overflow-hidden min-h-30 h-30 text-word-break effect_hover_bg_size" style={

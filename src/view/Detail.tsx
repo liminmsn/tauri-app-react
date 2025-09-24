@@ -36,14 +36,16 @@ function Detail() {
         }
         //收藏判断
         new JLLovels((db) => {
-            db.isIn('lovels', globalThis.location.search).then(bol => {
-                console.log(bol);
-                setLovel(bol);
-            });
+            db.isIn('lovels', globalThis.location.search).then(bol => setLovel(bol));
         });
     }, [id]);
 
-    useEffect(() => initData(), [id]);
+    useEffect(() => {
+        initData();
+        return () => {
+            setData({ ...api_detail_data });
+        }
+    }, [id]);
 
     //打开
     const navigate = useNavigate();
@@ -114,8 +116,8 @@ function Detail() {
                     ? <JLLoading /> :
                     <Space className="pb-2" size={4} direction={"vertical"}>
                         <Space size={0}>
-                            {data.right.tags.map(item => {
-                                return <Tag key={item} color="var(--THEME_COLOR)">{item}</Tag>
+                            {data.right.tags.map((item,idx) => {
+                                return <Tag key={idx} color="var(--THEME_COLOR)">{item}</Tag>
                             })}
                         </Space>
                         <span className="text-4 font-bold">{data.right.title.one}</span>

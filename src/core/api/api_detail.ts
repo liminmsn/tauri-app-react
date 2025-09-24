@@ -60,7 +60,7 @@ export function api_detail(src: string) {
             }),
             volumes: volumesArr
         }
-        console.log(data);
+        // console.log(data);
         resolve(data);
     });
 }

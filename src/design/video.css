@@ -7,14 +7,21 @@
     background: #000;
 }
 
+.jl_video_control_main {
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+}
+
 .jl_video_control {
     display: flex;
     align-items: center;
-    position: absolute;
     width: 100%;
-    top: 0;
+    height: 100%;
     background-image: repeating-linear-gradient(rgba(0, 0, 0, 0.8), transparent);
     /* backdrop-filter: blur(2px); */
     color: white;
     box-sizing: border-box;
+    opacity: 1;
+    transition: all 250ms ease;
 }

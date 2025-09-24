@@ -1,15 +1,13 @@
 import { Button, Card, Popover } from "antd";
-import { Bolt, RefreshCw, ArrowLeft, History, FolderHeart, LucideHome, Heart } from "lucide-react";
+import { FolderHeart, RotateCcw, Cog, CornerUpLeft, HousePlug, FolderClock } from "lucide-react";
 import SettingView from "./children/SettingView";
 import ControlBtn from "./children/ControlBtn";
-import { CSSProperties, useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import SearchIpt from "./children/SearchIpt";
 import { useNavigate } from "react-router-dom";
 import { JLHistory, JLLovels } from "../../core/store/JL_LocalStorage";
 import JLNavigate from "../JL_Navigate";
 import icon from '../../assets/icon.png';
-
-const sys_bg: CSSProperties = { background: 'var(--THEME_COLOR)', color: "white", marginLeft: '2px' }
 
 export const icon_size = 14;
 export const icon_width = 2.4;
@@ -22,19 +20,11 @@ export function TitleBar() {
     }, []);
     useEffect(() => initData(), []);
 
-    function break_(sum: number = -1) {
-        if (location.pathname == '/') return;
-        navigate(sum);
-    }
-
     return <div className="flex" style={{ height: '24px' }}>
         <img className="app-region mr-1" srcSet={icon} />
-        {/* <Card className="mr-1 app-region" style={sys_bg}>
-            <span className="mx-1 select-none cursor-pointer text-nowrap">{import.meta.env['VITE_NAME']}</span>
-        </Card> */}
         <JLNavigate url="/history">
             <Button className="mr-1 !mb-0" type={"primary"} >
-                <History size={icon_size} strokeWidth={icon_width} />
+                <FolderClock size={icon_size} strokeWidth={icon_width}/>
             </Button>
         </JLNavigate>
         <JLNavigate url="/lovels">
@@ -43,19 +33,19 @@ export function TitleBar() {
             </Button>
         </JLNavigate>
         <Card className="mr-1 w-full app-region"></Card>
-        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => break_(-(history.length - 1))}>
-            <LucideHome size={icon_size} strokeWidth={icon_width} />
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => navigate(history.state.idx * -1)}>
+            <HousePlug size={icon_size} strokeWidth={icon_width} />
         </Button>
-        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => break_()}>
-            <ArrowLeft size={icon_size} strokeWidth={icon_width} />
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => navigate(-1)}>
+            <CornerUpLeft size={icon_size} strokeWidth={icon_width} />
         </Button>
-        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => globalThis.location.reload()}>
-            <RefreshCw size={icon_size} strokeWidth={icon_width} />
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => location.reload()}>
+            <RotateCcw size={icon_size} strokeWidth={icon_width} />
         </Button>
         <SearchIpt />
         <Popover content={<SettingView />} trigger={"click"} placement={"bottom"}>
             <Button className="mr-1 !mb-0" type={"primary"}>
-                <Bolt size={icon_size} strokeWidth={icon_width} />
+                <Cog size={icon_size} strokeWidth={icon_width} />
             </Button>
         </Popover>
         <ControlBtn />
