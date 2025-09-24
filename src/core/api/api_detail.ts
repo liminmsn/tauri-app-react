@@ -98,4 +98,5 @@ export type DetailType = {
     history_item?: string;
     lovels_item?: string;
     time?: number;
+    detail?: string;
 }

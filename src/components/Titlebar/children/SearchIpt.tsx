@@ -24,7 +24,7 @@ function SearchIpt() {
     return <Card className="mr-1 w-120 ">
         <div className="flex">
             <Input className="border-none" placeholder="搜索动漫"
-                onChange={(e) => onInput(e.target)}
+                onInput={(e) => onInput(e.target)}
                 onKeyDown={(e) => (e.key == "Enter") && go()} />
             <Button type="primary" onClick={() => go()} >
                 <Search size={icon_size} strokeWidth={icon_width} />

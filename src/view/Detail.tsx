@@ -49,7 +49,7 @@ function Detail() {
     const navigate = useNavigate();
     function nav(url: string, title?: string) {
         localStorage.setItem('page_detail_select', url);
-        const data_ = { ...data, history_item: url };
+        const data_ = { ...data, history_item: url, detail: id || '' };
         new JLHistory((obj) => {
             obj.addHistory(data_);
         });

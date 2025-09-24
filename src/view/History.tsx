@@ -54,7 +54,10 @@ function History() {
                         <div className="mt-2 font-bold">{getSelectItem(select.history_item || '')}</div>
                         <div className="my-1 w4/10 flex gap-1">
                             <Button className="w-full" type={"primary"} onClick={() => navigate(`/video?id=${globalThis.btoa(select.history_item!)}&title=${getSelectItem(select.history_item!)}`)}>继续播放</Button>
-                            {/* <Button className="w-full" type={"primary"} icon={<Heart size={14} />}>收藏</Button> */}
+                            <Button className="w-full" type={"primary"} onClick={() => {
+                                navigate(`/detail?id=${select.detail}`);
+                                console.log(select);
+                            }}>详情</Button>
                         </div>
                     </div> :
                     <div className="h-full flex items-center justify-center">
@@ -67,7 +70,7 @@ function History() {
                 <JLTitle>历史记录</JLTitle>
                 {
                     data.length == 0 ?
-                        <p className="text-bluegray">暂无历史记录...</p>
+                        <p className="text-bluegray">暂无历史播放记录...</p>
                         :
                         <>
                             {/* <Segmented<string>

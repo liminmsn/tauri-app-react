@@ -23,6 +23,7 @@ export function TitleBar() {
     useEffect(() => initData(), []);
 
     function break_(sum: number = -1) {
+        if (location.pathname == '/') return;
         navigate(sum);
     }
 
@@ -31,16 +32,6 @@ export function TitleBar() {
         {/* <Card className="mr-1 app-region" style={sys_bg}>
             <span className="mx-1 select-none cursor-pointer text-nowrap">{import.meta.env['VITE_NAME']}</span>
         </Card> */}
-        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => break_()}>
-            <ArrowLeft size={icon_size} strokeWidth={icon_width} />
-        </Button>
-        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => globalThis.location.reload()}>
-            <RefreshCw size={icon_size} strokeWidth={icon_width} />
-        </Button>
-        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => break_((history.length - 1) * -1)}>
-            <LucideHome size={icon_size} strokeWidth={icon_width} />
-        </Button>
-        <Card className="mr-1 w-full app-region"></Card>
         <JLNavigate url="/history">
             <Button className="mr-1 !mb-0" type={"primary"} >
                 <History size={icon_size} strokeWidth={icon_width} />
@@ -51,6 +42,16 @@ export function TitleBar() {
                 <FolderHeart size={icon_size} strokeWidth={icon_width} />
             </Button>
         </JLNavigate>
+        <Card className="mr-1 w-full app-region"></Card>
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => break_(-(history.length - 1))}>
+            <LucideHome size={icon_size} strokeWidth={icon_width} />
+        </Button>
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => break_()}>
+            <ArrowLeft size={icon_size} strokeWidth={icon_width} />
+        </Button>
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => globalThis.location.reload()}>
+            <RefreshCw size={icon_size} strokeWidth={icon_width} />
+        </Button>
         <SearchIpt />
         <Popover content={<SettingView />} trigger={"click"} placement={"bottom"}>
             <Button className="mr-1 !mb-0" type={"primary"}>
