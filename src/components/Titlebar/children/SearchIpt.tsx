@@ -1,15 +1,17 @@
-import { Input, Button, Card, message } from "antd";
+import { Input, Button, Card } from "antd";
 import { Search } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { icon_size, icon_width } from "../TitleBar";
+import useApp from "antd/es/app/useApp";
 
 function SearchIpt() {
+    const { message } = useApp();
     const navigate = useNavigate();
     const [ipt_val, setIptVal] = useState('');
     const onInput = function (e: EventTarget) {
         if (e instanceof HTMLInputElement) {
-            setIptVal(e.value);
+            setIptVal(() => e.value);
         }
     }
     const go = function () {

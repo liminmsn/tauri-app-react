@@ -9,11 +9,11 @@ import JLScrollView from "../components/JL_ScrollView";
 function Search() {
     const [params] = useSearchParams();
     const id = params.get('id');
-    const [data, setData] = useState<SearchType>(Object.assign({}, api_search_data));
+    const [data, setData] = useState<SearchType>(api_search_data);
 
     useEffect(() => {
         if (!id) return;
-        id && api_search(id).then(val => setData(val));
+        id && api_search(id).then(val => setData({ ...val }));
     }, [id]);
 
     const navigate = useNavigate();
