@@ -44,7 +44,7 @@ function History() {
         url('${select ? select.left.img : ''}') center`
     };
     return <div className="flex w-full h-full">
-        <Card className="shadow-md flex-1 ml-1 overflow-hidden">
+        <Card className="shadow-md flex-1 overflow-hidden">
             {
                 select ?
                     <div className="w-full h-full flex flex-col items-center pt20 text-white" style={selectCentext}>
@@ -66,8 +66,10 @@ function History() {
             }
         </Card >
         <Card className="shadow-md w5/10 max-w-150 pl-2 overflow-hidden">
-            <JLScrollView>
+            <div className="shadow-md">
                 <JLTitle>历史记录</JLTitle>
+            </div>
+            <JLScrollView>
                 {
                     data.length == 0 ?
                         <p className="text-bluegray">暂无历史播放记录...</p>
