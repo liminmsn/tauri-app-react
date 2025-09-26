@@ -1,7 +1,7 @@
 import { Button, Card, Col, Row, Space, Tag, Tooltip } from "antd";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { api_detail, api_detail_data } from "../core/api/api_detail";
+import { api_detail, api_detail_data, DetailType } from "../core/api/api_detail";
 import { CirclePlay, Heart } from "lucide-react";
 import JLLoading from "../components/JL_Loding";
 import { rmAllSpace } from "../core/util/util";
@@ -18,32 +18,36 @@ const itemSelect_YES: React.CSSProperties = {
     color: 'white'
 }
 
+const detail_cache: {
+    search: string | undefined;
+    data: DetailType | undefined;
+} = {
+    search: undefined,
+    data: undefined
+};
+
 function Detail() {
     const { message } = useApp();
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
-    const [data, setData] = useState(api_detail_data);
+    const [data, setData] = useState({...api_detail_data});
     const [lovel, setLovel] = useState(false);
     const [select, setSelect] = useState('');
 
-    const initData = useCallback(() => {
+    useEffect(() => {
+        //本地获取选择
         setSelect(localStorage.getItem('page_detail_select') || '');
-        if (id) {
+        //收藏判断
+        new JLLovels((db) => db.isIn('lovels', globalThis.location.search).then(bol => setLovel(bol)));
+        if (detail_cache.search == location.search && detail_cache.data != undefined) {
+            setData(detail_cache.data);
+        } else {
             setData({ ...api_detail_data });
-            api_detail(id).then(res => {
+            id && api_detail(id).then(res => {
+                detail_cache.search = location.search;
+                detail_cache.data = res;
                 setData({ ...res });
             });
-        }
-        //收藏判断
-        new JLLovels((db) => {
-            db.isIn('lovels', globalThis.location.search).then(bol => setLovel(bol));
-        });
-    }, [id]);
-
-    useEffect(() => {
-        initData();
-        return () => {
-            setData({ ...api_detail_data });
         }
     }, [id]);
 
@@ -116,7 +120,7 @@ function Detail() {
                     ? <JLLoading /> :
                     <Space className="pb-2" size={4} direction={"vertical"}>
                         <Space size={0}>
-                            {data.right.tags.map((item,idx) => {
+                            {data.right.tags.map((item, idx) => {
                                 return <Tag key={idx} color="var(--THEME_COLOR)">{item}</Tag>
                             })}
                         </Space>
