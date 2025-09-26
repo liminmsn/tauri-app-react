@@ -1,5 +1,4 @@
 import { DetailType } from "../api/api_detail";
-import { JLLOG } from "../util/log";
 
 abstract class JLLocalStorage {
     protected db?: IDBDatabase;
@@ -10,9 +9,6 @@ abstract class JLLocalStorage {
         request.onupgradeneeded = (e) => {
             if (e.target instanceof IDBOpenDBRequest) {
                 const db = e.target.result;
-                JLLOG.success("数据库创建成功!");
-                JLLOG.info('数据库名称:' + db.name);
-                JLLOG.info('数据库版本:' + db.version);
                 this.init(db);
             }
         }

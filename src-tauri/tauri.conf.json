@@ -23,7 +23,7 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'self'; script-src 'self' https://hm.baidu.com 'unsafe-inline'; connect-src 'self' https://hm.baidu.com"
     }
   },
   "bundle": {

@@ -3,7 +3,9 @@ import { useThemeData } from './theme/index';
 import { TitleBar } from "./components/Titlebar/TitleBar";
 import { Outlet } from "react-router-dom";
 import zhCN from 'antd/locale/zh_CN';
+import { DataStatistice } from "./core/util/DataStatistice";
 
+new DataStatistice();
 export default function () {
   const { themeData } = useThemeData();
 

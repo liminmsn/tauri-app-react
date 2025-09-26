@@ -1,33 +1,42 @@
-import { defineConfig } from "vite";
+import { defineConfig, ConfigEnv, UserConfigFnPromise, UserConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import UnoCSS from 'unocss/vite'
 
 // @ts-expect-error process is a nodejs global
 const host = process.env.TAURI_DEV_HOST;
+export default defineConfig(async (env: ConfigEnv) => {
 
-// https://vite.dev/config/
-export default defineConfig(async () => ({
-  plugins: [react(), UnoCSS()],
-
-  // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
-  //
-  // 1. prevent Vite from obscuring rust errors
-  clearScreen: false,
-  // 2. tauri expects a fixed port, fail if that port is not available
-  server: {
-    port: 1420,
-    strictPort: true,
-    host: host || false,
-    hmr: host
-      ? {
-        protocol: "ws",
-        host,
-        port: 1421,
-      }
-      : undefined,
-    watch: {
-      // 3. tell Vite to ignore watching `src-tauri`
-      ignored: ["**/src-tauri/**"],
+  const config: UserConfig = {
+    plugins: [react(), UnoCSS()],
+    clearScreen: false,
+    server: {
+      port: 1420,
+      strictPort: true,
+      host: host || false,
+      hmr: host
+        ? {
+          protocol: "ws",
+          host,
+          port: 1421,
+        }
+        : undefined,
+      watch: {
+        ignored: ["**/src-tauri/**"],
+      },
     },
-  },
-}));
+  }
+  //代理地址
+  if (env.mode == 'development') {
+    // @ts-expect-error process is a nodejs global
+    const env = loadEnv('', process.cwd(), 'VITE_') as unknown as ViteEnv;
+    const url = env['VITE_BAIDU_TONGJI_PROXY'];
+    config.server.proxy = {
+      [url]: {
+        target: env['VITE_BAIDU_TONGJI'],
+        changeOrigin: true,
+      }
+    }
+  }
+
+  return config;
+});

@@ -1,5 +1,5 @@
 import { invoke } from "@tauri-apps/api/core";
-import { Button, Card } from "antd";
+import { Card } from "antd";
 import { Fingerprint } from "lucide-react";
 import { useEffect, useState } from "react";
 import { icon_size } from "../TitleBar";
