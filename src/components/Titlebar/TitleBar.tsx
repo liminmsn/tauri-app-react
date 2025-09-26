@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { JLHistory, JLLovels } from "../../core/store/JL_LocalStorage";
 import JLNavigate from "../JL_Navigate";
 import icon from '../../assets/icon.png';
+import DeviceID from "./children/DeviceId";
 
 export const icon_size = 14;
 export const icon_width = 2.4;
@@ -24,7 +25,7 @@ export function TitleBar() {
         <img className="app-region mr-1" srcSet={icon} />
         <JLNavigate url="/history">
             <Button className="mr-1 !mb-0" type={"primary"} >
-                <FolderClock size={icon_size} strokeWidth={icon_width}/>
+                <FolderClock size={icon_size} strokeWidth={icon_width} />
             </Button>
         </JLNavigate>
         <JLNavigate url="/lovels">
@@ -32,7 +33,8 @@ export function TitleBar() {
                 <FolderHeart size={icon_size} strokeWidth={icon_width} />
             </Button>
         </JLNavigate>
-        <Card className="mr-1 w-full app-region"></Card>
+        <Card className="mr-1 w4/10 app-region"></Card>
+        {/* <DeviceID className="w-full" /> */}
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => navigate(history.state.idx * -1)}>
             <HousePlug size={icon_size} strokeWidth={icon_width} />
         </Button>
