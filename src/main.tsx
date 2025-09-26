@@ -11,11 +11,13 @@ import Search from "./view/Search";
 import Video from "./view/Video";
 import History from "./view/History";
 import Levels from "./view/Lovels";
+import JLRouteTracker from "./components/JL_RouteTracker";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider>
       <BrowserRouter>
+        <JLRouteTracker />
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
