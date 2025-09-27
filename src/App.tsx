@@ -1,7 +1,7 @@
 import { ConfigProvider, App } from "antd";
 import { useThemeData } from './theme/index';
-import { TitleBar } from "./components/Titlebar/TitleBar";
 import { Outlet } from "react-router-dom";
+import JLTitleBar from "./components/JL_TitleBar";
 import zhCN from 'antd/locale/zh_CN';
 import { DataStatistice } from "./core/util/DataStatistice";
 
@@ -14,7 +14,7 @@ export default function () {
   return (
     <ConfigProvider locale={zhCN} componentSize={"small"} theme={themeData}>
       <App className="h-full p-1">
-        <TitleBar />
+        <JLTitleBar />
         <div className="pt-1 main-h">
           <Outlet />
         </div>

@@ -1,0 +1,14 @@
+{
+    "name": "get_premium_list",
+    "dependencies": [],
+    "extensions": {
+        "uni-cloud-jql": {}
+    },
+    "cloudfunction-config": {
+        "memorySize": 512,
+        "timeout": 5,
+        "triggers": [],
+        "path": "/get_preimium_list",
+        "runtime": "Nodejs16"
+    }
+}

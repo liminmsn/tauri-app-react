@@ -2,7 +2,7 @@ import { invoke } from "@tauri-apps/api/core";
 import { Card } from "antd";
 import { Fingerprint } from "lucide-react";
 import { useEffect, useState } from "react";
-import { icon_size } from "../TitleBar";
+import { icon_size } from "../JL_TitleBar";
 function DeviceID({ className }: { className?: string }) {
     const [id, setId] = useState('');
     useEffect(() => {

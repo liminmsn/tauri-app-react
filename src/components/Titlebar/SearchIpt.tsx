@@ -2,7 +2,7 @@ import { Input, Button, Card } from "antd";
 import { Search } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { icon_size, icon_width } from "../TitleBar";
+import { icon_size, icon_width } from "../JL_TitleBar";
 import useApp from "antd/es/app/useApp";
 
 function SearchIpt() {

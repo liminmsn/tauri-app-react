@@ -1,7 +1,7 @@
 import { Card, FloatButton } from "antd";
 import { ArrowUpToLine } from "lucide-react";
 import React, { useRef, useState } from "react";
-import { icon_size, icon_width } from "./Titlebar/TitleBar";
+import { icon_size, icon_width } from "./JL_TitleBar";
 
 type JLScrollViewType = {
     children: React.ReactNode;

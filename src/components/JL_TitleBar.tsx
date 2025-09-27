@@ -1,18 +1,18 @@
 import { Button, Card, Popover } from "antd";
 import { FolderHeart, RotateCcw, Cog, CornerUpLeft, HousePlug, FolderClock } from "lucide-react";
-import SettingView from "./children/SettingView";
-import ControlBtn from "./children/ControlBtn";
+import SettingView from "./Titlebar/SettingView";
+import ControlBtn from "./Titlebar/ControlBtn";
 import { useCallback, useEffect } from "react";
-import SearchIpt from "./children/SearchIpt";
+import SearchIpt from "./Titlebar/SearchIpt";
 import { useNavigate } from "react-router-dom";
-import { JLHistory, JLLovels } from "../../core/store/JL_LocalStorage";
-import JLNavigate from "../JL_Navigate";
-import icon from '../../assets/icon.png';
+import { JLHistory, JLLovels } from "../core/store/JL_LocalStorage";
+import JLNavigate from "./JL_Navigate";
+import icon from '../assets/icon.png';
 
 export const icon_size = 14;
 export const icon_width = 2.4;
 
-export function TitleBar() {
+function JLTitleBar() {
     const navigate = useNavigate();
     const initData = useCallback(() => {
         new JLHistory();
@@ -52,3 +52,5 @@ export function TitleBar() {
         <ControlBtn />
     </div>
 }
+
+export default JLTitleBar;

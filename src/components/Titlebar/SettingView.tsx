@@ -1,7 +1,7 @@
 import { Switch } from "antd";
-import { setThemeColor, theme_color_arr, toggleThemeDark, useThemeData } from "../../../theme";
+import { setThemeColor, theme_color_arr, toggleThemeDark, useThemeData } from "../../theme";
 import { CSSProperties } from "react";
-import { isEqual } from "../../../core/util/util";
+import { isEqual } from "../../core/util/util";
 
 //设置视图
 function SettingView() {

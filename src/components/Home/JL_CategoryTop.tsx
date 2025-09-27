@@ -11,7 +11,7 @@ function JLCategoryTop({ item }: { item: CategoryItem }) {
         {item.list.map(item => {
             return <div key={item.href} className="flex overflow-hidden mt-1 cursor-pointer" onClick={() => navigate(`/detail?id=${item.href}`)}>
                 <div className="min-w-8 max-w-8 overflow-hidden rounded-sm" ><Image src={item.img} preview={false} /></div>
-                <Tooltip placement={"bottomRight"} title={<span className="text-3 line-height-none">{item.title}</span>} arrow color="var(--THEME_COLOR)" >
+                <Tooltip placement={"bottomRight"} title={<span className="text-3 line-height-none">{item.title}</span>} arrow>
                     <span className="ml-1 text-3 text-nowrap overflow-hidden text-ellipsis">{item.title}</span>
                 </Tooltip>
             </div>

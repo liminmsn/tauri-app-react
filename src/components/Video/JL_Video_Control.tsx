@@ -1,7 +1,7 @@
 import { Window } from "@tauri-apps/api/window";
 import { Minimize, CircleX, Fullscreen } from "lucide-react";
 import { useState } from "react";
-import { icon_size, icon_width } from "../Titlebar/TitleBar";
+import { icon_size, icon_width } from "../JL_TitleBar";
 import { Space } from "antd";
 
 const win = new Window('main');
