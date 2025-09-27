@@ -12,8 +12,10 @@ function Search() {
     const [data, setData] = useState<SearchType>(api_search_data);
 
     useEffect(() => {
-        if (!id) return;
-        id && api_search(id).then(val => setData({ ...val }));
+        setData({ ...api_search_data, list: [] });
+        setTimeout(() => {
+            id && api_search(id).then(val => setData({ ...val }));
+        }, 250);
     }, [id]);
 
     const navigate = useNavigate();
