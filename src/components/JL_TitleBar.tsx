@@ -35,7 +35,11 @@ function JLTitleBar() {
         <Card className="mr-1 w-full app-region"></Card>
         <Card className="mr-1 w-2/10 app-region"></Card>
         {/* <DeviceID className="w-full" /> */}
-        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => navigate(history.state.idx * -1)}>
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => {
+            if (location.pathname != '/') {
+                navigate(history.state.idx * -1)
+            }
+        }}>
             <HousePlug size={icon_size} strokeWidth={icon_width} />
         </Button>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => navigate(-1)}>
