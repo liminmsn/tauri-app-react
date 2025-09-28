@@ -30,7 +30,7 @@ function Detail() {
     const { message } = useApp();
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
-    const [data, setData] = useState({...api_detail_data});
+    const [data, setData] = useState({ ...api_detail_data });
     const [lovel, setLovel] = useState(false);
     const [select, setSelect] = useState('');
 
@@ -54,11 +54,11 @@ function Detail() {
     //打开
     const navigate = useNavigate();
     function nav(url: string, title?: string) {
-        localStorage.setItem('page_detail_select', url);
-        const data_ = { ...data, history_item: url, detail: id || '' };
         new JLHistory((obj) => {
             obj.addHistory(data_);
         });
+        localStorage.setItem('page_detail_select', url);
+        const data_ = { ...data, history_item: url, detail: id || '' };
         setData(data);
         setTimeout(() => {
             navigate(`/video?id=${globalThis.btoa(url)}&title=${title}`);
