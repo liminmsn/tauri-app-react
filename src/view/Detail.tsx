@@ -1,12 +1,13 @@
 import { Button, Card, Col, Row, Space, Tag, Tooltip } from "antd";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { api_detail, api_detail_data, DetailType } from "../core/api/api_detail";
+import { api_detail, api_detail_data } from "../core/api/api_detail";
 import { CirclePlay, Heart } from "lucide-react";
 import JLLoading from "../components/JL_Loding";
 import { rmAllSpace } from "../core/util/util";
 import { JLHistory, JLLovels } from "../core/store/JL_LocalStorage";
 import useApp from "antd/es/app/useApp";
+import { detail_cache } from "../App";
 
 
 const itemSelect_NO: React.CSSProperties = {
@@ -17,14 +18,6 @@ const itemSelect_YES: React.CSSProperties = {
     // fontWeight: 'bold',
     color: 'white'
 }
-
-const detail_cache: {
-    search: string | undefined;
-    data: DetailType | undefined;
-} = {
-    search: undefined,
-    data: undefined
-};
 
 function Detail() {
     const { message } = useApp();
