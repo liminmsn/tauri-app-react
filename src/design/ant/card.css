@@ -6,3 +6,10 @@
 .ant-card {
     border: none;
 }
+
+.ant-card-head {
+    min-height: auto !important;
+    padding-inline: 0 !important;
+    padding: 2px !important;
+    font-family: 'wxxlt';
+}
