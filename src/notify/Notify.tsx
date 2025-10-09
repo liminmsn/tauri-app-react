@@ -5,7 +5,7 @@ import icon from '../assets/icon.png';
 
 type NotifyType = {
     show_notify: boolean;
-    notify_data: any[];
+    notify_data: string[];
 }
 
 const NotifyStyle: React.CSSProperties = {
@@ -14,16 +14,21 @@ const NotifyStyle: React.CSSProperties = {
     top: 0,
     textAlign: 'center',
     zIndex: '16',
-    background: 'rgba(0,0,0,1)',
+    background: 'rgba(0,0,0,0.1)',
     backdropFilter: 'blur(0.5px)',
 };
 
+function stringDom(dom: string) {
+    return <div className="h-60 flex">
+        <iframe srcDoc={dom} className="w-full h-full border-none" />
+    </div>;
+}
 
 //Notify
 class Notify extends React.Component {
     state: Readonly<NotifyType> = {
         show_notify: true,
-        notify_data: []
+        notify_data: ['<h1>helloworld</h1>', '<h1>helloworld</h1>']
     };
     componentDidMount() {
 
@@ -38,8 +43,11 @@ class Notify extends React.Component {
         return this.state.show_notify && <div className="w-full h-full" style={NotifyStyle}>
             <Card className="w-100 h-auto overflow-hidden mt-30" style={{ marginInline: 'auto' }} title={this.Title} extra={this.Close}>
                 <Carousel className="h-60" arrows infinite={false}>
-                    <div className="h-60 flex">
-                    </div>
+                    {
+                        this.state.notify_data.map(item => {
+                            return stringDom(item);
+                        })
+                    }
                 </Carousel>
             </Card>
         </div>

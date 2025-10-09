@@ -15,15 +15,17 @@ function SettingView() {
 
     const [color, setColor] = useState<Color>('');
     const addThemeColor = function (config: any, color: string) {
-        addThemeColor_(config, color);
-        setColor('');
+        if (color) {
+            addThemeColor_(config, color);
+            setColor('');
+        }
     }
 
     return <div className="">
         <label className="text-3">暗黑主题：</label>
         <Switch value={localStorage.getItem('theme_dart') === 'true'} onChange={(bol: boolean) => toggleThemeDark(config, bol)} />
         <br />
-        <label className="text-3">添加主题色：</label>
+        <label className="text-3">主题色：</label>
         <div className="flex items-center my-1">
             <ColorPicker className="w-5 h-5" size="small" value={color} onChangeComplete={(val) => setColor(val.toHexString())} />
             <Button className="ml-1" onClick={() => addThemeColor(config, color.toString())} >
