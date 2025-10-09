@@ -34,14 +34,15 @@ function JLTitleBar() {
             </Button>
         </JLNavigate>
         <Card className="mr-1 w-full app-region"></Card>
-        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => navigate('/premium')}>
-            <Tickets size={icon_size} strokeWidth={icon_width} />
-        </Button>
+        <JLNavigate url="/premium">
+            <Button className="mr-1 !mb-0" type={"primary"}>
+                <Tickets size={icon_size} strokeWidth={icon_width} />
+            </Button>
+        </JLNavigate>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => new GlobalEvent().send('open_notify', true)}>
             <Megaphone size={icon_size} strokeWidth={icon_width} />
         </Button>
         <Card className="mr-1 w-2/10 app-region"></Card>
-        {/* <DeviceID className="w-full" /> */}
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => {
             if (location.pathname != '/') {
                 navigate(history.state.idx * -1)

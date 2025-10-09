@@ -80,29 +80,31 @@ function History() {
                 <JLTitle>历史记录</JLTitle>
             </div>
             <JLScrollView>
-                <div className="flex">
-                    <Segmented
-                        size="small"
-                        options={['不限', '3天', '7天']}
-                        onChange={(value) => {
-                            const time = Date.now();
-                            const day_1 = 24 * 60 * 60 * 1000;
-                            if (value == '3天') {
-                                setData(data_.filter(item => {
-                                    return time - item.time! <= day_1 * 3;
-                                }));
-                            } else if (value == '7天') {
-                                setData(data_.filter(item => {
-                                    return time - item.time! <= day_1 * 7;
-                                }));
-                            } else {
-                                setData([...data_]);
-                            }
-                        }}
-                    />
-                    <div className="flex-1"></div>
-                    <Button onClick={() => cleanHistroy()}>清空历史</Button>
-                </div>
+                {
+                    data.length > 0 && <div className="flex">
+                        <Segmented
+                            size="small"
+                            options={['不限', '3天', '7天']}
+                            onChange={(value) => {
+                                const time = Date.now();
+                                const day_1 = 24 * 60 * 60 * 1000;
+                                if (value == '3天') {
+                                    setData(data_.filter(item => {
+                                        return time - item.time! <= day_1 * 3;
+                                    }));
+                                } else if (value == '7天') {
+                                    setData(data_.filter(item => {
+                                        return time - item.time! <= day_1 * 7;
+                                    }));
+                                } else {
+                                    setData([...data_]);
+                                }
+                            }}
+                        />
+                        <div className="flex-1"></div>
+                        <Button onClick={() => cleanHistroy()}>清空历史</Button>
+                    </div>
+                }
                 {
                     data.length == 0 ?
                         <p className="text-bluegray">暂无历史播放记录...</p>

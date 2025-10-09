@@ -5,6 +5,10 @@ class NetBase {
     constructor(src: string = '') {
         this.url = this.url.concat(src);
     }
+    setUrl(url: string) {
+        this.url = url;
+        return this;
+    }
     get() {
         this.init.method = 'GET';
         return this;

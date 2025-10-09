@@ -16,6 +16,10 @@
   font-family: 'sx';
 }
 
+.font_null {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .text-word-break {
   word-break: break-all;
 }

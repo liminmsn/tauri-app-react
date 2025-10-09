@@ -12,8 +12,8 @@ function DeviceID({ className }: { className?: string }) {
         })
     });
     return <Card className={className} >
-        <Fingerprint size={icon_size} />
-        <span className="text-3">{id}</span>
+        <span className="text-3 mr-1">{id}</span>
+        <Fingerprint size={icon_size} style={{ transform: 'translateY(2px)' }} />
     </Card>
 }
 export default DeviceID;
