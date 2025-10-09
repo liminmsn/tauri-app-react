@@ -12,7 +12,8 @@ const themeData_: ThemeConfig = {
     },
 }
 //初始化主题
-const theme_color_arr: string[] = JSON.parse(import.meta.env['VITE_COLOR_ARR']);
+const local_theme_color_arr = localStorage.getItem('theme_color_arr');
+const theme_color_arr: string[] = JSON.parse(local_theme_color_arr || import.meta.env['VITE_COLOR_ARR']);
 const theme_color = localStorage.getItem('theme_color');
 if (theme_color) {
     themeData_.token!.colorPrimary = theme_color;
@@ -49,6 +50,20 @@ const toggleThemeDark = ({ themeData, setThemeData }: ThemeContextType, bool: bo
     setThemeData(() => ({ token: themeData.token, algorithm: bool ? theme.darkAlgorithm : theme.defaultAlgorithm } as ThemeConfig));
     localStorage.setItem('theme_dart', String(bool));
 }
+const addThemeColor = (config: ThemeContextType, color: string) => {
+    setThemeColor(config, color);
+    if (theme_color_arr.indexOf(color) < 0) {
+        theme_color_arr.push(color);
+        localStorage.setItem('theme_color_arr', JSON.stringify(theme_color_arr));
+    }
+}
+const delThemeColor = (config: ThemeContextType, color: string) => {
+    if (theme_color_arr.indexOf(color) > -1) {
+        theme_color_arr.splice(theme_color_arr.indexOf(color), 1);
+        localStorage.setItem('theme_color_arr', JSON.stringify(theme_color_arr));
+        setThemeColor(config, theme_color_arr[theme_color_arr.length - 1]);
+    }
+}
 
 function setCssPropColor(color: string) {
     document.documentElement.style.setProperty('--THEME_COLOR', color);
@@ -56,4 +71,4 @@ function setCssPropColor(color: string) {
 }
 
 
-export { ThemeProvider, theme_color_arr, useThemeData, setThemeColor, toggleThemeDark };
+export { ThemeProvider, theme_color_arr, useThemeData, setThemeColor, addThemeColor, delThemeColor, toggleThemeDark };
