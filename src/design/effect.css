@@ -3,7 +3,7 @@
     transition: all 250ms ease-out;
     background-position: center;
     background-size: auto 100%;
-    
+
 
     &:hover {
         transition: all 250ms ease-in;
@@ -16,8 +16,23 @@
     cursor: pointer;
     transform: scale(1);
     transition: all 250ms ease-in;
-    &:active{
+
+    &:active {
         transition: all 250ms ease-in-out;
         transform: scale(0.8);
+    }
+}
+
+.effect_show {
+    animation: show 250ms ease-out;
+}
+
+@keyframes show {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
     }
 }

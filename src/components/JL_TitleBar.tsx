@@ -1,5 +1,5 @@
 import { Button, Card, Popover } from "antd";
-import { FolderHeart, RotateCcw, Cog, CornerUpLeft, HousePlug, FolderClock } from "lucide-react";
+import { FolderHeart, RotateCcw, Cog, CornerUpLeft, HousePlug, FolderClock, Megaphone, Tickets } from "lucide-react";
 import SettingView from "./Titlebar/SettingView";
 import ControlBtn from "./Titlebar/ControlBtn";
 import { useCallback, useEffect } from "react";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { JLHistory, JLLovels } from "../core/store/JL_LocalStorage";
 import JLNavigate from "./JL_Navigate";
 import icon from '../assets/icon.png';
+import { GlobalEvent } from "../core/util/globalEvent";
 
 export const icon_size = 14;
 export const icon_width = 2.4;
@@ -21,7 +22,7 @@ function JLTitleBar() {
     useEffect(() => initData(), []);
 
     return <div className="flex" style={{ height: '24px' }}>
-        <img className="app-region mr-1" srcSet={icon} />
+        <img className="app-region mr-1" src={icon} style={{ minWidth: '24px' }} />
         <JLNavigate url="/history">
             <Button className="mr-1 !mb-0" type={"primary"} >
                 <FolderClock size={icon_size} strokeWidth={icon_width} />
@@ -33,6 +34,12 @@ function JLTitleBar() {
             </Button>
         </JLNavigate>
         <Card className="mr-1 w-full app-region"></Card>
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => navigate('/premium')}>
+            <Tickets size={icon_size} strokeWidth={icon_width} />
+        </Button>
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => new GlobalEvent().send('open_notify', true)}>
+            <Megaphone size={icon_size} strokeWidth={icon_width} />
+        </Button>
         <Card className="mr-1 w-2/10 app-region"></Card>
         {/* <DeviceID className="w-full" /> */}
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => {

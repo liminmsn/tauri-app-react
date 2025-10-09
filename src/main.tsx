@@ -12,6 +12,7 @@ import Video from "./view/Video";
 import History from "./view/History";
 import Levels from "./view/Lovels";
 import JLRouteTracker from "./components/JL_RouteTracker";
+import Premium from "./view/Premium";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -26,6 +27,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
             <Route path="/video" element={<Video />} />
             <Route path="/history" element={<History />} />
             <Route path="/lovels" element={<Levels />} />
+            <Route path="/premium" element={<Premium />} />
           </Route>
         </Routes>
       </BrowserRouter>
