@@ -31,7 +31,7 @@ function Search() {
                                 <div className="flex flex-col h-full">
                                     <Card className="shadow-md overflow-hidden min-h-30 h-30 text-word-break effect_hover_bg_size" style={
                                         {
-                                            backgroundImage: `url('${item.img}'),url('/icon_2.png')`,
+                                            backgroundImage: `url('${item.img}')`,
                                             backgroundSize: '100%,60%'
                                         }
                                     }></Card>

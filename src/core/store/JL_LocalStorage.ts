@@ -86,7 +86,7 @@ export class JLHistory extends JLLocalStorage {
     }
     rmAllHistory() {
         if (this.db) {
-            const tx = this.db.transaction('history', 'readonly');
+            const tx = this.db.transaction('history', 'readwrite');
             const store = tx.objectStore('history');
             return store.clear();
         }

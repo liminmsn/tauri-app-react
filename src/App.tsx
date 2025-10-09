@@ -5,7 +5,7 @@ import JLTitleBar from "./components/JL_TitleBar";
 import zhCN from 'antd/locale/zh_CN';
 import { DataStatistice } from "./core/util/DataStatistice";
 import { DetailType } from "./core/api/api_detail";
-import Notify from "./notify/notify";
+import Notify from "./notify/Notify";
 
 if (!import.meta.env.DEV) {
   debugger
