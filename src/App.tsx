@@ -8,7 +8,6 @@ import { DetailType } from "./core/api/api_detail";
 import Notify from "./notify/Notify";
 
 if (!import.meta.env.DEV) {
-  debugger
   new DataStatistice();
 }
 //详情页面缓存初始化

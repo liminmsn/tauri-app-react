@@ -1,5 +1,5 @@
 import { Button, Card, Popover } from "antd";
-import { FolderHeart, RotateCcw, Cog, CornerUpLeft, HousePlug, FolderClock, Megaphone, Tickets } from "lucide-react";
+import { FolderHeart, RotateCcw, Cog, CornerUpLeft, HousePlug, FolderClock, Megaphone, Tickets, House } from "lucide-react";
 import SettingView from "./Titlebar/SettingView";
 import ControlBtn from "./Titlebar/ControlBtn";
 import { useCallback, useEffect } from "react";
@@ -23,6 +23,16 @@ function JLTitleBar() {
 
     return <div className="flex" style={{ height: '24px' }}>
         <img className="app-region mr-1" src={icon} style={{ minWidth: '24px' }} />
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => new GlobalEvent().send('open_notify', true)}>
+            <Megaphone size={icon_size} strokeWidth={icon_width} />
+        </Button>
+        <JLNavigate url="/premium">
+            <Button className="mr-1 !mb-0" type={"primary"}>
+                <Tickets size={icon_size} strokeWidth={icon_width} />
+            </Button>
+        </JLNavigate>
+        <Card className="mr-1 w-full app-region"></Card>
+        <Card className="mr-1 w-100 app-region"></Card>
         <JLNavigate url="/history">
             <Button className="mr-1 !mb-0" type={"primary"} >
                 <FolderClock size={icon_size} strokeWidth={icon_width} />
@@ -33,22 +43,12 @@ function JLTitleBar() {
                 <FolderHeart size={icon_size} strokeWidth={icon_width} />
             </Button>
         </JLNavigate>
-        <Card className="mr-1 w-full app-region"></Card>
-        <JLNavigate url="/premium">
-            <Button className="mr-1 !mb-0" type={"primary"}>
-                <Tickets size={icon_size} strokeWidth={icon_width} />
-            </Button>
-        </JLNavigate>
-        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => new GlobalEvent().send('open_notify', true)}>
-            <Megaphone size={icon_size} strokeWidth={icon_width} />
-        </Button>
-        <Card className="mr-1 w-2/10 app-region"></Card>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => {
             if (location.pathname != '/') {
                 navigate(history.state.idx * -1)
             }
         }}>
-            <HousePlug size={icon_size} strokeWidth={icon_width} />
+            <House size={icon_size} strokeWidth={icon_width} />
         </Button>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => navigate(-1)}>
             <CornerUpLeft size={icon_size} strokeWidth={icon_width} />

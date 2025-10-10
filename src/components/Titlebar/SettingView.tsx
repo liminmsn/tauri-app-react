@@ -22,7 +22,7 @@ function SettingView() {
     }
 
     return <div className="">
-        <label className="text-3">暗黑主题：</label>
+        <label className="text-3">夜间模式：</label>
         <Switch value={localStorage.getItem('theme_dart') === 'true'} onChange={(bol: boolean) => toggleThemeDark(config, bol)} />
         <br />
         <label className="text-3">主题色：</label>

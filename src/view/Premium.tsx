@@ -1,6 +1,6 @@
 import { Card, Segmented, Space } from "antd";
 import { useEffect, useState } from "react";
-import { Premium as PremiumApi, PremiumList } from '../premium/Premium';
+import { Premium as PremiumApi, PremiumList, PremiumListDatum } from '../core/premium/Premium';
 import DeviceID from "../components/Titlebar/DeviceId";
 
 
@@ -23,6 +23,7 @@ const CardStyle: React.CSSProperties = {
 
 function Premium() {
     const [premium_list, setPremium_list] = useState<PremiumList>();
+    const [premium_select, setPremium_select] = useState<PremiumListDatum>();
     useEffect(() => {
         new PremiumApi().getList().then(setPremium_list);
     }, []);
@@ -41,7 +42,12 @@ function Premium() {
             </Card>
             <div className="w-full grid grid-cols-3 gap-1">
                 {premium_list?.data.map(item => {
-                    return <Card className="p-2 py-6 overflow-hidden cursor-pointer rounded-lg" key={item._id} style={CardStyle}>
+                    return <Card
+                        className={`p-2 py-6 overflow-hidden cursor-pointer rounded-lg ${item._id === premium_select?._id ? 'shadow-md' : ''}`}
+                        key={item._id}
+                        style={CardStyle}
+                        onClick={() => setPremium_select(item)}
+                    >
                         <div className="text-3 font-bold line-height-none">{item.dec}</div>
                         <div className="my-2 text-xl font-bold text-center font_null line-height-none">{item.price}￥</div>
                         <div className="text-3 font_two text-center line-height-none" style={{ opacity: 0.5 }}>{import.meta.env['VITE_NAME']}</div>

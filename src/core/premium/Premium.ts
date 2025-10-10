@@ -1,4 +1,4 @@
-import { NetBase } from "../core/net/NetBase";
+import { NetBase } from "../net/NetBase";
 
 class Premium extends NetBase {
     getList() {
