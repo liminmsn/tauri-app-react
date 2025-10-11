@@ -87,8 +87,7 @@ function Detail() {
         <div className="h-full box-border flex p-1">
             <div className="h-full flex flex-col min-w-40 max-w-40">
                 <Card className="box-border p-1" style={{ backgroundColor: "var(--THEME_COLOR)" }}>
-                    <JLImage className="w-full min-h-48 max-h-48 effect_hover_bg_size" src={data.left.img} />
-                    {/* <Card className="min-h-45 h-45 effect_hover_bg_size" style={{ backgroundImage: `url('${data.left.img}')`, backgroundSize: "cover" }}></Card> */}
+                    <JLImage className="w-full min-h-48 max-h-48" lodimg={''} src={data.left.img} />
                 </Card>
                 {data.right.tags.length == 0
                     ? <JLLoading icon={<Image width={60} srcSet={icon} preview={false} />} /> :

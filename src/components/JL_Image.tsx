@@ -1,13 +1,27 @@
 import { Image } from "antd";
-import preview from "../assets/3.gif";
+import preview from "../assets/cd.png";
+import { useState } from "react";
+const lodimg_ = "/loding/4.gif";
 
-function JLImage({ src, className }: { src: string, className?: string }) {
-    return <Image preview={false} src={src}
-        className={className}
-        fallback="/loding/4.gif"
-        placeholder={
-            <Image preview={false} srcSet={preview} />
-        }
-    />;
+type JLImage = {
+    src: string;
+    lodimg?: string;
+    errimg?: string;
+    className?: string;
+}
+
+function JLImage({ src, className, lodimg = lodimg_, errimg = preview }: JLImage) {
+    const [lod_err, setLoderr] = useState(false);
+
+    return lod_err ?
+        <div className="w-full h-full"></div>
+        : <Image preview={false} src={src}
+            className={className}
+            // fallback={errimg}
+            onErrorCapture={() => setLoderr(true)}
+            placeholder={
+                <Image preview={false} srcSet={lodimg} />
+            }
+        />;
 }
 export default JLImage;
