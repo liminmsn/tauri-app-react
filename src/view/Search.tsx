@@ -1,10 +1,11 @@
-import { Card, Col, Row, Space, Tag } from "antd";
+import { Card, Col, Image, Row, Space, Tag } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { api_search, api_search_data, SearchType } from "../core/api/api_search";
 import { rmAllSpace } from "../core/util/util";
 import JLLoading from "../components/JL_Loding";
 import JLScrollView from "../components/JL_ScrollView";
+import JLImage from "../components/JL_Image";
 
 function Search() {
     const [params] = useSearchParams();
@@ -29,12 +30,9 @@ function Search() {
                         return <Col key={item.href} span={4}>
                             <Card onClick={() => navigate(`/detail?id=${item.href}`)} className="cursor-pointer h-full">
                                 <div className="flex flex-col h-full">
-                                    <Card className="shadow-md overflow-hidden min-h-30 h-30 text-word-break effect_hover_bg_size" style={
-                                        {
-                                            backgroundImage: `url('${item.img}')`,
-                                            backgroundSize: '100%,60%'
-                                        }
-                                    }></Card>
+                                    <Card className="shadow-md overflow-hidden min-h-30 h-30 text-word-break effect_hover_bg_size">
+                                        <JLImage src={item.img} />
+                                    </Card>
                                     <div className="text-3 text-white pt-1">
                                         <Space size={4}>
                                             {item.tags.map((item, idx) => {

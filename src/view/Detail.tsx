@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row, Space, Tag, Tooltip } from "antd";
+import { Button, Card, Col, Image, Row, Space, Tag, Tooltip } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { api_detail, api_detail_data } from "../core/api/api_detail";
@@ -8,6 +8,8 @@ import { rmAllSpace } from "../core/util/util";
 import { JLHistory, JLLovels } from "../core/store/JL_LocalStorage";
 import useApp from "antd/es/app/useApp";
 import { detail_cache } from "../App";
+import icon from '../assets/4.gif';
+import JLImage from "../components/JL_Image";
 
 
 const itemSelect_NO: React.CSSProperties = {
@@ -85,10 +87,11 @@ function Detail() {
         <div className="h-full box-border flex p-1">
             <div className="h-full flex flex-col min-w-40 max-w-40">
                 <Card className="box-border p-1" style={{ backgroundColor: "var(--THEME_COLOR)" }}>
-                    <Card className="min-h-45 h-45 effect_hover_bg_size" style={{ backgroundImage: `url('${data.left.img}')`, backgroundSize: "cover" }}></Card>
+                    <JLImage className="w-full min-h-48 max-h-48 effect_hover_bg_size" src={data.left.img} />
+                    {/* <Card className="min-h-45 h-45 effect_hover_bg_size" style={{ backgroundImage: `url('${data.left.img}')`, backgroundSize: "cover" }}></Card> */}
                 </Card>
                 {data.right.tags.length == 0
-                    ? <JLLoading /> :
+                    ? <JLLoading icon={<Image width={60} srcSet={icon} preview={false} />} /> :
                     <Card className="flex-1 shadow-md p-1">
                         <div className="my-1 w-full flex gap-1">
                             <Button className="w-full" type={"primary"} icon={<CirclePlay size={14} />} onClick={() => nav(data.left.href, data.right.volumes[0].list[0].title)}>播放</Button>
@@ -110,8 +113,8 @@ function Detail() {
             <Card className="h-full w-full box-border overflow-y-auto shadow-md px-1 ml-1">
                 {data.history_item}
                 {data.right.tags.length == 0
-                    ? <JLLoading /> :
-                    <Space className="pb-2" size={4} direction={"vertical"}>
+                    ? <JLLoading icon={<Image width={60} srcSet={icon} preview={false} />} /> :
+                    <Space className="pb-2" size={4} direction={"vertical"} align="start">
                         <Space size={0}>
                             {data.right.tags.map((item, idx) => {
                                 return <Tag key={idx} color="var(--THEME_COLOR)">{item}</Tag>

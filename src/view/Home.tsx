@@ -7,8 +7,8 @@ import JLTitle from "../components/JL_Title";
 import JLLoading from "../components/JL_Loding";
 import JLCard from "../components/Home/JL_Card";
 import JLCategoryTop from "../components/Home/JL_CategoryTop";
-import icon from '../assets/icon.png';
 import JLScrollView from "../components/JL_ScrollView";
+import icon from '../assets/4.gif';
 
 function Home() {
     const [data, setData] = useState(Object.assign({}, api_home_data));
