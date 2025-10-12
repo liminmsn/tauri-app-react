@@ -29,15 +29,15 @@ type PayItem = {
 
 const pay_list: PayItem[] = [
     {
-        type: 'wx',
-        title: '微信',
+        type: 'zfb',
+        title: '支付宝',
         icon: 'https://mdn.alipayobjects.com/huamei_r48i2l/afts/img/A*IOPwSY89vAcAAAAAAAAAAAAADqWPAQ/original'
     },
     {
-        type: 'zfb',
-        title: '支付宝',
+        type: 'wx',
+        title: '微信',
         icon: 'https://gtimg.wechatpay.cn/resource/xres/wechat_pay_system/merchant_basic/pay/common/image/wechat_partner_logo.svg'
-    }
+    },
 ];
 
 function PayItemImage({ type, h }: { type: PayItem, h: number }) {
