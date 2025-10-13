@@ -86,8 +86,8 @@ function Detail() {
     return <Card className="h-full">
         <div className="h-full box-border flex p-1">
             <div className="h-full flex flex-col min-w-40 max-w-40">
-                <Card className="box-border p-1" style={{ backgroundColor: "var(--THEME_COLOR)" }}>
-                    <JLImage className="w-full min-h-48 max-h-48" lodimg={''} src={data.left.img} />
+                <Card className="box-border p-1 h-48" style={{ backgroundColor: "var(--THEME_COLOR)" }}>
+                    <JLImage className="w-full h-180" lodimg={''} src={data.left.img} />
                 </Card>
                 {data.right.tags.length == 0
                     ? <JLLoading icon={<Image width={60} srcSet={icon} preview={false} />} /> :
@@ -110,7 +110,7 @@ function Detail() {
                 }
             </div>
             <Card className="h-full w-full box-border overflow-y-auto shadow-md px-1 ml-1">
-                {data.history_item}
+                {/* {data.history_item} */}
                 {data.right.tags.length == 0
                     ? <JLLoading icon={<Image width={60} srcSet={icon} preview={false} />} /> :
                     <Space className="pb-2" size={4} direction={"vertical"} align="start">
@@ -130,7 +130,7 @@ function Detail() {
                                 </Card>
                             })}
                         </div>
-                        <div className=" font-bold">简介：</div>
+                        <div className="font-bold">简介：</div>
                         <span className="text-blueGray font_two">{data.right.desc}</span>
                         {data.right.volumes.map(item => {
                             return <div key={item.list[0].href}>
