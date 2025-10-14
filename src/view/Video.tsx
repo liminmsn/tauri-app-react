@@ -4,7 +4,7 @@ import { api_video } from "../core/api/api_video";
 import { useSearchParams } from "react-router-dom";
 import JLLoading from "../components/JL_Loding";
 import JlVideoControl from "../components/Video/JL_Video_Control";
-import icon from "./../assets/icon.png";
+import icon from "./../assets/4.gif";
 
 function Video() {
     const [searchParams] = useSearchParams();

@@ -10,7 +10,10 @@ type JLImage = {
 }
 
 function JLImage({ src, className, lodimg = lodimg_, errimg = preview }: JLImage) {
-    return <Image preview={false} src={src}
+    return <Image
+        loading={"eager"}
+        preview={false}
+        src={src}
         className={className}
         fallback={errimg}
         placeholder={<Image preview={false} srcSet={lodimg} />}

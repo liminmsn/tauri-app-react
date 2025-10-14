@@ -8,7 +8,7 @@ import JLLoading from "../components/JL_Loding";
 import JLCard from "../components/Home/JL_Card";
 import JLCategoryTop from "../components/Home/JL_CategoryTop";
 import JLScrollView from "../components/JL_ScrollView";
-import icon from '../assets/4.gif';
+// import icon from '../assets/4.gif';
 
 function Home() {
     const [data, setData] = useState(Object.assign({}, api_home_data));
@@ -20,9 +20,7 @@ function Home() {
     const navigate = useNavigate();
     return data.carousel.title === '' ?
         <Card className="w-full h-full">
-            <JLLoading icon={<Image width={60} srcSet={icon} preview={false} />}>
-                <span className="font-bold">动漫获取中...</span>
-            </JLLoading>
+            <JLLoading>&nbsp;</JLLoading>
         </Card> :
         <div className="flex h-full w-full box-border">
             <Card className="w-full overflow-x-hidden p-1">

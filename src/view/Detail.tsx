@@ -89,8 +89,9 @@ function Detail() {
                 <Card className="box-border p-1 h-48" style={{ backgroundColor: "var(--THEME_COLOR)" }}>
                     <JLImage className="w-full h-180" lodimg={''} src={data.left.img} />
                 </Card>
+                 {/* <JLLoading icon={<Image width={40} srcSet={icon} preview={false} />} /> */}
                 {data.right.tags.length == 0
-                    ? <JLLoading icon={<Image width={40} srcSet={icon} preview={false} />} /> :
+                    ? <></> :
                     <Card className="flex-1 shadow-md p-1">
                         <div className="my-1 w-full flex gap-1">
                             <Button className="w-full" type={"primary"} icon={<CirclePlay size={14} />} onClick={() => nav(data.left.href, data.right.volumes[0].list[0].title)}>播放</Button>

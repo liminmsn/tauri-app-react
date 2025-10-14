@@ -22,7 +22,7 @@ function Search() {
     const navigate = useNavigate();
     return <JLScrollView>
         {data.list.length == 0 ?
-            <Card className="w-full h-full"><JLLoading /></Card> :
+            <Card className="w-full h-full"><JLLoading>&nbsp;</JLLoading></Card> :
             <Card className="min-h-full p-1">
                 <Card className="shadow-sm mb-1 text-center font-bold" style={{ backgroundColor: 'var(--THEME_COLOR_BG)', color: 'var(--THEME_COLOR)' }}>{data.title}</Card>
                 <Row gutter={[4, 4]}>
