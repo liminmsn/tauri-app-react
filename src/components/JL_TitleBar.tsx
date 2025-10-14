@@ -26,9 +26,9 @@ function JLTitleBar() {
         <Card className="mr-1 w-100 app-region text-center">
             <span className="font_one" style={{ color: "var(--THEME_COLOR)" }}>{import.meta.env['VITE_NAME']}</span>
         </Card>
-        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => new GlobalEvent().send('open_notify', true)}>
+        {/* <Button className="mr-1 !mb-0" type={"primary"} onClick={() => new GlobalEvent().send('open_notify', true)}>
             <Megaphone size={icon_size} strokeWidth={icon_width} />
-        </Button>
+        </Button> */}
         <JLNavigate url="/premium">
             <Button className="mr-1 !mb-0" type={"primary"}>
                 <Tickets size={icon_size} strokeWidth={icon_width} />
@@ -45,7 +45,7 @@ function JLTitleBar() {
                 <FolderHeart size={icon_size} strokeWidth={icon_width} />
             </Button>
         </JLNavigate>
-        <Card className="mr-1 w-34 app-region"></Card>
+        {/* <Card className="mr-1 w-34 app-region"></Card> */}
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => {
             if (location.pathname != '/') {
                 navigate(history.state.idx * -1)

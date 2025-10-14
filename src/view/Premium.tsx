@@ -1,7 +1,8 @@
-import { Button, Card, Image, Segmented, Space } from "antd";
+import { Button, Card, Image, Modal, Segmented, Space } from "antd";
 import { useEffect, useState } from "react";
 import { Premium as PremiumApi, PremiumList, PremiumListDatum } from '../core/premium/Premium';
 import DeviceID from "../components/Titlebar/DeviceId";
+import JLLoading from "../components/JL_Loding";
 
 const PriceStyle: React.CSSProperties = {
     width: '100%',
@@ -20,7 +21,6 @@ const CardStyleSelect: React.CSSProperties = {
     background: 'repeating-linear-gradient(to top, var(--THEME_COLOR),var(--THEME_COLOR))',
 };
 
-/** -------------------------------------------- */
 type PayItem = {
     title: string;
     type: 'zfb' | 'wx'
@@ -44,17 +44,9 @@ function PayItemImage({ type, h }: { type: PayItem, h: number }) {
     return <Image height={h} preview={false} src={type.icon} />
 }
 
-function Premium() {
-    const [premium_list, setPremium_list] = useState<PremiumList>();
-    const [premium_select, setPremium_select] = useState<PremiumListDatum>();
-    const [pay_type, setPayType] = useState<PayItem>(pay_list[0]); // 设置默认值
-
-    useEffect(() => {
-        new PremiumApi().getList().then(setPremium_list);
-    }, []);
-
-    // 转换 pay_list 为 Segmented 需要的格式
-    const segmentedOptions = pay_list.map(item => ({
+// 转换 pay_list 为 Segmented 需要的格式
+function segmentedOptions() {
+    return pay_list.map(item => ({
         label: (
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 {/* <Image 
@@ -71,6 +63,52 @@ function Premium() {
         originalItem: item // 保留原始对象引用
     }));
 
+}
+
+function PremiumPay({ modaOpen, item, pay_type }: { pay_type: PayItem, item: PremiumListDatum, modaOpen: [boolean, React.Dispatch<React.SetStateAction<boolean>>] }) {
+    const [isModalOpen, setIsModalOpen] = modaOpen;
+    useEffect(() => {
+
+    }, [])
+
+    return <Modal
+        title={<div>
+            <span>{`${pay_type.title}扫码支付`}</span>
+            <sup className="ml-1">
+                <Image height={10} src={pay_type.icon} preview={false} />
+            </sup>
+        </div>}
+        closable={false}
+        maskClosable={true}
+        open={isModalOpen}
+        footer={() => (
+            <>
+                <Button type="dashed" size="middle" onClick={() => setIsModalOpen(false)}>算了再想想</Button>
+                <Button type="primary" size="middle" className="font-bold">我已经完成支付</Button>
+            </>
+        )}
+    >
+        <div className="text-center">
+            <div>{import.meta.env['VITE_NAME']}订阅/{item.title}</div>
+            <div className="my-2 text-xl font-bold text-center line-height-none text-red-5 font_one">{item.price}</div>
+            <Image src={pay_type.icon} />
+        </div>
+    </Modal>
+}
+
+function Premium() {
+    const [premium_list, setPremium_list] = useState<PremiumList>();
+    const [premium_select, setPremium_select] = useState<PremiumListDatum>();//选中
+    const [pay_type, setPayType] = useState<PayItem>(pay_list[0]); // 设置支付方式
+    const modaOpen = useState(false);//弹窗
+
+    useEffect(() => { fetchData() }, []);
+    const fetchData = async () => {
+        await new PremiumApi().getList().then((val) => {
+            setPremium_list(val);
+            setPremium_select(val.data[0]);
+        });
+    }
     const handlePayTypeChange = (value: 'zfb' | 'wx') => {
         const selectedPayItem = pay_list.find(item => item.type === value);
         if (selectedPayItem) {
@@ -91,28 +129,33 @@ function Premium() {
                         </Card>
                     </Space>
                 </Card>
-                <div className="w-full grid grid-cols-3 gap-1">
-                    {premium_list?.data.map(item => {
-                        return (
-                            <Card
-                                className={`p-2 py-6 overflow-hidden cursor-pointer rounded-lg border-1 border-solid border-gray-2 ${item._id === premium_select?._id ? '' : ''}`}
-                                key={item._id}
-                                style={premium_select?._id == item._id ? CardStyleSelect : undefined}
-                                onClick={() => setPremium_select(item)}
-                            >
-                                <div className="text-3 font-bold line-height-none text-center">{item.dec}</div>
-                                <div className="text-3 font_two text-center line-height-none mt-2" style={{ opacity: 0.5 }}>{import.meta.env['VITE_NAME']}</div>
-                                <div style={PriceStyle} className="py-0">{item.title}</div>
-                            </Card>
-                        )
-                    })}
-                </div>
+                {premium_list == undefined ?
+                    <div className="text-center"><JLLoading >&nbsp;</JLLoading></div> :
+                    <div className="w-full grid grid-cols-3 gap-1">
+                        {
+                            premium_list?.data.map(item => {
+                                return (
+                                    <Card
+                                        className={`p-2 py-6 overflow-hidden cursor-pointer rounded-lg border-1 border-solid border-gray-2 ${item._id === premium_select?._id ? '' : ''}`}
+                                        key={item._id}
+                                        style={premium_select?._id == item._id ? CardStyleSelect : undefined}
+                                        onClick={() => setPremium_select(item)}
+                                    >
+                                        <div className="text-3 font-bold line-height-none text-center">{item.dec}</div>
+                                        <div className="text-3 font_two text-center line-height-none mt-2" style={{ opacity: 0.5 }}>{import.meta.env['VITE_NAME']}</div>
+                                        <div style={PriceStyle} className="py-0">{item.title}</div>
+                                    </Card>
+                                )
+                            })
+                        }
+                    </div>
+                }
             </Card>
             <Card className="w-full ml-1 p-2">
                 <div className="flex flex-col items-center">
                     <Space direction="vertical" align="center" size={4}>
                         <Segmented
-                            options={segmentedOptions}
+                            options={segmentedOptions()}
                             value={pay_type.type}
                             onChange={handlePayTypeChange}
                         />
@@ -126,7 +169,7 @@ function Premium() {
                                 <PayItemImage h={17} type={pay_type} />
                             </div>
                         </Card>
-                        <Button type="primary" size="middle" disabled={premium_select == undefined}>发起支付订单</Button>
+                        <Button type="primary" size="middle" disabled={premium_select == undefined} onClick={() => modaOpen[1](true)}>创建付款二维码</Button>
                         <div className="flex flex-col">
                             <div className="flex h-6 gap-2">
                                 <PayItemImage h={10} type={pay_list[0]} />
@@ -137,6 +180,7 @@ function Premium() {
                     </Space>
                 </div>
             </Card>
+            {premium_select && <PremiumPay pay_type={pay_type} modaOpen={modaOpen} item={premium_select} />}
         </div>
     )
 }

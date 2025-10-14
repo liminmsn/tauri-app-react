@@ -135,7 +135,7 @@ function Detail() {
                             <div className="font-bold">简介：</div>
                             <span className="text-blueGray font_two">{data.right.desc}</span>
                         </Space>
-                        <div className="w-full">
+                        <div className="w-full pb-1">
                             {data.right.volumes.map(item => {
                                 return <div key={item.list[0].href}>
                                     <div className="my-2  font-bold">{rmAllSpace(item.title)}</div>
