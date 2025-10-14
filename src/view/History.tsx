@@ -28,7 +28,7 @@ function History() {
         setSelect(undefined);
         new JLHistory((obj) => {
             obj.getAll('history', data => {
-                data_ = data;
+                data_ = data.sort((a, b) => b.time! - a.time!);
                 setData(data_);
                 if (data.length > 0) {
                     setSelect({ ...data[0] });
@@ -76,12 +76,10 @@ function History() {
             }
         </Card >
         <Card className="shadow-md w5/10 max-w-150 pl-2 overflow-hidden" style={{ borderTopLeftRadius: "0", borderBottomLeftRadius: "0" }}>
-            <div className="shadow-md">
-                <JLTitle>历史记录</JLTitle>
-            </div>
+            <JLTitle>历史记录</JLTitle>
             <JLScrollView>
                 {
-                    data.length > 0 && <div className="flex">
+                    data.length > 0 && <div className="flex my-1">
                         <Segmented
                             size="small"
                             options={['不限', '3天', '7天']}
@@ -102,7 +100,7 @@ function History() {
                             }}
                         />
                         <div className="flex-1"></div>
-                        <Button onClick={() => cleanHistroy()}>清空历史</Button>
+                        <Button className="scale-90" onClick={() => cleanHistroy()}>清空历史</Button>
                     </div>
                 }
                 {
@@ -113,7 +111,7 @@ function History() {
                             className="box-border"
                             mode={"alternate"}
                             items={
-                                data.reverse().map(item => {
+                                data.map(item => {
                                     return {
                                         color: 'blue',
                                         children: <>

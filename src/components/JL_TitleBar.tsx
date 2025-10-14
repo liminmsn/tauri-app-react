@@ -35,7 +35,17 @@ function JLTitleBar() {
             </Button>
         </JLNavigate>
         <Card className="mr-1 w-full app-region"></Card>
-        {/* <Card className="mr-1 w-100 app-region"></Card> */}
+        <JLNavigate url="/history">
+            <Button className="mr-1 !mb-0" type={"primary"} >
+                <FolderClock size={icon_size} strokeWidth={icon_width} />
+            </Button>
+        </JLNavigate>
+        <JLNavigate url="/lovels">
+            <Button className="mr-1 !mb-0" type={"primary"} >
+                <FolderHeart size={icon_size} strokeWidth={icon_width} />
+            </Button>
+        </JLNavigate>
+        <Card className="mr-1 w-34 app-region"></Card>
         <Button className="mr-1 !mb-0" type={"primary"} onClick={() => {
             if (location.pathname != '/') {
                 navigate(history.state.idx * -1)
@@ -50,16 +60,6 @@ function JLTitleBar() {
             <RotateCcw size={icon_size} strokeWidth={icon_width} />
         </Button>
         <SearchIpt />
-        <JLNavigate url="/history">
-            <Button className="mr-1 !mb-0" type={"primary"} >
-                <FolderClock size={icon_size} strokeWidth={icon_width} />
-            </Button>
-        </JLNavigate>
-        <JLNavigate url="/lovels">
-            <Button className="mr-1 !mb-0" type={"primary"} >
-                <FolderHeart size={icon_size} strokeWidth={icon_width} />
-            </Button>
-        </JLNavigate>
         <Popover content={<SettingView />} trigger={"click"} placement={"bottom"}>
             <Button className="mr-1 !mb-0" type={"primary"}>
                 <Cog size={icon_size} strokeWidth={icon_width} />

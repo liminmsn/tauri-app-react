@@ -84,9 +84,9 @@ function Premium() {
                 <Card className="p-1 my-1 border-1 border-solid border-gray-2" style={{ background: 'repeating-linear-gradient(to top, var(--THEME_COLOR), var(--THEME_COLOR))' }}>
                     <Space direction="vertical" size={2} className="w-full">
                         <label className="text-3 text-nowrap border-1 text-white">设备id：</label>
-                        <DeviceID className="w-full px-1 border-1 font-bold border-solid border-gray-2" />
+                        <DeviceID className="w-full px-1 border-1 border-solid border-gray-2" />
                         <label className="text-3 text-nowrap text-white">订阅到期时间：</label>
-                        <Card className="w-full font-bold border-1 border-solid border-gray-2">
+                        <Card className="w-full border-1 border-solid border-gray-2">
                             <span className="text-3 px-1">---------</span>
                         </Card>
                     </Space>

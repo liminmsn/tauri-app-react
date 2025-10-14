@@ -90,7 +90,7 @@ function Detail() {
                     <JLImage className="w-full h-180" lodimg={''} src={data.left.img} />
                 </Card>
                 {data.right.tags.length == 0
-                    ? <JLLoading icon={<Image width={60} srcSet={icon} preview={false} />} /> :
+                    ? <JLLoading icon={<Image width={40} srcSet={icon} preview={false} />} /> :
                     <Card className="flex-1 shadow-md p-1">
                         <div className="my-1 w-full flex gap-1">
                             <Button className="w-full" type={"primary"} icon={<CirclePlay size={14} />} onClick={() => nav(data.left.href, data.right.volumes[0].list[0].title)}>播放</Button>
@@ -113,44 +113,48 @@ function Detail() {
                 {/* {data.history_item} */}
                 {data.right.tags.length == 0
                     ? <JLLoading icon={<Image width={60} srcSet={icon} preview={false} />} /> :
-                    <Space className="pb-2" size={4} direction={"vertical"} align="start">
-                        <Space size={0}>
-                            {data.right.tags.map((item, idx) => {
-                                return <Tag key={idx} color="var(--THEME_COLOR)">{item}</Tag>
-                            })}
+                    <>
+                        <Space className="pb-2" size={4} direction={"vertical"} align="start">
+                            <Space size={0}>
+                                {data.right.tags.map((item, idx) => {
+                                    return <Tag key={idx} color="var(--THEME_COLOR)">{item}</Tag>
+                                })}
+                            </Space>
+                            <span className="text-4 font-bold">{data.right.title.one}</span>
+                            <span className="text-blueGray font_two">{data.right.title.two}</span>
+                            <div className=" font-bold">相关推荐：</div>
+                            <div className="w-8/10 overflow-x-auto flex gap-2">
+                                {data.right.ref.map(item => {
+                                    return <Card key={item.href} className="w3/10 max-w-40 effect_scale" onClick={() => navigate(`/detail?id=${item.href}`)}>
+                                        <Card className="h-20 effect_hover_bg_size" style={{ backgroundImage: `url('${item.img}')` }}></Card>
+                                        <div className="text-3 max-h-10 p-1 multiline-ellipsis">{item.title}</div>
+                                    </Card>
+                                })}
+                            </div>
+                            <div className="font-bold">简介：</div>
+                            <span className="text-blueGray font_two">{data.right.desc}</span>
                         </Space>
-                        <span className="text-4 font-bold">{data.right.title.one}</span>
-                        <span className="text-blueGray font_two">{data.right.title.two}</span>
-                        <div className=" font-bold">相关推荐：</div>
-                        <div className="w-8/10 overflow-x-auto flex gap-2">
-                            {data.right.ref.map(item => {
-                                return <Card key={item.href} className="w3/10 max-w-40 effect_scale" onClick={() => navigate(`/detail?id=${item.href}`)}>
-                                    <Card className="h-20 effect_hover_bg_size" style={{ backgroundImage: `url('${item.img}')` }}></Card>
-                                    <div className="text-3 max-h-10 p-1 multiline-ellipsis">{item.title}</div>
-                                </Card>
+                        <div className="w-full">
+                            {data.right.volumes.map(item => {
+                                return <div key={item.list[0].href}>
+                                    <div className="my-2  font-bold">{rmAllSpace(item.title)}</div>
+                                    <Row gutter={[6, 6]}>
+                                        {item.list.map(item => {
+                                            return <Col key={item.href} span={6}>
+                                                <Tooltip placement={'bottom'} title={<span className="text-3">{item.title}</span>} arrow >
+                                                    <Card className={`shadow p-2 effect_scale select-none`} style={select == item.href ? itemSelect_YES : itemSelect_NO} onClick={() => nav(item.href, item.title)}>
+                                                        <div className="text-nowrap text-3 text-ellipsis overflow-hidden cursor-pointer">
+                                                            {item.title}
+                                                        </div>
+                                                    </Card>
+                                                </Tooltip>
+                                            </Col>
+                                        })}
+                                    </Row>
+                                </div>
                             })}
                         </div>
-                        <div className="font-bold">简介：</div>
-                        <span className="text-blueGray font_two">{data.right.desc}</span>
-                        {data.right.volumes.map(item => {
-                            return <div key={item.list[0].href}>
-                                <div className="my-2  font-bold">{rmAllSpace(item.title)}</div>
-                                <Row gutter={[6, 6]}>
-                                    {item.list.map(item => {
-                                        return <Col key={item.href} span={6}>
-                                            <Tooltip placement={'bottom'} title={<span className="text-3">{item.title}</span>} arrow >
-                                                <Card className={`shadow p-2 effect_scale select-none`} style={select == item.href ? itemSelect_YES : itemSelect_NO} onClick={() => nav(item.href, item.title)}>
-                                                    <div className="text-nowrap text-3 text-ellipsis overflow-hidden cursor-pointer">
-                                                        {item.title}
-                                                    </div>
-                                                </Card>
-                                            </Tooltip>
-                                        </Col>
-                                    })}
-                                </Row>
-                            </div>
-                        })}
-                    </Space>
+                    </>
                 }
             </Card>
         </div>
