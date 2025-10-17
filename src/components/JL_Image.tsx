@@ -3,7 +3,7 @@ import preview from "../assets/cd.png";
 const lodimg_ = "/loding/4.gif";
 
 type JLImage = {
-    src: string;
+    src?: string;
     lodimg?: string;
     errimg?: string;
     className?: string;

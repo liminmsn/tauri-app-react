@@ -6,6 +6,8 @@ import zhCN from 'antd/locale/zh_CN';
 import { DataStatistice } from "./core/util/DataStatistice";
 import { DetailType } from "./core/api/api_detail";
 import Notify from "./notify/Notify";
+import { getDeviceDate } from "./components/Premium/Expire";
+import { useCallback, useEffect } from "react";
 
 if (!import.meta.env.DEV) {
   new DataStatistice();
@@ -22,6 +24,16 @@ export const detail_cache: {
 
 export default function () {
   const { themeData } = useThemeData();
+  const initData = useCallback(() => {
+    getDeviceDate();
+    globalThis.addEventListener('contextmenu', (e: MouseEvent) => {
+      e.preventDefault();
+      // debugger
+    });
+  }, [])
+  useEffect(() => {
+    initData();
+  }, []);
   return (
     <ConfigProvider locale={zhCN} componentSize={"small"} theme={themeData}>
       <App className="h-full p-1">
@@ -34,9 +46,3 @@ export default function () {
     </ConfigProvider >
   );
 };
-
-
-globalThis.addEventListener('contextmenu', (e: MouseEvent) => {
-  e.preventDefault();
-  // debugger
-});

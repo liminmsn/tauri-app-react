@@ -1,16 +1,20 @@
 import { invoke } from "@tauri-apps/api/core";
 import { Card } from "antd";
-import { Fingerprint } from "lucide-react";
 import { useEffect, useState } from "react";
-import { icon_size } from "../JL_TitleBar";
+
+/**获取程序拼接后的设备id */
+export async function getDeviceId() {
+    const id_ = await invoke<string>('deviceid');
+    return String('jldm-').concat(id_);
+}
 function DeviceID({ className }: { className?: string }) {
     const [id, setId] = useState('');
+
     useEffect(() => {
-        invoke<string>('deviceid').then(setId);
+        getDeviceId().then(setId);
     }, []);
     return <Card className={className} >
         <span className="text-3 mr-1">{id}</span>
-        <Fingerprint size={icon_size} style={{ transform: 'translateY(2px)' }} />
     </Card>
 }
 export default DeviceID;
