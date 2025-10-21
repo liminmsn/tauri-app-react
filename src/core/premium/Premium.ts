@@ -80,6 +80,18 @@ class Premium extends NetBase {
             }
         });
     }
+    checkDate() {
+        this.setUrl("https://fc-mp-00fbb6fa-0b8f-41d8-ac0c-122a477de70e.next.bspapp.com/check_date");
+        this.get();
+        return new Promise<{ code: number; date: number }>(async (resolve, reject) => {
+            const res = await this.then();
+            if (res.status == 200) {
+                resolve(await res.json())
+            } else {
+                reject(await res.text())
+            }
+        });
+    }
 }
 
 export { Premium };

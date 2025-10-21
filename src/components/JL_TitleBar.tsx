@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { JLHistory, JLLovels } from "../core/store/JL_LocalStorage";
 import JLNavigate from "./JL_Navigate";
 import icon from '../assets/icon.png';
+import NetCheck from "./Premium/NetCheck";
 
 export const icon_size = 14;
 export const icon_width = 2.4;
@@ -22,12 +23,14 @@ function JLTitleBar() {
 
     return <div className="flex" style={{ height: '24px' }}>
         <img className="app-region mr-1" src={icon} style={{ minWidth: '24px' }} />
-        <Card className="mr-1 w-100 app-region text-center">
-            <span className="font_one" style={{ color: "var(--THEME_COLOR)" }}>{import.meta.env['VITE_NAME']}</span>
+        <Card className="px-2 mr-1">
+            <NetCheck />
         </Card>
-        {/* <Button className="mr-1 !mb-0" type={"primary"} onClick={() => new GlobalEvent().send('open_notify', true)}>
+        <Card className="mr-1 w-100 app-region text-center">
+        </Card>
+        <Button className="mr-1 !mb-0" type={"primary"} onClick={() => new GlobalEvent().send('open_notify', true)}>
             <Megaphone size={icon_size} strokeWidth={icon_width} />
-        </Button> */}
+        </Button>
         <JLNavigate url="/premium">
             <Button className="mr-1 !mb-0" type={"primary"}>
                 <Tickets size={icon_size} strokeWidth={icon_width} />

@@ -36,3 +36,21 @@
         transform: scale(1);
     }
 }
+
+@keyframes effect_show_for {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.effect_show_for {
+    animation: effect_show_for 1250ms ease infinite;
+}

@@ -1,18 +1,20 @@
-import { Button, Card, Image, message, Modal, Segmented, Space } from "antd";
+import { Alert, Button, Card, Image, Modal, Segmented, Space } from "antd";
 import { useEffect, useState } from "react";
-import { CreatePayType, PayQueryRes, Premium as PremiumApi, PremiumList, PremiumListDatum } from '../core/premium/Premium';
+import { CreatePayType, Premium as PremiumApi, PremiumList, PremiumListDatum } from '../core/premium/Premium';
 import DeviceID, { getDeviceId } from "../components/Premium/DeviceId";
 import JLLoading from "../components/JL_Loding";
 import JLImage from "../components/JL_Image";
 import Expire from "../components/Premium/Expire";
 import useApp from "antd/es/app/useApp";
 import { CircleCheckBig, CircleX } from "lucide-react";
-import { icon_size, icon_width } from "../components/JL_TitleBar";
+import { icon_width } from "../components/JL_TitleBar";
+import { GlobalEvent } from "../core/util/globalEvent";
 
 const PriceStyle: React.CSSProperties = {
     width: '100%',
     textAlign: 'center',
-    fontFamily: 'wxxlt',
+    // fontFamily: 'wxxlt',
+    fontWeight: 'bold',
     background: 'repeating-linear-gradient(to left, #7a0101ff, #ff0000, #7a0101ff)',
     color: 'white',
     position: 'absolute',
@@ -90,16 +92,17 @@ function PremiumPay({ modaOpen, item, pay_type }: PremiumPayType) {
                     icon: <CircleCheckBig size={26} strokeWidth={icon_width} color="#0f0" />,
                     duration: 1,
                     message: res.code,
-                    description: res.message
+                    description: <Alert message={res.message} type="success" />
                 });
             } else if (res.code == 500) {
                 app.notification.error({
                     icon: <CircleX size={26} color="#f00" />,
                     duration: 1,
                     message: res.code,
-                    description: res.message
+                    description: <Alert message={res.message} type="error" />
                 });
             }
+            new GlobalEvent().send('expire_get');
             setIsModalOpen(false);
             console.log(res, '查询支付');
         }
@@ -136,7 +139,7 @@ function PremiumPay({ modaOpen, item, pay_type }: PremiumPayType) {
     >
         <div className="text-center">
             <div>{import.meta.env['VITE_NAME']}订阅/{item.title}</div>
-            <div className="my-2 text-xl font-bold text-center line-height-none text-red-5 font_one">{item.price}</div>
+            <div className="my-2 text-xl font-bold text-center line-height-none text-red-5">{item.price}</div>
             {/* <Image width={200} src={payObj?.img} /> */}
             <div className="w-60 h-60" style={{ marginInline: 'auto' }}>
                 <JLImage lodimg={''} src={payObj?.img} />
