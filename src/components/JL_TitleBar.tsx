@@ -9,6 +9,7 @@ import { JLHistory, JLLovels } from "../core/store/JL_LocalStorage";
 import JLNavigate from "./JL_Navigate";
 import icon from '../assets/icon.png';
 import NetCheck from "./Premium/NetCheck";
+import { GlobalEvent } from "../core/util/globalEvent";
 
 export const icon_size = 14;
 export const icon_width = 2.4;

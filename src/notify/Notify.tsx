@@ -37,7 +37,7 @@ class Notify extends React.Component {
     }
 
     private Title = <div className="flex items-center">
-        <Image width={24} src={icon} />
+        {/* <Image width={24} src={icon} /> */}
         <span className="ml-1">通知</span>
     </div>;
     private Close = <Button onClick={() => this.setState({ show_notify: false })} danger type={"primary"}><X size={14} /></Button>;
