@@ -22,8 +22,8 @@ export function api_detail(src: string) {
         data.left = {
             img: all.children[0].children[0].children[0].getAttribute('src') || '',
             href: all.children[0].children[0].children[1].children[0].children[0].children[0].getAttribute('href') || '',
-            upDate: rmAllSpace(all.children[0].children[0].children[2].children[1].textContent),
-            desc: rmAllSpace(all.children[0].children[0].children[3].children[1].textContent)
+            upDate: rmAllSpace(all.children[0].children[0].children[2].children[1].textContent!),
+            desc: rmAllSpace(all.children[0].children[0].children[3].children[1].textContent!)
         }
 
         const volumesArr: volumesType[] = [];
@@ -31,25 +31,25 @@ export function api_detail(src: string) {
         Array.from(all.children[1].getElementsByClassName('detail-right__volumes')[0].children[1].children).forEach((item) => {
             if (item.classList.contains('volume-title')) {
                 volumesArr.push({
-                    title: item.textContent,
+                    title: item.textContent || '',
                     list: []
                 });
             } else {
                 volumesArr[volumesArr.length - 1].list.push({
-                    title: rmAllSpace(item.textContent),
+                    title: rmAllSpace(item.textContent!),
                     href: item.children[0].getAttribute('href') || '',
                 })
             }
         })
         data.right = {
             title: {
-                one: rmAllSpace(all.children[1].getElementsByClassName('detail-right__title')[0].children[0].textContent) || '',
-                two: rmAllSpace(all.children[1].getElementsByClassName('detail-right__title')[0].children[1].textContent) || ''
+                one: rmAllSpace(all.children[1].getElementsByClassName('detail-right__title')[0].children[0].textContent!) || '',
+                two: rmAllSpace(all.children[1].getElementsByClassName('detail-right__title')[0].children[1].textContent!) || ''
             },
             tags: Array.from(all.children[1].getElementsByClassName('detail-right__tags')[0].children).map(item => {
-                return rmAllSpace(item.textContent)
+                return rmAllSpace(item.textContent!)
             }),
-            desc: all.children[1].getElementsByClassName('detail-right__desc')[0].children[1].textContent,
+            desc: all.children[1].getElementsByClassName('detail-right__desc')[0].children[1].textContent!,
             ref: Array.from(all.children[1].getElementsByClassName('row')[0].children).map(item => {
                 return {
                     img: item.children[0].children[0].children[0].getAttribute('src') || '',
@@ -57,7 +57,7 @@ export function api_detail(src: string) {
                     title: item.children[0].children[1].textContent,
                     desc: item.children[0].children[2].textContent
                 }
-            }),
+            }) as any,
             volumes: volumesArr
         }
         // console.log(data);
@@ -67,7 +67,7 @@ export function api_detail(src: string) {
 
 
 type volumesType = {
-    title: string,
+    title?: string,
     list: {
         title: string;
         href: string;

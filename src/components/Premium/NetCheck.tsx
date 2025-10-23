@@ -5,11 +5,11 @@ import { icon_size, icon_width } from "../JL_TitleBar";
 function NetCheck() {
     const [online, setOnline] = useState(true);
     useEffect(() => {
-        window.addEventListener('online', (e) => {
+        window.addEventListener('online', (_e) => {
             // console.log('网络连接');
             setOnline(true);
         });
-        window.addEventListener('offline', (e) => {
+        window.addEventListener('offline', (_e) => {
             // console.log('网络连接断开');
             setOnline(false);
         });

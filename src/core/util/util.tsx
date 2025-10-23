@@ -19,7 +19,8 @@ export function hexToRgba(hex: string, alpha: number): string {
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 /**删除所有空格 */
-export function rmAllSpace(str: string): string {
+export function rmAllSpace(str?: string): string {
+    if (str == undefined) return '';
     if (typeof str !== 'string') return str;
     return str = str.replace(/\s+/g, '');
 }

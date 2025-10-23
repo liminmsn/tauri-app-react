@@ -15,23 +15,23 @@ export function api_home() {
         const all = dom.getElementsByClassName('warp')[0].children[0];
         const data = api_home_data;
         // -----one
-        data.carousel.title = all.children[1].children[0].children[1].children[0].children[0].textContent;
+        data.carousel.title = all.children[1].children[0].children[1].children[0].children[0].textContent || '';
         data.carousel.one = Array.from(all.children[1].children[0].children[0].getElementsByTagName('a')).map(a => {
             return {
                 href: a.pathname,
                 img: a.children[0].getAttribute('src') || ' ',
-                tags: Array.from(a.children[1].children[0].children).map(tag => rmAllSpace(tag.textContent)),
-                author: rmAllSpace(a.children[1].children[1].textContent),
-                title: rmAllSpace(a.children[1].children[2].textContent),
-                truncate: rmAllSpace(a.children[1].children[3].textContent)
+                tags: Array.from(a.children[1].children[0].children).map(tag => rmAllSpace(tag.textContent!)),
+                author: rmAllSpace(a.children[1].children[1].textContent!),
+                title: rmAllSpace(a.children[1].children[2].textContent!),
+                truncate: rmAllSpace(a.children[1].children[3].textContent!)
             }
         });
         data.carousel.two = Array.from(all.children[1].children[0].children[1].getElementsByClassName('hot-search__content')[0].getElementsByTagName('a')).map(a => {
             return {
-                id: rmAllSpace(a.children[0].textContent),
-                title: rmAllSpace(a.children[1].textContent),
+                id: rmAllSpace(a.children[0].textContent!),
+                title: rmAllSpace(a.children[1].textContent!),
                 href: a.search,
-                state: rmAllSpace(a.children[3].getAttribute('class') || '')
+                state: rmAllSpace(a.children[3].getAttribute('class')!)
             }
         });
         //------host List
@@ -47,7 +47,7 @@ export function api_home() {
                     }
                 })
             }
-        }));
+        })) as any;
         //------host tag
         data.category = Array.from(all.getElementsByClassName('index-category')[0].children).map(item => {
             return {
@@ -67,10 +67,10 @@ export function api_home() {
                     }
                 })
             }
-        });
+        }) as any;
 
         // -----尾部
-        data.recently.title = all.children[6].children[0].children[0].textContent;
+        data.recently.title = all.children[6].children[0].children[0].textContent!;
         data.recently.list = Array.from(all.children[6].children[0].children[1].children).map(item => {
             const img = item.getElementsByTagName('amp-img')[0];
             const title = item.children[1];
@@ -78,7 +78,7 @@ export function api_home() {
             return {
                 href: item.getAttribute('href') || '',
                 img: img.getAttribute('src'),
-                title: rmAllSpace(title.textContent),
+                title: rmAllSpace(title.textContent!),
                 dateTime: rmAllSpace(dateTime.innerHTML)
             } as RecentlyItem;
         });

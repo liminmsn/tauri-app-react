@@ -7,7 +7,7 @@ export function api_search(q: string) {
         const dom = new DOMParser().parseFromString(await res.text(), 'text/html');
         const all = dom.getElementsByClassName('search')[0].children;
 
-        api_search_data.title = all[0].textContent;
+        api_search_data.title = all[0].textContent!;
         api_search_data.list = Array.from(all[1].children).map(item => {
             return {
                 href: item.children[0].getAttribute('href') ?? '',
@@ -18,7 +18,7 @@ export function api_search(q: string) {
                 author: item.children[0].children[1].children[0].textContent,
                 title: item.children[0].children[1].children[1].textContent,
             }
-        });
+        }) as any;
         console.log(api_search_data);
         resolve(api_search_data);
     });

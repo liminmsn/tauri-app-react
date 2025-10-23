@@ -1,4 +1,4 @@
-import { Card, Col, Image, Row, Space, Tag } from "antd";
+import { Card, Col, Row, Space, Tag } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { api_search, api_search_data, SearchType } from "../core/api/api_search";

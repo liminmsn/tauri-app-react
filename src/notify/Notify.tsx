@@ -1,7 +1,7 @@
-import { Button, Card, Carousel, Image } from "antd";
+import { Button, Card, Carousel } from "antd";
 import { X } from "lucide-react";
 import React from "react";
-import icon from '../assets/icon.png';
+// import icon from '../assets/icon.png';
 import { GlobalEvent } from "../core/util/globalEvent";
 
 type NotifyType = {
