@@ -24,6 +24,7 @@ export default defineConfig(async (env: ConfigEnv) => {
         ignored: ["**/src-tauri/**"],
       },
     },
+    base: './'
   }
   //代理地址
   if (env.mode == 'development') {
