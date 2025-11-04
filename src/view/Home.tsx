@@ -4,10 +4,10 @@ import { useCallback, useEffect, useState } from "react";
 import { getStateIcon, getStringArr, idxColor } from "../core/util/util";
 import { useNavigate } from "react-router-dom";
 import JLTitle from "../components/JL_Title";
-import JLLoading from "../components/JL_Loding";
 import JLCard from "../components/Home/JL_Card";
 import JLCategoryTop from "../components/Home/JL_CategoryTop";
 import JLScrollView from "../components/JL_ScrollView";
+import JLLoading from "../components/JL_Loding";
 // import icon from '../assets/4.gif';
 
 function Home() {
@@ -20,7 +20,7 @@ function Home() {
     const navigate = useNavigate();
     return data.carousel.title === '' ?
         <Card className="w-full h-full">
-            <JLLoading>&nbsp;</JLLoading>
+            <JLLoading >&nbsp;</JLLoading>
         </Card> :
         <div className="flex h-full w-full box-border">
             <Card className="w-full overflow-x-hidden p-1">

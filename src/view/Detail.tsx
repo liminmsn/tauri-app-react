@@ -1,4 +1,4 @@
-import { Button, Card, Col, Image, Row, Space, Tag, Tooltip } from "antd";
+import { Button, Card, Col, Row, Space, Tag, Tooltip } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { api_detail, api_detail_data } from "../core/api/api_detail";
@@ -8,7 +8,6 @@ import { rmAllSpace } from "../core/util/util";
 import { JLHistory, JLLovels } from "../core/store/JL_LocalStorage";
 import useApp from "antd/es/app/useApp";
 import { detail_cache } from "../App";
-import icon from '../assets/4.gif';
 import JLImage from "../components/JL_Image";
 
 
@@ -67,7 +66,7 @@ function Detail() {
                 const req = obj.delLovel(location.search);
                 req?.addEventListener('success', (_e) => {
                     setLovel(false);
-                    message.info('取消收藏');
+                    message.error('取消收藏');
                 });
             });
         } else {
@@ -86,18 +85,18 @@ function Detail() {
     return <Card className="h-full">
         <div className="h-full box-border flex p-1">
             <div className="h-full flex flex-col min-w-40 max-w-40">
-                <Card className="box-border p-1 h-48" style={{ backgroundColor: "var(--THEME_COLOR)" }}>
-                    <JLImage className="w-full h-180" lodimg={''} src={data.left.img} />
+                <Card className="box-border h-48 p-1" style={{ backgroundColor: "var(--THEME_COLOR_BG)" }}>
+                    <JLImage className="w-full h-180 rounded-md" lodimg={''} src={data.left.img} />
                 </Card>
-                 {/* <JLLoading icon={<Image width={40} srcSet={icon} preview={false} />} /> */}
+                {/* <JLLoading icon={<Image width={40} srcSet={icon} preview={false} />} /> */}
                 {data.right.tags.length == 0
                     ? <></> :
-                    <Card className="flex-1 shadow-md p-1">
+                    <Card className="flex-1 shadow-md p-1 mt-1">
                         <div className="my-1 w-full flex gap-1">
                             <Button className="w-full" type={"primary"} icon={<CirclePlay size={14} />} onClick={() => nav(data.left.href, data.right.volumes[0].list[0].title)}>播放</Button>
                             <Button className="w-full" type={"primary"}
                                 icon={<Heart size={14} color={lovel ? 'red' : 'white'} />}
-                                onClick={() => add_lovel()}>收藏</Button>
+                                onClick={() => add_lovel()}>{lovel ? '已收藏' : '收藏'}</Button>
                         </div>
                         <div>
                             <span className="font-bold">更新时间：</span><br />
@@ -113,7 +112,7 @@ function Detail() {
             <Card className="h-full w-full box-border overflow-y-auto shadow-md px-1 ml-1">
                 {/* {data.history_item} */}
                 {data.right.tags.length == 0
-                    ? <JLLoading icon={<Image width={60} srcSet={icon} preview={false} />} /> :
+                    ? <JLLoading /> :
                     <>
                         <Space className="pb-2" size={4} direction={"vertical"} align="start">
                             <Space size={0}>

@@ -1,6 +1,6 @@
 import { Image } from "antd";
-import preview from "../assets/cd.png";
-const lodimg_ = "/loding/4.gif";
+import preview from "../assets/loding.gif";
+const lodimg_ = "/loding/loding.gif";
 
 type JLImage = {
     src?: string;

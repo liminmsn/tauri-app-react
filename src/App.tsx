@@ -9,7 +9,7 @@ import Notify from "./notify/Notify";
 import { getDeviceDate } from "./components/Premium/Expire";
 import { useCallback, useEffect } from "react";
 
-if (!import.meta.env.DEV) {
+if (import.meta.env.DEV) {
   new DataStatistice();
 }
 //详情页面缓存初始化

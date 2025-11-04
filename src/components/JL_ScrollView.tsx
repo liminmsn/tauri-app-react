@@ -13,6 +13,7 @@ export function JLScrollView({ children, pos = { right: 12, bottom: 12 }, speed 
     const [show, setShow] = useState(false);
     const scroll = useRef<HTMLDivElement>(null);
     const onScroll = function () {
+        
         const { scrollTop } = scroll.current!;
         const { scrollHeight } = document.body;
         setShow(scrollTop > (scrollHeight * speed));

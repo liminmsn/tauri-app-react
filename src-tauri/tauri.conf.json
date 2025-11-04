@@ -15,7 +15,7 @@
         "devtools": true,
         "title": "巨量动漫",
         "width": 900,
-        "height": 800,
+        "height": 700,
         "decorations": false,
         "transparent": true,
         "resizable": false,
@@ -24,7 +24,7 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: https: http:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://hm.baidu.com; connect-src 'self' https://hm.baidu.com;"
     }
   },
   "bundle": {

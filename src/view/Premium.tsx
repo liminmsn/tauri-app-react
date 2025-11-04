@@ -87,24 +87,18 @@ function PremiumPay({ modaOpen, item, pay_type }: PremiumPayType) {
                 out_trade_no: payObj?.trade_no,
                 query_type: '0'
             });
-            if (res.code == 200) {
-                app.notification.success({
-                    icon: <CircleCheckBig size={26} strokeWidth={icon_width} color="#0f0" />,
-                    duration: 1,
-                    message: res.code,
-                    description: <Alert message={res.message} type="success" />
-                });
-            } else if (res.code == 500) {
-                app.notification.error({
-                    icon: <CircleX size={26} color="#f00" />,
-                    duration: 1,
-                    message: res.code,
-                    description: <Alert message={res.message} type="error" />
-                });
-            }
-            new GlobalEvent().send('expire_get');
+            app.notification.error({
+                icon: <CircleX size={26} color={res.code == 200 ? '#0f0' : '#f00'} />,
+                duration: 1,
+                message: res.code,
+                description: res.message
+            });
             setIsModalOpen(false);
-            console.log(res, '查询支付');
+            //更新状态
+            if (res.code == 200) {
+                new GlobalEvent().send('expire_get');
+                console.log(res, 'zfcx');
+            }
         }
     }
 
