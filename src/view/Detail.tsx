@@ -96,7 +96,7 @@ function Detail() {
                             <Button className="w-full" type={"primary"} icon={<CirclePlay size={14} />} onClick={() => nav(data.left.href, data.right.volumes[0].list[0].title)}>播放</Button>
                             <Button className="w-full" type={"primary"}
                                 icon={<Heart size={14} color={lovel ? 'red' : 'white'} />}
-                                onClick={() => add_lovel()}>{lovel ? '已收藏' : '收藏'}</Button>
+                                onClick={() => add_lovel()}>{lovel ? '已收藏' : '未收藏'}</Button>
                         </div>
                         <div>
                             <span className="font-bold">更新时间：</span><br />

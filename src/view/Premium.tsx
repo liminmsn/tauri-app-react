@@ -79,25 +79,30 @@ function PremiumPay({ modaOpen, item, pay_type }: PremiumPayType) {
     const [payObj, setPayObj] = useState<CreatePayType>();
     const app = useApp();
 
+    let bol = true;
     async function PayQuery() {
-        if (payObj) {
-            const device_id = await getDeviceId();
-            const res = await new PremiumApi().query({
-                device_id: device_id,
-                out_trade_no: payObj?.trade_no,
-                query_type: '0'
-            });
-            app.notification.error({
-                icon: <CircleX size={26} color={res.code == 200 ? '#0f0' : '#f00'} />,
-                duration: 1,
-                message: res.code,
-                description: res.message
-            });
-            setIsModalOpen(false);
-            //更新状态
-            if (res.code == 200) {
-                new GlobalEvent().send('expire_get');
-                console.log(res, 'zfcx');
+        if (bol) {
+            bol = false
+            if (payObj) {
+                const device_id = await getDeviceId();
+                const res = await new PremiumApi().query({
+                    device_id: device_id,
+                    out_trade_no: payObj?.trade_no,
+                    query_type: '0'
+                });
+                app.notification.error({
+                    icon: <CircleX size={26} color={res.code == 200 ? '#0f0' : '#f00'} />,
+                    duration: 1,
+                    message: res.code,
+                    description: res.message
+                });
+                setIsModalOpen(false);
+                //更新状态
+                if (res.code == 200) {
+                    new GlobalEvent().send('expire_get');
+                    console.log(res, 'zfcx');
+                    bol = true;
+                }
             }
         }
     }
@@ -112,7 +117,7 @@ function PremiumPay({ modaOpen, item, pay_type }: PremiumPayType) {
     }
     useEffect(() => {
         fetchData();
-    }, [pay_type])
+    }, [item])
 
     return <Modal
         title={<div>
