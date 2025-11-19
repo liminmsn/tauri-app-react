@@ -1,4 +1,4 @@
-import { Alert, Button, Card, Image, Modal, Segmented, Space } from "antd";
+import { Button, Card, Image, Modal, Segmented, Space } from "antd";
 import { useEffect, useState } from "react";
 import { CreatePayType, Premium as PremiumApi, PremiumList, PremiumListDatum } from '../core/premium/Premium';
 import DeviceID, { getDeviceId } from "../components/Premium/DeviceId";
@@ -6,8 +6,7 @@ import JLLoading from "../components/JL_Loding";
 import JLImage from "../components/JL_Image";
 import Expire from "../components/Premium/Expire";
 import useApp from "antd/es/app/useApp";
-import { CircleCheckBig, CircleX } from "lucide-react";
-import { icon_width } from "../components/JL_TitleBar";
+import { CircleX } from "lucide-react";
 import { GlobalEvent } from "../core/util/globalEvent";
 
 const PriceStyle: React.CSSProperties = {
