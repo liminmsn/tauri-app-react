@@ -24,7 +24,7 @@
       }
     ],
     "security": {
-      "csp": "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: https: http:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://hm.baidu.com; connect-src 'self' https://hm.baidu.com;"
+      "csp": null
     }
   },
   "bundle": {
