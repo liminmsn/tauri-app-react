@@ -18,7 +18,44 @@ body,
 
 body {
   margin: 0;
-  background-color: var(--THEME_COLOR_BG);
+  /* background-color: var(--THEME_COLOR); */
+}
+
+.app_content {
+  /* --THEME_COLOR: black; */
+  --size: 18px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 6px 8px;
+  overflow: hidden;
+  height: inherit;
+  /* background-color: rgba(0, 0, 0, 0.4); */
+  /* background: radial-gradient(rgba(0, 0, 0, 0.4) 10px, black); */
+  border: 1px dotted var(--THEME_COLOR);
+
+  &::after,
+  &::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '';
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  &::before {
+    z-index: -2;
+    background: white;
+  }
+
+  &::after {
+    opacity: 0.2;
+    background:
+      repeating-linear-gradient(to left, var(--THEME_COLOR) 0, var(--THEME_COLOR) 1px, transparent 1px, transparent var(--size)),
+      repeating-linear-gradient(to top, var(--THEME_COLOR) 0, var(--THEME_COLOR) 1px, transparent 1px, transparent var(--size));
+  }
 }
 
 .app-region {

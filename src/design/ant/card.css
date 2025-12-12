@@ -3,6 +3,14 @@
 }
 
 .ant-card {
-    /* background-color: hsla(359, 100%, 50%, 1) !important; */
-    /* background-color: antiquewhite; */
+    /* background-color: hsla(35, 100%, 50%, 1) !important; */
+    border: none;
+    /* background-color: transparent; */
+    /* box-shadow:
+        1px 1px 3px rgba(255, 255, 255, 0.2),
+        0 0 1px var(--THEME_COLOR) inset,
+        0 4px 3px rgba(255, 255, 255, 0.2) inset,
+        4px 0 3px rgba(255, 255, 255, 0.2) inset,
+        0 0 10px var(--THEME_COLOR) inset; */
+    /* backdrop-filter: blur(1px); */
 }

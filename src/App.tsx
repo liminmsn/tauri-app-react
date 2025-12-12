@@ -8,13 +8,15 @@ export default function () {
   const { themeData } = useThemeData();
   return (
     <ConfigProvider componentSize={"small"} theme={themeData}>
-      <App className="h-full p-1">
-        <TitleBar />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </BrowserRouter>
+      <App className="h-full">
+        <div className="app_content">
+          <TitleBar />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
       </App>
     </ConfigProvider>
   );

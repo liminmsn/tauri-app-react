@@ -16,9 +16,9 @@
         "width": 800,
         "height": 600,
         "decorations": false,
-        "transparent": true,
         "resizable": false,
-        "shadow": true
+        "transparent": true,
+        "shadow": false
       }
     ],
     "security": {
@@ -30,7 +30,7 @@
     "targets": "nsis",
     "windows": {
       "allowDowngrades": true,
-      "certificateThumbprint": null,
+      "certificateThumbprint": null,      
       "digestAlgorithm": null,
       "nsis": {
         "installerIcon": "icons/icon.ico",
